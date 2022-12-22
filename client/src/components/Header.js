@@ -109,15 +109,13 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
               </li>
               <li>
                 <NavLink
-                  to='/venues'
+                  to='/concerts'
                   class='btn btn-primary uppercase font-bold'>
                   <h3 class='uppercase font-bold'>concerts</h3>
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to='/genres'
-                  class='btn btn-primary uppercase font-bold'>
+                <NavLink to='/' class='btn btn-primary uppercase font-bold'>
                   <h3 class='uppercase font-bold'>upcoming</h3>
                 </NavLink>
               </li>

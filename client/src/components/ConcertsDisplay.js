@@ -18,7 +18,7 @@ function ConcertsDisplay({
 
   useEffect(() => {
     setSearchTerm('');
-  }, [concerts]);
+  }, [artists]);
 
   //^ display an EachConcertCard for the map function, to keep the consistency
 
@@ -43,7 +43,7 @@ function ConcertsDisplay({
             </h1>
             <p class='mx-auto uppercase text-center max-w-screen-md text-secondary text-gray-500 md:text-lg'></p>
           </div>
-          <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
+          {/* <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
             {concerts
               .filter((concert) => {
                 if (searchTerm === '') {
@@ -62,6 +62,15 @@ function ConcertsDisplay({
               .map((concert) => (
                 <EachConcertCard concert={concert} posts={posts} />
               ))}
+          </div> */}
+          <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
+            {artists.map((artist) => {
+              console.log('artist :', artist);
+
+              artist.concerts.map((concert) => {
+                console.log('concert :', concert);
+              });
+            })}
           </div>
         </div>
       </div>
