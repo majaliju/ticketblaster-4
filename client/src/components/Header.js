@@ -48,12 +48,12 @@ function Header({ getUser, user = '', setUser, onLogin, onLogout, loggedIn }) {
               </li>
               <li>
                 <NavLink to='/venues' class='uppercase font-bold'>
-                  venues
+                  concerts
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/genres' class='uppercase font-bold'>
-                  genres
+                  upcoming
                 </NavLink>
               </li>
               {/* concerts tab is redundant */}
@@ -111,14 +111,14 @@ function Header({ getUser, user = '', setUser, onLogin, onLogout, loggedIn }) {
                 <NavLink
                   to='/venues'
                   class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>venues</h3>
+                  <h3 class='uppercase font-bold'>concerts</h3>
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to='/genres'
                   class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>genres</h3>
+                  <h3 class='uppercase font-bold'>upcoming</h3>
                 </NavLink>
               </li>
               {/* concerts tab is redundant */}
