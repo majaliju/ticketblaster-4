@@ -24,8 +24,6 @@ function App() {
   // just preliminary but everything can be handled here within Artists ideally or Users
   const [searchTerm, setSearchTerm] = useState('');
   const [artists, setArtists] = useState([]);
-  const [concerts, setConcerts] = useState([]);
-  const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
 
   //TODO
@@ -41,21 +39,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('/concerts')
-      .then((r) => r.json())
-      .then((info) => setConcerts(info));
-  }, []);
-
-  useEffect(() => {
     fetch('/users')
       .then((r) => r.json())
       .then((info) => setUsers(info));
-  }, []);
-
-  useEffect(() => {
-    fetch('/posts')
-      .then((r) => r.json())
-      .then((info) => setPosts(info));
   }, []);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
@@ -98,11 +84,13 @@ function App() {
     getSession();
   }, []);
 
+  //! HANDLE DELETE FUNCTION NEEDS UPDATING
   function handleDelete(eachPost) {
     fetch(`/delete_post/${eachPost.id}`, {
       method: 'DELETE',
     });
     console.log('deletedPost :', eachPost);
+    //* map thru Artists.map((artist) => artist.posts.map((post) => ))
     const remainingPosts = posts.filter(
       (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
     );
