@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_12_22_210441) do
   create_table "concerts", force: :cascade do |t|
     t.datetime "date"
     t.string "location"
+    t.string "image"
     t.integer "artist_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
