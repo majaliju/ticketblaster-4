@@ -1,4 +1,7 @@
 class Artist < ApplicationRecord
-
-  ## putting this here; before the imports
+  has_many :concerts
+  belongs_to :genre
+  
+  has_many :posts, through: :concerts
+  
 end
