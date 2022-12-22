@@ -21,6 +21,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [cookies, setCookies] = useState([]);
 
+  // just preliminary but everything can be handled here within Artists ideally or Users
   const [searchTerm, setSearchTerm] = useState('');
   const [artists, setArtists] = useState([]);
   const [concerts, setConcerts] = useState([]);

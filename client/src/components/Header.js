@@ -3,16 +3,16 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function Header({ getUser, user = '', setUser, onLogin, onLogout, loggedIn }) {
+function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
   function handleLogout() {
     fetch('/logout', {
       method: 'DELETE',
     }).then(() => onLogout());
   }
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   // TODO
   //^ dropdown should exit as soon as item is clicked
