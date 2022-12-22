@@ -49,17 +49,6 @@ function EachArtistCard({
                     />
                   </div>
                 </div>
-                <div class='card-body items-center text-center'>
-                  <h2 class='card-title'>{thisArtist.genre}</h2>
-
-                  <div class='card-actions justify-end'>
-                    <Link
-                      to='/artists'
-                      class='btn btn-outline btn-secondary w-full'>
-                      Go Back
-                    </Link>
-                  </div>
-                </div>
               </div>
             </div>
             <div class='grid mx-40'>
@@ -90,7 +79,6 @@ function EachArtistCard({
                     <EachConcertCard
                       concert={concert}
                       thisArtist={thisArtist}
-                      posts={posts}
                     />
                   ))}
                 </div>

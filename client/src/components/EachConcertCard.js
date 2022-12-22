@@ -5,7 +5,7 @@ import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import CreatePost from './CreatePost';
 
-function EachConcertCard({ concert }) {
+function EachConcertCard({ concert, thisArtist }) {
   // TODO
   //^ center the card in the middle of the page
   //* potentially add click links on artist's name and venue name
@@ -20,23 +20,23 @@ function EachConcertCard({ concert }) {
                 <div class='avatar'>
                   <div class='w-30 rounded'>
                     <img
-                      src={concert.artist.image}
+                      src={thisArtist.image}
                       alt='a small avatar of the musical artist'
                     />
                   </div>
-                </div>
-                <div class='avatar'>
                   <div class='w-30 rounded'>
                     <img
-                      src={concert.venue.image}
+                      src={concert.image}
                       alt='a small avatar of the venue'
                     />
                   </div>
                 </div>
+
                 <div class='card-body items-center text-center'>
-                  <h2 class='card-title'>{concert.artist.name}</h2>
-                  <p>at</p>
                   <h2 class='card-title'>{concert.location}</h2>
+                  <h2 class='card-title'>{thisArtist.name}</h2>
+
+                  <h2 class='card-body'>{concert.date}</h2>
 
                   <div class='card-actions justify-end'>
                     <Link
@@ -44,7 +44,7 @@ function EachConcertCard({ concert }) {
                       state={{
                         isSelling: true,
                         concertID: concert.id,
-                        artistID: concert.artist_id,
+                        artistID: thisArtist.id,
                       }}
                       class='btn btn-secondary w-full'>
                       I'M SELLING!
@@ -54,7 +54,7 @@ function EachConcertCard({ concert }) {
                       state={{
                         isSelling: false,
                         concertID: concert.id,
-                        artistID: concert.artist_id,
+                        artistID: thisArtist.id,
                       }}
                       class='btn btn-secondary w-full'>
                       I'M BUYING!
