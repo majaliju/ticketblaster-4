@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    post = Post.find_by(id: params[:id])
+    post = Post.find_by!(id: params[:id])
     render json: post, status: 200
   end
 
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
 
   def update
-    post = Post.find_by(id: params[:id])
+    post = Post.find_by!(id: params[:id])
     if session[:user_id] === post[:user_id]
       post.update!(
         body: params[:body],
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
         
 
   def destroy
-    post = Post.find_by(id: params[:id])
+    post = Post.find_by!(id: params[:id])
     if session[:user_id] === post[:user_id]
       post.destroy
       head :no_content

@@ -7,8 +7,9 @@ class UsersController < ApplicationController
     render json: users
   end
 
+  ## get '/me'
   def show
-    user = User.find_by(id: session[:user_id])
+    user = User.find_by!(id: session[:user_id]) ## changed it to User.find_by! for it to work
     render json: user, status: 200
   end
 
