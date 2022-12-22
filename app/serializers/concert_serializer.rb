@@ -1,5 +1,5 @@
 class ConcertSerializer < ActiveModel::Serializer
-  attributes :date, :location, :artist_id
+  attributes :id, :date, :location
   
   belongs_to :artist, serializer: ArtistSerializer
 end
