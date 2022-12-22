@@ -65,10 +65,11 @@ function ConcertsDisplay({
           </div> */}
           <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
             {artists.map((artist) => {
-              console.log('artist :', artist);
+              console.log('artist within artists map :', artist);
 
               artist.concerts.map((concert) => {
                 console.log('concert :', concert);
+                console.log('artist within the artist.concerts.map: ', artist);
               });
             })}
           </div>
