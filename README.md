@@ -36,6 +36,8 @@ $ cd your-project-name
 $ git remote rm origin
 ```
 
+## in case
+
 Then, [create a new remote repository][create repo] on GitHub. Head to
 [github.com](https://github.com) and click the **+** icon in the top-right
 corner and follow the steps to create a new repository. **Important**: don't
