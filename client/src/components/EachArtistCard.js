@@ -7,6 +7,8 @@ import EachConcertCard from './EachConcertCard';
 
 //* GOTTA ADJUST STYLING HERE TO FORM EVERYTHING IN THE CENTER CLEANLY
 
+// change thisArtist to artist via direct pass also
+
 function EachArtistCard({
   users,
   posts,
@@ -48,7 +50,7 @@ function EachArtistCard({
                   </div>
                 </div>
                 <div class='card-body items-center text-center'>
-                  <h2 class='card-title'>{thisArtist.name}</h2>
+                  <h2 class='card-title'>{thisArtist.genre}</h2>
 
                   <div class='card-actions justify-end'>
                     <Link
@@ -61,10 +63,10 @@ function EachArtistCard({
               </div>
             </div>
             <div class='grid mx-40'>
-              <h2 class='my-10 text-center text-5xl font-thin uppercase text-primary md:mb-6 lg:text-6xl'>
-                ALL POSTS
-              </h2>
-              {thisArtist.posts.map((eachPost) => (
+              <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
+                ALL POSTS FOR {thisArtist.name}
+              </h1>
+              {/* {thisArtist.posts.map((eachPost) => (
                 <IndividualPost
                   eachPost={eachPost}
                   posts={posts}
@@ -73,7 +75,7 @@ function EachArtistCard({
                   user={user}
                   handleDelete={handleDelete}
                 />
-              ))}
+              ))} */}
             </div>
             <div>
               <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
@@ -84,15 +86,13 @@ function EachArtistCard({
                   <p class='mx-auto uppercase text-center max-w-screen-md text-secondary text-gray-500 md:text-lg'></p>
                 </div>
                 <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-                  {concerts
-                    .filter((concert) => {
-                      if (concert.artist.id === thisArtist.id) {
-                        return concert;
-                      }
-                    })
-                    .map((concert) => (
-                      <EachConcertCard concert={concert} posts={posts} />
-                    ))}
+                  {thisArtist.concerts.map((concert) => (
+                    <EachConcertCard
+                      concert={concert}
+                      thisArtist={thisArtist}
+                      posts={posts}
+                    />
+                  ))}
                 </div>
               </div>
             </div>

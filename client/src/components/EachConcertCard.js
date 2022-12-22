@@ -36,7 +36,7 @@ function EachConcertCard({ concert }) {
                 <div class='card-body items-center text-center'>
                   <h2 class='card-title'>{concert.artist.name}</h2>
                   <p>at</p>
-                  <h2 class='card-title'>{concert.venue.name}</h2>
+                  <h2 class='card-title'>{concert.location}</h2>
 
                   <div class='card-actions justify-end'>
                     <Link
