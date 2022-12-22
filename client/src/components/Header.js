@@ -3,7 +3,7 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
+function Header({ getUser, user = '', setUser, onLogin, onLogout, loggedIn }) {
   function handleLogout() {
     fetch('/logout', {
       method: 'DELETE',
@@ -142,7 +142,7 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
                   </NavLink>
                 </li>
               )}
-              {user !== '' && (
+              {user !== (null || '') && (
                 <div>
                   <li>
                     <button class='uppercase font-bold' onClick={handleLogout}>

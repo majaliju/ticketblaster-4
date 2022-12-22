@@ -62,7 +62,6 @@ function App() {
   //! show error message for bad login
   //^ create an error for user error messages
   useEffect(() => {
-    setUser('');
     getUser();
   }, []);
 
