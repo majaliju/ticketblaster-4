@@ -58,27 +58,28 @@ puts "---------------------- Seeding each Artist, their concerts, and their post
 
 #~ Adele
 adele = Artist.create({ name: "Adele", image: "/artist-images/adele.jpg", genre: "Pop"})
-adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Hollywood Bowl", artist_id: a1.id})
-adele_p1 = Post.create({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: c1.id})
-adele_p2 = Post.create({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: c1.id})
+adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Hollywood Bowl", artist_id: adele.id})
+adele_p1 = Post.create({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: adele_c1.id})
+adele_p2 = Post.create({body: "PLEASE EMAIL IF YOU HAVE 4 TICKETS ALTOGETHER! MY DAUGHTERS LOVE HER -- THX ", for_sale: false, tickets: 4, user_id: u17.id, concert_id: adele_c1.id})
 
 
 #~ John Legend
 john_legend = Artist.create({ name: "John Legend", image: "/artist-images/john_legend.jpg", genre: "Pop"})
-john_legend_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", artist_id: a2.id})
-john_legend_p1 = Post.create({body: "Need 3 tickets badly! Willing to pay $400 total for 3 tix", for_sale: false, tickets: 3, user_id: u2.id, concert_id: c2.id})
+john_legend_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", artist_id: john_legend.id})
+john_legend_p1 = Post.create({body: "Need 3 tickets badly! Willing to pay $400 total for 3 tix", for_sale: false, tickets: 3, user_id: u2.id, concert_id: john_legend_c1.id})
+john_legend_p2 = Post.create({body: "Can't find just one ticket anywhere! Idc where the seat is, HMU", for_sale: false, tickets: 1, user_id: u30.id, concert_id: john_legend_c1.id})
 
 
 #~ Lil Uzi Vert
 lil_uzi = Artist.create({ name: "Lil Uzi Vert", image: "/artist-images/lil-uzi-vert.jpg", genre: "Rap"})
-lil_uzi_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "SoFi Stadium", artist_id: a3.id})
-lil_uzi_p1 = Post.create({body: "All 3 tickets together = $250, one ticket = $100", for_sale: true, tickets: 3, user_id: u4.id, concert_id: c3.id})
+lil_uzi_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "SoFi Stadium", artist_id: lil_uzi.id})
+lil_uzi_p1 = Post.create({body: "All 3 tickets together = $250, one ticket = $100", for_sale: true, tickets: 3, user_id: u4.id, concert_id: lil_uzi_c1.id})
 
 
 #~ Alicia Keys
 alicia_keys = Artist.create({ name: "Alicia Keys", image: "/artist-images/alicia_keys.jpg", genre: "R&B"})
-alicia_keys_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Bowery Ballroom", artist_id: a4.id})
-alicia_keys_p1 = Post.create({body: "My daughter loves him (dont ask), will pay up to $500 per ticket", for_sale: false, tickets: 2, user_id: u4.id, concert_id: c4.id})
+alicia_keys_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Bowery Ballroom", artist_id: alicia_keys.id})
+alicia_keys_p1 = Post.create({body: "My daughter loves him (dont ask), will pay up to $500 per ticket", for_sale: false, tickets: 2, user_id: u4.id, concert_id: alicia_keys_c1.id})
 
 
 
