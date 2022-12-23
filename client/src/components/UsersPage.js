@@ -38,16 +38,14 @@ function UsersPage({
                   Welcome back, {user.username}!
                 </h1>
                 <p class='mb-5'>Your sessionID is {sessionInfo.session_id}</p>
-                {/* {user.posts.map((eachPost) => (
+                {user.posts.map((eachPost) => (
                   <IndividualPost
                     handleDelete={handleDelete}
                     eachPost={eachPost}
-                    posts={posts}
-                    setPosts={setPosts}
                     users={users}
                     user={user}
                   />
-                ))} */}
+                ))}
               </div>
             </div>
           </div>

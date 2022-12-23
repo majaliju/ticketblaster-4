@@ -2,16 +2,7 @@ import { useState, useEffect } from 'react';
 import EachUser from './EachUser';
 import { Link, useNavigate } from 'react-router-dom';
 
-function IndividualPost({
-  eachPost,
-  artists,
-  setArtists,
-  posts,
-  setPosts,
-  users,
-  user,
-  handleDelete,
-}) {
+function IndividualPost({ eachPost, artist, user, handleDelete }) {
   let navigate = useNavigate();
 
   // checks the user.id from the session against the user's ID here
@@ -30,9 +21,6 @@ function IndividualPost({
   //   (thisOne) => parseInt(user.id) === parseInt(eachPost.user_id)
   // );
 
-  const thisPost = posts.find((post) => post.id === eachPost.id);
-  console.log('thisPost within IndividualPost: ', thisPost);
-
   //! use posts here to sort thru all the posts instead of linking
 
   //^ POTENTIAL ESSENTIAL: include the user and link to EachUser page, where each users Posts display
@@ -48,12 +36,12 @@ function IndividualPost({
         <div class='sm:pr-8'>
           <h2 class='text-xl font-bold text-left text-primary'>
             <h3 class='text-3xl justify-center'>
-              by: {thisPost.user.username}
+              by: {eachPost.user.username}
             </h3>
           </h2>
           <h2 class='text-xl font-light text-left text-secondary'>
             <h3 class='text-1xl justify-center'>
-              {thisPost.for_sale === true ? (
+              {eachPost.for_sale === true ? (
                 <div>is selling</div>
               ) : (
                 <div>is looking to buy</div>
@@ -62,10 +50,10 @@ function IndividualPost({
           </h2>
 
           <h3 class='mt-2 text-lg text-right text-purple-500'>
-            {thisPost.comment_body}
+            {eachPost.body}
           </h3>
           <h4 class='mt-2 text-md text-right justify-center text-amber-300'>
-            email: {thisPost.user.email}
+            email: {user.email}
           </h4>
         </div>
         {userAllowed !== false && (
@@ -73,16 +61,16 @@ function IndividualPost({
             <Link
               to='/editPost'
               state={{
-                postID: thisPost.id,
-                currentBody: thisPost.comment_body,
-                currentTickets: thisPost.tickets,
+                postID: eachPost.id,
+                currentBody: eachPost.body,
+                currentTickets: eachPost.tickets,
               }}
               class='btn btn-primary btn-outline w-full'>
               EDIT YOUR POST
             </Link>
             <button
               onClick={() => {
-                handleDelete(thisPost);
+                handleDelete(eachPost);
               }}
               type='submit'
               class='btn btn-secondary btn-outline w-full'>

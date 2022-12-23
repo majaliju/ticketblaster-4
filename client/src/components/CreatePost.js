@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreatePost({ user, concerts, setPosts, posts }) {
+function CreatePost({ user }) {
   const [body, setBody] = useState('');
   const [ticketAmount, setTicketAmount] = useState(0);
   const [error, setError] = useState([]);
@@ -11,6 +11,7 @@ function CreatePost({ user, concerts, setPosts, posts }) {
   const navigate = useNavigate();
   const location = useLocation();
   let isSelling = location.state.isSelling;
+  let artist = location.state.artist;
   let concertID = location.state.concertID;
 
   //* updates for IndividualPost are being acted on artists state (thisArtist.post)
@@ -24,6 +25,10 @@ function CreatePost({ user, concerts, setPosts, posts }) {
   //   setTicketAmount(0);
   // }, []);
 
+  artist.posts.map((post) => {
+    console.log('post for artist: ', post);
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('/new_post', {
@@ -33,7 +38,7 @@ function CreatePost({ user, concerts, setPosts, posts }) {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        comment_body: body,
+        body: body,
         for_sale: isSelling,
         tickets: ticketAmount,
         concert_id: concertID,
@@ -42,7 +47,14 @@ function CreatePost({ user, concerts, setPosts, posts }) {
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((info) => {
-          setPosts([...posts, info]);
+          const updatedPosts = artist.posts.map((post) => {
+            if (post.id === info.id) {
+              return info;
+            } else {
+              return post;
+            }
+          });
+          console.log('updatedPosts', updatedPosts);
         });
         setError([]);
         setSuccess('Your post has been created!');

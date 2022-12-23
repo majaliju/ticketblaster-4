@@ -10,6 +10,8 @@ function EachConcertCard({ concert, thisArtist }) {
   //^ center the card in the middle of the page
   //* potentially add click links on artist's name and venue name
 
+  console.log('thisArtist within EachConcertCard: ', thisArtist);
+
   return (
     <div>
       <div class='bg-base-900 py-6 sm:py-8 lg:py-'>
@@ -43,6 +45,7 @@ function EachConcertCard({ concert, thisArtist }) {
                       to='/createNewPost'
                       state={{
                         isSelling: true,
+                        artist: thisArtist,
                         concertID: concert.id,
                         artistID: thisArtist.id,
                       }}
@@ -53,6 +56,7 @@ function EachConcertCard({ concert, thisArtist }) {
                       to='/createNewPost'
                       state={{
                         isSelling: false,
+                        artist: thisArtist,
                         concertID: concert.id,
                         artistID: thisArtist.id,
                       }}
