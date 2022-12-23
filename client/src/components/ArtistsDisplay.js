@@ -42,7 +42,7 @@ function ArtistsDisplay({ artists, genres, user, searchTerm, setSearchTerm }) {
                     artist.name
                       .toLowerCase()
                       .includes(searchTerm.toLowerCase()) ||
-                    artist.genre.name
+                    artist.genre
                       .toLowerCase()
                       .includes(searchTerm.toLowerCase())
                   ) {
@@ -64,7 +64,7 @@ function ArtistsDisplay({ artists, genres, user, searchTerm, setSearchTerm }) {
                           </div>
                         </div>
                         <h1 class='card-title'>{artist.name}</h1>
-                        <p>{artist.genre.name}</p>
+                        <h2>{artist.genre}</h2>
                         <div class='card-actions justify-end'>
                           <button
                             class='btn btn-primary'

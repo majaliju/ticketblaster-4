@@ -52,6 +52,11 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
                 </NavLink>
               </li>
               <li>
+                <NavLink to='/' class='uppercase font-bold'>
+                  your posts
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to='/genres' class='uppercase font-bold'>
                   upcoming
                 </NavLink>
@@ -112,6 +117,11 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
                   to='/concerts'
                   class='btn btn-primary uppercase font-bold'>
                   <h3 class='uppercase font-bold'>concerts</h3>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to='/' class='btn btn-primary uppercase font-bold'>
+                  <h3 class='uppercase font-bold'>your posts</h3>
                 </NavLink>
               </li>
               <li>
