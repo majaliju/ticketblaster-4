@@ -85,17 +85,17 @@ function App() {
   }, []);
 
   //! HANDLE DELETE FUNCTION NEEDS UPDATING
-  function handleDelete(eachPost) {
-    fetch(`/delete_post/${eachPost.id}`, {
-      method: 'DELETE',
-    });
-    console.log('deletedPost :', eachPost);
-    //* map thru Artists.map((artist) => artist.posts.map((post) => ))
-    const remainingPosts = posts.filter(
-      (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
-    );
-    setPosts(remainingPosts);
-  }
+  // function handleDelete(eachPost) {
+  //   fetch(`/delete_post/${eachPost.id}`, {
+  //     method: 'DELETE',
+  //   });
+  //   console.log('deletedPost :', eachPost);
+  //   //* map thru Artists.map((artist) => artist.posts.map((post) =>))
+  //   const remainingPosts = posts.filter(
+  //     (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
+  //   );
+  //   setPosts(remainingPosts);
+  // }
 
   return (
     <div>
@@ -114,9 +114,8 @@ function App() {
             <UsersPage
               user={user}
               users={users}
-              posts={posts}
-              handleDelete={handleDelete}
-              setPosts={setPosts}
+              // handleDelete={handleDelete}
+
               cookies={cookies}
               sessionInfo={sessionInfo}
               loggedIn={loggedIn}
@@ -129,8 +128,6 @@ function App() {
             <ArtistsDisplay
               artists={artists}
               user={user}
-              posts={posts}
-              setPosts={setPosts}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
@@ -142,12 +139,9 @@ function App() {
             <EachArtistCard
               artists={artists}
               setArtists={setArtists}
-              concerts={concerts}
-              posts={posts}
-              setPosts={setPosts}
               users={users}
               user={user}
-              handleDelete={handleDelete}
+              // handleDelete={handleDelete}
             />
           }
         />
@@ -156,9 +150,7 @@ function App() {
           path='/concerts'
           element={
             <ConcertsDisplay
-              concerts={concerts}
               artists={artists}
-              posts={posts}
               user={user}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -167,50 +159,21 @@ function App() {
         />
         <Route
           path='/concerts/:id'
-          element={
-            <EachConcertCard
-              artists={artists}
-              concerts={concerts}
-              posts={posts}
-              setPosts={setPosts}
-              user={user}
-            />
-          }
+          element={<EachConcertCard artists={artists} user={user} />}
         />
 
         <Route
           path='/users/:id'
           element={
             <EachUser
-              posts={posts}
               user={user}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
           }
         />
-        <Route
-          path='/createNewPost'
-          element={
-            <CreatePost
-              user={user}
-              concerts={concerts}
-              posts={posts}
-              setPosts={setPosts}
-            />
-          }
-        />
-        <Route
-          path='/editPost'
-          element={
-            <EditPost
-              user={user}
-              concerts={concerts}
-              posts={posts}
-              setPosts={setPosts}
-            />
-          }
-        />
+        <Route path='/createNewPost' element={<CreatePost user={user} />} />
+        <Route path='/editPost' element={<EditPost user={user} />} />
         <Route path='/login' element={<Login onLogin={onLogin} />} />
         <Route path='/signup' element={<SignUp onLogin={onLogin} />} />
         <Route path='*' element={<NotFound />} />
