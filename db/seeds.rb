@@ -56,6 +56,8 @@ u32 = User.create({ username: "majboy", password: "123123123123",  email: Faker:
 puts "---------------------- Seeding each Artist, their concerts, and their posts..."
 
 
+##! gotta use the imgur links for image
+
 #~ Adele
 adele = Artist.create({ name: "Adele", image: "/artist-images/adele.jpg", genre: "Pop"})
 adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Hollywood Bowl", image: "/concerts-images/hollywood-bowl.jpg", artist_id: adele.id})
