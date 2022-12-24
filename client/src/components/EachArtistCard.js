@@ -9,86 +9,31 @@ import EachConcertCard from './EachConcertCard';
 
 // change thisArtist to artist via direct pass also
 
-function EachArtistCard({
-  users,
-  posts,
-  setPosts,
-  artists,
-  setArtists,
-  user,
-  handleDelete,
-}) {
+function EachArtistCard({ concerts, artists, setArtists, user, handleDelete }) {
   let { id } = useParams();
 
-  const thisArtist = artists.find(
-    (artist) => parseInt(id) === parseInt(artist.id)
+  const concert = concerts.find(
+    (thisConcert) => parseInt(id) === parseInt(thisConcert.artist_id)
   );
 
-  console.log('thisArtist within EAC: ', thisArtist);
+  console.log('artist.artist.name: ', concert.artist.name);
 
   //^ ESSENTIAL: handle the id, and thisArtist
   //^
 
   return (
     <div>
-      <div class='bg-base-900 py-6 sm:py-8 lg:py-'>
-        {thisArtist !== undefined ? (
-          <div key={thisArtist.id} class='mx-auto max-w-screen-xl px-4 md:px-8'>
-            <div class='mb-10 md:mb-16'>
-              <h1 class='mb-4 text-center text-6xl font-thin uppercase text-primary md:mb-6 lg:text-7xl'>
-                {thisArtist.name}
-              </h1>
-            </div>
-
-            <div class='flex justify-center'>
-              <div class='card w-96 bg-base-500 bg-neutral text-neutral-content justify-center shadow-2xl'>
-                <div class='avatar'>
-                  <div class='w-30 rounded'>
-                    <img
-                      src={thisArtist.image}
-                      alt='a small avatar of the music thisArtist'
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class='grid mx-40'>
-              <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-                ALL POSTS FOR {thisArtist.name}
-              </h1>
-              {thisArtist.posts.map((eachPost) => (
-                <IndividualPost
-                  eachPost={eachPost}
-                  posts={posts}
-                  setPosts={setPosts}
-                  users={users}
-                  user={user}
-                  handleDelete={handleDelete}
-                />
-              ))}
-            </div>
-            <div>
-              <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
-                <div class='mb-10 md:mb-16'>
-                  <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-                    CONCERTS
-                  </h1>
-                  <p class='mx-auto uppercase text-center max-w-screen-md text-secondary text-gray-500 md:text-lg'></p>
-                </div>
-                <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-                  {thisArtist.concerts.map((concert) => (
-                    <EachConcertCard
-                      concert={concert}
-                      thisArtist={thisArtist}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <Loading />
-        )}
+      <div class='card w-96 bg-base-100 shadow-xl image-full'>
+        <figure>
+          <img src={concert.artist.image} al={concert.artist.name} />
+        </figure>
+        <div class='card-body'>
+          <h2 class='card-title'>{concert.artist.name}</h2>
+          <p>{concert.artist.genre}</p>
+          {/* <div class='card-actions justify-end'>
+            <button class='btn btn-primary'>Buy Now</button>
+          </div> */}
+        </div>
       </div>
     </div>
   );
