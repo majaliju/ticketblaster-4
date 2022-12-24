@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import EachUser from './EachUser';
 import { Link, useNavigate } from 'react-router-dom';
 
-function IndividualPost({ eachPost, artist, user, handleDelete }) {
+function IndividualPost({ eachPost, artist, user, users, handleDelete }) {
   let navigate = useNavigate();
 
   // checks the user.id from the session against the user's ID here
@@ -17,9 +17,11 @@ function IndividualPost({ eachPost, artist, user, handleDelete }) {
     }
   }, []);
 
-  // const thisUser = users.find(
-  //   (thisOne) => parseInt(user.id) === parseInt(eachPost.user_id)
-  // );
+  const thisUser = users.find(
+    (thisOne) => parseInt(thisOne.id) === parseInt(eachPost.user_id)
+  );
+
+  console.log('eachPost within IndividualPost: ', eachPost);
 
   //! use posts here to sort thru all the posts instead of linking
 
@@ -27,17 +29,18 @@ function IndividualPost({ eachPost, artist, user, handleDelete }) {
   //^ CONFIGURE THE STYLING ON THE USERNAME
   //& EXTRA BONUS: do the thing where you can click the link and open up the email app
 
-  // if done via thisArtist, then the username issues pops up
-  // if done via posts, then the username issue resolves but isn't via thisArtist (in one nested assocation)
+  //* on IndividualPost for the User's Page --> show the concert information for each post as well
+
+  //* chain infromation from the CONCERTS state (as posts, and users, are accessible)
 
   return (
     <div class='p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl'>
       <div class='block p-6 bg-black sm:p-8 rounded-xl'>
         <div class='sm:pr-8'>
           <h2 class='text-xl font-bold text-left text-primary'>
-            <h3 class='text-3xl justify-center'>
+            {/* <h3 class='text-3xl justify-center'>
               by: {eachPost.user.username}
-            </h3>
+            </h3> */}
           </h2>
           <h2 class='text-xl font-light text-left text-secondary'>
             <h3 class='text-1xl justify-center'>

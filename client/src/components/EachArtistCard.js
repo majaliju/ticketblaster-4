@@ -15,7 +15,6 @@ function EachArtistCard({
   setPosts,
   artists,
   setArtists,
-  concerts,
   user,
   handleDelete,
 }) {
@@ -24,6 +23,8 @@ function EachArtistCard({
   const thisArtist = artists.find(
     (artist) => parseInt(id) === parseInt(artist.id)
   );
+
+  console.log('thisArtist within EAC: ', thisArtist);
 
   //^ ESSENTIAL: handle the id, and thisArtist
   //^
@@ -55,7 +56,7 @@ function EachArtistCard({
               <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
                 ALL POSTS FOR {thisArtist.name}
               </h1>
-              {/* {thisArtist.posts.map((eachPost) => (
+              {thisArtist.posts.map((eachPost) => (
                 <IndividualPost
                   eachPost={eachPost}
                   posts={posts}
@@ -64,7 +65,7 @@ function EachArtistCard({
                   user={user}
                   handleDelete={handleDelete}
                 />
-              ))} */}
+              ))}
             </div>
             <div>
               <div class='mx-auto max-w-screen-xl px-4 md:px-8'>

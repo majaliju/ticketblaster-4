@@ -2,4 +2,6 @@ class ConcertSerializer < ActiveModel::Serializer
   attributes :id, :date, :location, :image
   
   belongs_to :artist, serializer: ArtistSerializer
+  has_many :posts, serializer: PostSerializer
+  has_many :users, through: :posts, serializer: UserSerializer
 end

@@ -24,6 +24,7 @@ function App() {
   // just preliminary but everything can be handled here within Artists ideally or Users
   const [searchTerm, setSearchTerm] = useState('');
   const [artists, setArtists] = useState([]);
+  const [concerts, setConcerts] = useState([]);
   const [users, setUsers] = useState([]);
 
   //TODO
@@ -36,6 +37,12 @@ function App() {
     fetch('/artists')
       .then((r) => r.json())
       .then((info) => setArtists(info));
+  }, []);
+
+  useEffect(() => {
+    fetch('/concerts')
+      .then((r) => r.json())
+      .then((info) => setConcerts(info));
   }, []);
 
   useEffect(() => {
@@ -128,6 +135,7 @@ function App() {
             <ArtistsDisplay
               artists={artists}
               user={user}
+              users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
@@ -139,6 +147,7 @@ function App() {
             <EachArtistCard
               artists={artists}
               setArtists={setArtists}
+              concerts={concerts}
               users={users}
               user={user}
               // handleDelete={handleDelete}
@@ -151,7 +160,10 @@ function App() {
           element={
             <ConcertsDisplay
               artists={artists}
+              concerts={concerts}
+              setConcerts={setConcerts}
               user={user}
+              users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
@@ -159,7 +171,9 @@ function App() {
         />
         <Route
           path='/concerts/:id'
-          element={<EachConcertCard artists={artists} user={user} />}
+          element={
+            <EachConcertCard concerts={concerts} user={user} users={users} />
+          }
         />
 
         <Route
@@ -167,13 +181,20 @@ function App() {
           element={
             <EachUser
               user={user}
+              users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
           }
         />
-        <Route path='/createNewPost' element={<CreatePost user={user} />} />
-        <Route path='/editPost' element={<EditPost user={user} />} />
+        <Route
+          path='/createNewPost'
+          element={<CreatePost user={user} users={users} />}
+        />
+        <Route
+          path='/editPost'
+          element={<EditPost user={user} users={users} />}
+        />
         <Route path='/login' element={<Login onLogin={onLogin} />} />
         <Route path='/signup' element={<SignUp onLogin={onLogin} />} />
         <Route path='*' element={<NotFound />} />

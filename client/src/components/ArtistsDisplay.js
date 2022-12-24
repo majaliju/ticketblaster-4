@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 
-function ArtistsDisplay({ artists, genres, user, searchTerm, setSearchTerm }) {
+function ArtistsDisplay({ artists, user, searchTerm, setSearchTerm }) {
   let navigate = useNavigate();
 
   useEffect(() => {
