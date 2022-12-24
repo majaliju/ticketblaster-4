@@ -31,6 +31,7 @@ function ArtistsDisplay({ artists, user, searchTerm, setSearchTerm }) {
               <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
                 ARTISTS
               </h1>
+              <p class='mx-auto uppercase text-center max-w-screen-md text-secondary text-gray-500 md:text-lg'></p>
             </div>
             <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
               {artists
@@ -49,17 +50,28 @@ function ArtistsDisplay({ artists, user, searchTerm, setSearchTerm }) {
                   }
                 })
                 .map((artist) => (
-                  <div class='card w-96 bg-base-100 shadow-xl image-full'>
-                    <figure>
-                      <img src={artist.image} al={artist.name} />
-                    </figure>
-                    <div class='card-body'>
-                      <h2 class='card-title'>{artist.name}</h2>
-                      <p>{artist.genre}</p>
-                      <div class='card-actions justify-end'>
-                        <button class='btn btn-outline btn-secondary'>
-                          Show More
-                        </button>
+                  <div>
+                    <div
+                      key={artist.id}
+                      class='card w-96 max-w-xs bg-neutral text-neutral-content shadow-xl'>
+                      <div class='card-body p-4 m-2 mx-0 items-center text-center'>
+                        <div class='avatar'>
+                          <div class='w-30 rounded'>
+                            <img
+                              src={artist.image}
+                              alt='a small avatar of the musical artist'
+                            />
+                          </div>
+                        </div>
+                        <h1 class='card-title'>{artist.name}</h1>
+                        <h2>{artist.genre}</h2>
+                        <div class='card-actions justify-end'>
+                          <button
+                            class='btn btn-primary'
+                            onClick={() => navigate(`/artists/${artist.id}`)}>
+                            view ticket activity
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
