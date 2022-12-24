@@ -5,35 +5,12 @@ import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import CreatePost from './CreatePost';
 
-function EachConcertCard({ concert, posts }) {
-  // let thisConcertsPosts = posts.filter(
-  //   (post) => parseInt(concert.id) === parseInt(post.concert.id)
-  // );
-
-  const [selling, setSelling] = useState(0);
-  const [looking, setLooking] = useState(0);
-
-  // //& these 2 blocks of code need serious refactoring; everything that populates selling & looking
-  // useEffect(() => {
-  //   if (concert !== undefined) {
-  //     getPostType();
-  //   }
-  // }, []);
-
-  // function getPostType() {
-  //   // eslint-disable-next-line array-callback-return
-  //   thisConcertsPosts.map((each) => {
-  //     if (each.for_sale === true) {
-  //       setSelling(selling + 1);
-  //     } else {
-  //       setLooking(looking + 1);
-  //     }
-  //   });
-  // }
-
+function EachConcertCard({ concert, thisArtist }) {
   // TODO
   //^ center the card in the middle of the page
   //* potentially add click links on artist's name and venue name
+
+  console.log('thisArtist within EachConcertCard: ', thisArtist);
 
   return (
     <div>
@@ -45,44 +22,46 @@ function EachConcertCard({ concert, posts }) {
                 <div class='avatar'>
                   <div class='w-30 rounded'>
                     <img
-                      src={concert.artist.image}
+                      src={thisArtist.image}
                       alt='a small avatar of the musical artist'
                     />
                   </div>
-                </div>
-                <div class='avatar'>
                   <div class='w-30 rounded'>
                     <img
-                      src={concert.venue.image}
+                      src={concert.image}
                       alt='a small avatar of the venue'
                     />
                   </div>
                 </div>
-                ` `
+
                 <div class='card-body items-center text-center'>
-                  <h2 class='card-title'>{concert.artist.name}</h2>
-                  <p>at</p>
-                  <h2 class='card-title'>{concert.venue.name}</h2>
-                  <div>
-                    <div class='badge badge-primary uppercase'>
-                      {selling} selling
-                    </div>
-                    <div class='badge badge-primary uppercase'>
-                      {looking} looking
-                    </div>
-                  </div>
+                  <h2 class='card-title'>{concert.location}</h2>
+                  <h2 class='card-title'>{thisArtist.name}</h2>
+
+                  <h2 class='card-body'>{concert.date}</h2>
+
                   <div class='card-actions justify-end'>
                     <Link
                       to='/createNewPost'
-                      state={{ isSelling: true }}
+                      state={{
+                        isSelling: true,
+                        artist: thisArtist,
+                        concertID: concert.id,
+                        artistID: thisArtist.id,
+                      }}
                       class='btn btn-secondary w-full'>
-                      I have tickets to sell
+                      I'M SELLING!
                     </Link>
                     <Link
                       to='/createNewPost'
-                      state={{ isSelling: false }}
+                      state={{
+                        isSelling: false,
+                        artist: thisArtist,
+                        concertID: concert.id,
+                        artistID: thisArtist.id,
+                      }}
                       class='btn btn-secondary w-full'>
-                      I'm Looking For Tickets
+                      I'M BUYING!
                     </Link>
                   </div>
                 </div>

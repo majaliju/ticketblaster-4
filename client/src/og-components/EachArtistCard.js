@@ -7,12 +7,24 @@ import EachConcertCard from './EachConcertCard';
 
 //* GOTTA ADJUST STYLING HERE TO FORM EVERYTHING IN THE CENTER CLEANLY
 
-function EachArtistCard({ users, posts, artists, concerts }) {
+// change thisArtist to artist via direct pass also
+
+function EachArtistCard({
+  users,
+  posts,
+  setPosts,
+  artists,
+  setArtists,
+  user,
+  handleDelete,
+}) {
   let { id } = useParams();
 
   const thisArtist = artists.find(
     (artist) => parseInt(id) === parseInt(artist.id)
   );
+
+  console.log('thisArtist within EAC: ', thisArtist);
 
   //^ ESSENTIAL: handle the id, and thisArtist
   //^
@@ -38,29 +50,22 @@ function EachArtistCard({ users, posts, artists, concerts }) {
                     />
                   </div>
                 </div>
-                <div class='card-body items-center text-center'>
-                  <h2 class='card-title'>{thisArtist.name}</h2>
-
-                  <div class='card-actions justify-end'>
-                    <Link
-                      to='/artists'
-                      class='btn btn-outline btn-secondary w-full'>
-                      Go Back
-                    </Link>
-                  </div>
-                </div>
               </div>
             </div>
             <div class='grid mx-40'>
-              <h2 class='my-10 text-center text-5xl font-thin uppercase text-primary md:mb-6 lg:text-6xl'>
-                ALL POSTS
-              </h2>
-              {thisArtist.posts.map((each) => (
-                <IndividualPost eachPost={each} />
+              <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
+                ALL POSTS FOR {thisArtist.name}
+              </h1>
+              {thisArtist.posts.map((eachPost) => (
+                <IndividualPost
+                  eachPost={eachPost}
+                  posts={posts}
+                  setPosts={setPosts}
+                  users={users}
+                  user={user}
+                  handleDelete={handleDelete}
+                />
               ))}
-              {/* {thisArtist.posts.map((each) =>
-                console.log("'each' within thisartist.posts.map(each)): ", each)
-              )} */}
             </div>
             <div>
               <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
@@ -71,15 +76,12 @@ function EachArtistCard({ users, posts, artists, concerts }) {
                   <p class='mx-auto uppercase text-center max-w-screen-md text-secondary text-gray-500 md:text-lg'></p>
                 </div>
                 <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-                  {concerts
-                    .filter((concert) => {
-                      if (concert.artist.id === thisArtist.id) {
-                        return concert;
-                      }
-                    })
-                    .map((concert) => (
-                      <EachConcertCard concert={concert} posts={posts} />
-                    ))}
+                  {thisArtist.concerts.map((concert) => (
+                    <EachConcertCard
+                      concert={concert}
+                      thisArtist={thisArtist}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
