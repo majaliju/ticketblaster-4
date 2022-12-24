@@ -5,13 +5,13 @@ import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
-function ArtistsPage({ concerts }) {
+function ArtistsPage({ artists, concerts }) {
   let { id } = useParams();
 
-  const concert = concerts.find(
-    (thisConcert) => parseInt(id) === parseInt(thisConcert.artist_id)
+  const thisArtist = artists.find(
+    (artist) => parseInt(id) === parseInt(artist.id)
   );
-  console.log('concert: ', concert);
+  console.log('thisArtist: ', thisArtist);
 
   const artistsConcerts = concerts.filter(
     (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
@@ -23,7 +23,7 @@ function ArtistsPage({ concerts }) {
       <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
         <div class='mb-10 md:mb-16'>
           <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-            {concert.artist.name}
+            {thisArtist.name}
           </h1>
         </div>
       </div>
