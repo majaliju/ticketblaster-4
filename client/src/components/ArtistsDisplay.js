@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import EachArtistCard from './EachArtistCard';
 import Loading from './Loading';
 
-function ArtistsDisplay({ artists, user, searchTerm, setSearchTerm }) {
+function ArtistsDisplay({
+  artists,
+  concerts,
+  user,
+  searchTerm,
+  setSearchTerm,
+}) {
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -49,20 +56,7 @@ function ArtistsDisplay({ artists, user, searchTerm, setSearchTerm }) {
                   }
                 })
                 .map((artist) => (
-                  <div class='card w-96 bg-base-100 shadow-xl image-full'>
-                    <figure>
-                      <img src={artist.image} al={artist.name} />
-                    </figure>
-                    <div class='card-body'>
-                      <h2 class='card-title'>{artist.name}</h2>
-                      <p>{artist.genre}</p>
-                      <div class='card-actions justify-end'>
-                        <button class='btn btn-outline btn-secondary'>
-                          Show More
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <EachArtistCard artist={artist} concerts={concerts} />
                 ))}
             </div>
           </div>

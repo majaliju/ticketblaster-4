@@ -9,8 +9,7 @@ import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import UsersPage from './UsersPage';
-import EachArtistCard from './EachArtistCard';
-import EachConcertCard from './EachConcertCard';
+import ArtistsPage from './ArtistsPage';
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
 import EachUser from './EachUser';
@@ -134,6 +133,7 @@ function App() {
           element={
             <ArtistsDisplay
               artists={artists}
+              concerts={concerts}
               user={user}
               users={users}
               searchTerm={searchTerm}
@@ -144,9 +144,8 @@ function App() {
         <Route
           path='/artists/:id'
           element={
-            <EachArtistCard
+            <ArtistsPage
               artists={artists}
-              setArtists={setArtists}
               concerts={concerts}
               users={users}
               user={user}
@@ -169,12 +168,12 @@ function App() {
             />
           }
         />
-        <Route
+        {/* <Route
           path='/concerts/:id'
           element={
             <EachConcertCard concerts={concerts} user={user} users={users} />
           }
-        />
+        /> */}
 
         <Route
           path='/users/:id'

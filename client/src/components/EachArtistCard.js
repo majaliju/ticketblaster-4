@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import IndividualPost from './IndividualPost';
 import Loading from './Loading';
@@ -9,29 +9,58 @@ import EachConcertCard from './EachConcertCard';
 
 // change thisArtist to artist via direct pass also
 
-function EachArtistCard({ concerts, artists, setArtists, user, handleDelete }) {
-  let { id } = useParams();
+function EachArtistCard({ artist, concerts }) {
+  let navigate = useNavigate();
+  // let { id } = useParams();
+  // const location = useLocation();
+  // let artist = location.state.artist;
+  // console.log('artist via useLocation & Link :', artist);
 
-  const concert = concerts.find(
-    (thisConcert) => parseInt(id) === parseInt(thisConcert.artist_id)
+  // // fix this method a bit
+  // const concert = concerts.find(
+  //   (thisConcert) => parseInt(id) === parseInt(thisConcert.artist_id)
+  // );
+
+  // const artistsConcerts = concerts.filter(
+  //   (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
+  // );
+
+  // console.log('artist.artist.name: ', concert.artist.name);
+  // console.log('the artistsConcerts: ', artistsConcerts);
+
+  console.log('artist within EAC: ', artist);
+  console.log('concerts: ', concerts);
+
+  const artistsConcerts = concerts.filter(
+    (concert) => parseInt(concert.artist_id) === parseInt(artist.id)
   );
 
-  console.log('artist.artist.name: ', concert.artist.name);
+  console.log('artistsConcerts: ', artistsConcerts);
 
-  //^ ESSENTIAL: handle the id, and thisArtist
-  //^
-
+  // fix the grid for this
   return (
     <div>
       <div class='card w-96 bg-base-100 shadow-xl image-full'>
+        {/* //*resize these images in the right way */}
         <figure>
-          <img src={concert.artist.image} al={concert.artist.name} />
+          <img src={artist.image} al={artist.name} />
         </figure>
         <div class='card-body'>
-          <h2 class='card-title'>{concert.artist.name}</h2>
-          <p>{concert.artist.genre}</p>
-          {/* <div class='card-actions justify-end'>
-            <button class='btn btn-primary'>Buy Now</button>
+          <h2 class='card-title'>{artist.name}</h2>
+          <h3>{artist.genre}</h3>
+          <div class='card-actions justify-end'>
+            <button
+              class='btn btn-secondary btn-outline'
+              onClick={() => navigate(`/artists/${artist.id}`)}>
+              Show More
+            </button>
+          </div>
+          {/* <div class='carousel carousel-center max-w-md p-4 space-x-4 bg-neutral'>
+            {artistsConcerts.map((eachConcert) => {
+              <div class='carousel-item'>
+                <img src={artistsConcerts.image} class='rounded-box' />
+              </div>;
+            })}
           </div> */}
         </div>
       </div>
