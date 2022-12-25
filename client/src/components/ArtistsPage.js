@@ -7,20 +7,21 @@ import EachConcertCard from './EachConcertCard';
 
 function ArtistsPage({ artists, concerts }) {
   let { id, params } = useParams();
+  const location = useLocation();
+  const artist = location.state.artist;
+
   console.log('id: ', id);
-  // use URL params for this for reload purposes
+  console.log('artists: ', artists);
 
   const thisArtist = artists.find(
     (artist) => parseInt(id) === parseInt(artist.id)
   );
-  console.log('thisArtist: ', thisArtist);
 
   //? why doesn't work and render only that artists concerts?
   const artistsConcerts = concerts.filter(
     (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
   );
 
-  console.log('artistsConcerts: ', artistsConcerts);
   // console.log('concerts within ArtistsPage: ', concerts);
   return (
     <div>
@@ -29,12 +30,6 @@ function ArtistsPage({ artists, concerts }) {
           <h1 className='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
             {thisArtist.name}
           </h1>
-          {/* NOT SURE WHY THE BELOW DOESN'T RENDER DESPITE IT BEING CORRECT ?? */}
-          {artistsConcerts.map((each) => {
-            <h2 className='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-              EACH ONE
-            </h2>;
-          })}
         </div>
       </div>
     </div>

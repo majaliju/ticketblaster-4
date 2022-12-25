@@ -1,9 +1,16 @@
 import React from 'react';
-import { useNavigate, useParams, Link, useLocation } from 'react-router-dom';
+import {
+  Navigate,
+  useNavigate,
+  useParams,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
+import ArtistsPage from './ArtistsPage';
 
 //* GOTTA ADJUST STYLING HERE TO FORM EVERYTHING IN THE CENTER CLEANLY
 
@@ -28,14 +35,9 @@ function EachArtistCard({ artist, concerts }) {
   // console.log('artist.artist.name: ', concert.artist.name);
   // console.log('the artistsConcerts: ', artistsConcerts);
 
-  console.log('artist within EAC: ', artist);
-  console.log('concerts: ', concerts);
-
   const artistsConcerts = concerts.filter(
     (concert) => parseInt(concert.artist_id) === parseInt(artist.id)
   );
-
-  console.log('artistsConcerts: ', artistsConcerts);
 
   // fix the grid for this
   return (
@@ -48,20 +50,20 @@ function EachArtistCard({ artist, concerts }) {
         <div class='card-body'>
           <h2 class='card-title'>{artist.name}</h2>
           <h3>{artist.genre}</h3>
-          <div class='card-actions justify-end'>
-            <button
-              class='btn btn-secondary btn-outline'
-              onClick={() => navigate(`/artists/${artist.id}`)}>
-              Show More
-            </button>
+          <div className='card-actions justify-end'>
+            <Link to='/' state={{ artist: artist }}>
+              <button className='btn btn-secondary btn-outline'>
+                Show More
+              </button>
+            </Link>
           </div>
-          {/* <div class='carousel carousel-center max-w-md p-4 space-x-4 bg-neutral'>
+          <div class='carousel carousel-center max-w-md p-4 space-x-4 bg-neutral'>
             {artistsConcerts.map((eachConcert) => {
               <div class='carousel-item'>
                 <img src={artistsConcerts.image} class='rounded-box' />
               </div>;
             })}
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
