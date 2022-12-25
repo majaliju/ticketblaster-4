@@ -20,57 +20,57 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
 
   return (
     <div>
-      <div class='navbar bg-base-700 text-primary-content'>
-        <div class='navbar-start'>
-          <div class='dropdown'>
-            <label tabindex='0' class='btn btn-ghost sm:hidden'>
+      <div className='navbar bg-base-700 text-primary-content'>
+        <div className='navbar-start'>
+          <div className='dropdown'>
+            <label tabIndex={0} className='btn btn-ghost sm:hidden'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                class='h-5 w-5'
+                className='h-5 w-5'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'>
                 <path
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  stroke-width='2'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
                   d='M4 6h16M4 12h8m-8 6h16'
                 />
               </svg>
             </label>
             <ul
-              tabindex='0'
-              class='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-56'>
+              tabIndex={0}
+              className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-56'>
               <li>
-                <NavLink to='/artists' class='uppercase font-bold'>
+                <NavLink to='/artists' className='uppercase font-bold'>
                   artists
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/venues' class='uppercase font-bold'>
+                <NavLink to='/venues' className='uppercase font-bold'>
                   concerts
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' class='uppercase font-bold'>
+                <NavLink to='/' className='uppercase font-bold'>
                   your posts
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/genres' class='uppercase font-bold'>
+                <NavLink to='/genres' className='uppercase font-bold'>
                   upcoming
                 </NavLink>
               </li>
               {/* concerts tab is redundant */}
               {/* <li>
-                <NavLink to='/concerts' class='uppercase font-bold'>
+                <NavLink to='/concerts' className='uppercase font-bold'>
                   concerts
                 </NavLink>
               </li> */}
               <div>
                 {user === (null || '') && (
                   <li>
-                    <NavLink class='uppercase font-bold' to='/login'>
+                    <NavLink className='uppercase font-bold' to='/login'>
                       login
                     </NavLink>
                   </li>
@@ -78,9 +78,9 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
                 {user !== null && (
                   <div>
                     <li>
-                      <NavLink class='uppercase font-bold' to='/'>
+                      <NavLink className='uppercase font-bold' to='/'>
                         <button
-                          class='uppercase font-bold'
+                          className='uppercase font-bold'
                           onClick={handleLogout}>
                           logout {user.username}
                         </button>
@@ -91,10 +91,10 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
               </div>
             </ul>
           </div>
-          <div class='navbar-start'>
-            <div class='flex-auto p-4'>
+          <div className='navbar-start'>
+            <div className='flex-auto p-4'>
               <Link to='/'>
-                <h3 class='btn btn-secondary normal-case bg-transparent btn-outline  text-5xl'>
+                <h3 className='btn btn-secondary normal-case bg-transparent btn-outline  text-5xl'>
                   ticketblaster
                 </h3>
               </Link>
@@ -102,58 +102,60 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
           </div>
         </div>
 
-        <div class='navbar-center hidden sm:flex'>
-          <div class='flex-auto'>
-            <ul class='menu menu-horizontal p-0'>
+        <div className='navbar-center hidden sm:flex'>
+          <div className='flex-auto'>
+            <ul className='menu menu-horizontal p-0'>
               <li>
                 <NavLink
                   to='/artists'
-                  class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>artists</h3>
+                  className='btn btn-primary uppercase font-bold'>
+                  <h3 className='uppercase font-bold'>artists</h3>
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to='/concerts'
-                  class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>concerts</h3>
+                  className='btn btn-primary uppercase font-bold'>
+                  <h3 className='uppercase font-bold'>concerts</h3>
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>your posts</h3>
+                <NavLink to='/' className='btn btn-primary uppercase font-bold'>
+                  <h3 className='uppercase font-bold'>your posts</h3>
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>upcoming</h3>
+                <NavLink to='/' className='btn btn-primary uppercase font-bold'>
+                  <h3 className='uppercase font-bold'>upcoming</h3>
                 </NavLink>
               </li>
               {/* concerts tab is redundant */}
               {/* <li>
                 <NavLink
                   to='/concerts'
-                  class='btn btn-primary uppercase font-bold'>
-                  <h3 class='uppercase font-bold'>concerts</h3>
+                  className='btn btn-primary uppercase font-bold'>
+                  <h3 className='uppercase font-bold'>concerts</h3>
                 </NavLink>
               </li> */}
             </ul>
           </div>
         </div>
-        <div class='navbar-end hidden sm:flex'>
-          <div class='flex-initial'>
-            <ul class='menu menu-horizontal float-right p-0'>
+        <div className='navbar-end hidden sm:flex'>
+          <div className='flex-initial'>
+            <ul className='menu menu-horizontal float-right p-0'>
               {user === (null || '') && (
                 <li>
-                  <NavLink class='uppercase font-bold' to='/login'>
-                    <h3 class='uppercase font-bold'>login</h3>
+                  <NavLink className='uppercase font-bold' to='/login'>
+                    <h3 className='uppercase font-bold'>login</h3>
                   </NavLink>
                 </li>
               )}
               {user !== (null || '') && (
                 <div>
                   <li>
-                    <button class='uppercase font-bold' onClick={handleLogout}>
+                    <button
+                      className='uppercase font-bold'
+                      onClick={handleLogout}>
                       logout {user.username}
                     </button>
                   </li>
@@ -170,14 +172,14 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
 export default Header;
 
 // //* right aligned header -- take the elements that right-align it and implement them
-// <header class="bg-white">
-//   <div class="px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
-//     <div class="flex items-center justify-between h-16">
-//       <div class="flex-1 md:flex md:items-center md:gap-12">
-//         <a class="block text-teal-600" href="/">
-//           <span class="sr-only">Home</span>
+// <header className="bg-white">
+//   <div className="px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+//     <div className="flex items-center justify-between h-16">
+//       <div className="flex-1 md:flex md:items-center md:gap-12">
+//         <a className="block text-teal-600" href="/">
+//           <span className="sr-only">Home</span>
 //           <svg
-//             class="h-8"
+//             className="h-8"
 //             viewBox="0 0 28 24"
 //             fill="none"
 //             xmlns="http://www.w3.org/2000/svg"
@@ -190,14 +192,14 @@ export default Header;
 //         </a>
 //       </div>
 
-//       <div class="md:flex md:items-center md:gap-12">
-//         <nav class="hidden md:block" aria-labelledby="header-navigation">
-//           <h2 class="sr-only" id="header-navigation">Header navigation</h2>
+//       <div className="md:flex md:items-center md:gap-12">
+//         <nav className="hidden md:block" aria-labelledby="header-navigation">
+//           <h2 className="sr-only" id="header-navigation">Header navigation</h2>
 
-//           <ul class="flex items-center text-sm gap-6">
+//           <ul className="flex items-center text-sm gap-6">
 //             <li>
 //               <a
-//                 class="text-gray-500 transition hover:text-gray-500/75"
+//                 className="text-gray-500 transition hover:text-gray-500/75"
 //                 href="/"
 //               >
 //                 About
@@ -206,7 +208,7 @@ export default Header;
 
 //             <li>
 //               <a
-//                 class="text-gray-500 transition hover:text-gray-500/75"
+//                 className="text-gray-500 transition hover:text-gray-500/75"
 //                 href="/"
 //               >
 //                 Careers
@@ -215,7 +217,7 @@ export default Header;
 
 //             <li>
 //               <a
-//                 class="text-gray-500 transition hover:text-gray-500/75"
+//                 className="text-gray-500 transition hover:text-gray-500/75"
 //                 href="/"
 //               >
 //                 History
@@ -224,7 +226,7 @@ export default Header;
 
 //             <li>
 //               <a
-//                 class="text-gray-500 transition hover:text-gray-500/75"
+//                 className="text-gray-500 transition hover:text-gray-500/75"
 //                 href="/"
 //               >
 //                 Services
@@ -233,7 +235,7 @@ export default Header;
 
 //             <li>
 //               <a
-//                 class="text-gray-500 transition hover:text-gray-500/75"
+//                 className="text-gray-500 transition hover:text-gray-500/75"
 //                 href="/"
 //               >
 //                 Projects
@@ -242,7 +244,7 @@ export default Header;
 
 //             <li>
 //               <a
-//                 class="text-gray-500 transition hover:text-gray-500/75"
+//                 className="text-gray-500 transition hover:text-gray-500/75"
 //                 href="/"
 //               >
 //                 Blog
@@ -251,18 +253,18 @@ export default Header;
 //           </ul>
 //         </nav>
 
-//         <div class="flex items-center gap-4">
-//           <div class="sm:gap-4 sm:flex">
+//         <div className="flex items-center gap-4">
+//           <div className="sm:gap-4 sm:flex">
 //             <a
-//               class="px-5 py-2.5 text-sm font-medium text-white bg-teal-600 rounded-md shadow"
+//               className="px-5 py-2.5 text-sm font-medium text-white bg-teal-600 rounded-md shadow"
 //               href="/"
 //             >
 //               Login
 //             </a>
 
-//             <div class="hidden sm:flex">
+//             <div className="hidden sm:flex">
 //               <a
-//                 class="px-5 py-2.5 text-sm font-medium text-teal-600 bg-gray-100 rounded-md"
+//                 className="px-5 py-2.5 text-sm font-medium text-teal-600 bg-gray-100 rounded-md"
 //                 href="/"
 //               >
 //                 Register
@@ -270,13 +272,13 @@ export default Header;
 //             </div>
 //           </div>
 
-//           <div class="block md:hidden">
+//           <div className="block md:hidden">
 //             <button
-//               class="p-2 text-gray-600 bg-gray-100 rounded transition hover:text-gray-600/75"
+//               className="p-2 text-gray-600 bg-gray-100 rounded transition hover:text-gray-600/75"
 //             >
 //               <svg
 //                 xmlns="http://www.w3.org/2000/svg"
-//                 class="w-5 h-5"
+//                 className="w-5 h-5"
 //                 fill="none"
 //                 viewBox="0 0 24 24"
 //                 stroke="currentColor"

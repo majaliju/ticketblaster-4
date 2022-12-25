@@ -6,7 +6,8 @@ import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
 function ArtistsPage({ artists, concerts }) {
-  let { id } = useParams();
+  let { id, params } = useParams();
+  console.log('id: ', id);
   // use URL params for this for reload purposes
 
   const thisArtist = artists.find(
