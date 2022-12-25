@@ -51,7 +51,7 @@ function EachArtistCard({ artist, concerts }) {
           <h2 class='card-title'>{artist.name}</h2>
           <h3>{artist.genre}</h3>
           <div className='card-actions justify-end'>
-            <Link to='/' state={{ artist: artist }}>
+            <Link to='/thisArtist' state={{ artist: artist }} replace={true}>
               <button className='btn btn-secondary btn-outline'>
                 Show More
               </button>

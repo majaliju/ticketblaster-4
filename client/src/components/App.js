@@ -142,18 +142,16 @@ function App() {
           }
         />
         <Route
-          path='/artists/:id'
+          path='/thisArtist'
           element={
             <ArtistsPage
               artists={artists}
               concerts={concerts}
-              users={users}
               user={user}
-              // handleDelete={handleDelete}
+              users={users}
             />
           }
         />
-
         <Route
           path='/concerts'
           element={
@@ -174,7 +172,6 @@ function App() {
             <EachConcertCard concerts={concerts} user={user} users={users} />
           }
         /> */}
-
         <Route
           path='/users/:id'
           element={

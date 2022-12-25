@@ -6,29 +6,26 @@ import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
 function ArtistsPage({ artists, concerts }) {
-  let { id, params } = useParams();
+  // let { id, params } = useParams();
   const location = useLocation();
   const artist = location.state.artist;
 
-  console.log('id: ', id);
-  console.log('artists: ', artists);
+  console.log('artist:', artist);
 
-  const thisArtist = artists.find(
-    (artist) => parseInt(id) === parseInt(artist.id)
-  );
+  // console.log('artists: ', artists);
 
   //? why doesn't work and render only that artists concerts?
   const artistsConcerts = concerts.filter(
-    (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
+    (concert) => parseInt(concert.artist_id) === parseInt(artist.id)
   );
 
-  // console.log('concerts within ArtistsPage: ', concerts);
+  console.log('artistsConcerts within ArtistsPage: ', artistsConcerts);
   return (
     <div>
       <div className='mx-auto max-w-screen-xl px-4 md:px-8'>
         <div className='mb-10 md:mb-16'>
           <h1 className='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-            {thisArtist.name}
+            {artist.name}
           </h1>
         </div>
       </div>
