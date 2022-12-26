@@ -19,7 +19,7 @@ function ArtistsPage({ artists, concerts }) {
             <div class='mb-10 md:mb-16'>
               <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
                 {artist.name}
-                <img className='w-72 rounded' src={artist.image} />
+                <img className='rounded w-72' src={artist.image} />
               </h1>
             </div>
             <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
