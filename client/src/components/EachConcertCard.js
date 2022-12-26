@@ -5,13 +5,7 @@ import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import CreatePost from './CreatePost';
 
-function EachConcertCard({ concert, thisArtist }) {
-  // TODO
-  //^ center the card in the middle of the page
-  //* potentially add click links on artist's name and venue name
-
-  console.log('thisArtist within EachConcertCard: ', thisArtist);
-
+function EachConcertCard({ concert, artist }) {
   return (
     <div>
       <div class='bg-base-900 py-6 sm:py-8 lg:py-'>
@@ -22,7 +16,7 @@ function EachConcertCard({ concert, thisArtist }) {
                 <div class='avatar'>
                   <div class='w-30 rounded'>
                     <img
-                      src={thisArtist.image}
+                      src={concert.artist.image}
                       alt='a small avatar of the musical artist'
                     />
                   </div>
@@ -36,7 +30,7 @@ function EachConcertCard({ concert, thisArtist }) {
 
                 <div class='card-body items-center text-center'>
                   <h2 class='card-title'>{concert.location}</h2>
-                  <h2 class='card-title'>{thisArtist.name}</h2>
+                  <h2 class='card-title'>{concert.artist.name}</h2>
 
                   <h2 class='card-body'>{concert.date}</h2>
 
@@ -45,9 +39,9 @@ function EachConcertCard({ concert, thisArtist }) {
                       to='/createNewPost'
                       state={{
                         isSelling: true,
-                        artist: thisArtist,
+                        artist: concert.artist,
                         concertID: concert.id,
-                        artistID: thisArtist.id,
+                        artistID: concert.artist.id,
                       }}
                       class='btn btn-secondary w-full'>
                       I'M SELLING!
@@ -56,9 +50,9 @@ function EachConcertCard({ concert, thisArtist }) {
                       to='/createNewPost'
                       state={{
                         isSelling: false,
-                        artist: thisArtist,
+                        artist: concert.artist,
                         concertID: concert.id,
-                        artistID: thisArtist.id,
+                        artistID: concert.artist.id,
                       }}
                       class='btn btn-secondary w-full'>
                       I'M BUYING!

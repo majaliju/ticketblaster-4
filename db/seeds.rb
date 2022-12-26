@@ -60,9 +60,15 @@ puts "---------------------- Seeding each Artist, their concerts, and their post
 
 #~ Adele
 adele = Artist.create({ name: "Adele", image: "/artist-images/adele.jpg", genre: "Pop"})
-adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Hollywood Bowl", image: "/concerts-images/hollywood-bowl.jpg", artist_id: adele.id})
+adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "https://i.imgur.com/SmFrzTC.jpg", artist_id: adele.id})
+adele_c2 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Mao Livehouse", image: "https://i.imgur.com/CghhYym.jpg", artist_id: adele.id})
+adele_c3 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", image: "https://i.imgur.com/0gd1dD0.jpg", artist_id: adele.id})
 adele_p1 = Post.create({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: adele_c1.id})
 adele_p2 = Post.create({body: "PLEASE EMAIL IF YOU HAVE 4 TICKETS ALTOGETHER! MY DAUGHTERS LOVE HER -- THX ", for_sale: false, tickets: 4, user_id: u17.id, concert_id: adele_c1.id})
+adele_p3 = Post.create({body: "CONTACT FOR SALE, ALL 5 TICKETS OR SOLD SEPERATELY", for_sale: true, tickets: 5, user_id: u2.id, concert_id: adele_c2.id})
+adele_p4 = Post.create({body: "email me plzzz need tix asap", for_sale: false, tickets: 1, user_id: u18.id, concert_id: adele_c2.id})
+adele_p5 = Post.create({body: "only 1 ticket for sale, email me or call 646-277-2888", for_sale: true, tickets: 1, user_id: u3.id, concert_id: adele_c3.id})
+adele_p6 = Post.create({body: "Looking for 10 tickets altogether! WILL PAY BIG!", for_sale: false, tickets: 10, user_id: u19.id, concert_id: adele_c3.id})
 
 
 #~ John Legend

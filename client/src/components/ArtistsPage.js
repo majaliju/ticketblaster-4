@@ -22,20 +22,12 @@ function ArtistsPage({ artists, concerts }) {
                 <img className='rounded w-72' src={artist.image} />
               </h1>
             </div>
-            <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
+            <div>
               {artistsConcerts.map((concert) => {
                 {
-                  console.log('concert :', concert);
+                  console.log('concert within the mapping: ', concert);
                 }
-                // for each one, render an EachArtistCard
-
-                // concert.map((eachPost) => {
-                //   <IndividualPost
-                //     eachPost={eachPost}
-                //     artist={artist}
-                //     concert={concert}
-                //   />;
-                // });
+                <EachConcertCard concert={concert} />;
               })}
             </div>
           </div>
