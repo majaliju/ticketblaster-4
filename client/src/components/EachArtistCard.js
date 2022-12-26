@@ -8,8 +8,6 @@ import ArtistsPage from './ArtistsPage';
 
 //* GOTTA ADJUST STYLING HERE TO FORM EVERYTHING IN THE CENTER CLEANLY
 
-// change thisArtist to artist via direct pass also
-
 function EachArtistCard({ artist, concerts }) {
   let navigate = useNavigate();
 
@@ -37,13 +35,6 @@ function EachArtistCard({ artist, concerts }) {
                 Show More
               </button>
             </Link>
-          </div>
-          <div class='carousel carousel-center max-w-md p-4 space-x-4 bg-neutral'>
-            {artistsConcerts.map((eachConcert) => {
-              <div class='carousel-item'>
-                <img src={artistsConcerts.image} class='rounded-box' />
-              </div>;
-            })}
           </div>
         </div>
       </div>

@@ -27,6 +27,7 @@ function ArtistsPage({ artists, concerts }) {
                 {
                   console.log('concert :', concert);
                 }
+                // for each one, render an EachArtistCard
 
                 // concert.map((eachPost) => {
                 //   <IndividualPost
