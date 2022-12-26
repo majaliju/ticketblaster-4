@@ -1,8 +1,6 @@
 class ArtistsController < ApplicationController
 
-  def upcoming_shows
-    ## define a method that shows the upcoming shows for this artist
-  end
+  
   
   def index
     artists = Artist.all

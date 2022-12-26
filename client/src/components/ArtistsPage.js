@@ -6,28 +6,41 @@ import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
 function ArtistsPage({ artists, concerts }) {
-  // let { id, params } = useParams();
   const location = useLocation();
   const artist = location.state.artist;
-
-  console.log('artist:', artist);
-
-  // console.log('artists: ', artists);
-
-  //? why doesn't work and render only that artists concerts?
-  const artistsConcerts = concerts.filter(
-    (concert) => parseInt(concert.artist_id) === parseInt(artist.id)
-  );
+  const artistsConcerts = location.state.artistsConcerts;
 
   console.log('artistsConcerts within ArtistsPage: ', artistsConcerts);
   return (
-    <div>
-      <div className='mx-auto max-w-screen-xl px-4 md:px-8'>
-        <div className='mb-10 md:mb-16'>
-          <h1 className='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-            {artist.name}
-          </h1>
-        </div>
+    <div class='bg-base-900 py-6 sm:py-8 lg:py-12'>
+      <div>
+        {artist !== undefined ? (
+          <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
+            <div class='mb-10 md:mb-16'>
+              <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
+                {artist.name}
+                <img className='w-72 rounded' src={artist.image} />
+              </h1>
+            </div>
+            <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
+              {artistsConcerts.map((concert) => {
+                {
+                  console.log('concert :', concert);
+                }
+
+                // concert.map((eachPost) => {
+                //   <IndividualPost
+                //     eachPost={eachPost}
+                //     artist={artist}
+                //     concert={concert}
+                //   />;
+                // });
+              })}
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );

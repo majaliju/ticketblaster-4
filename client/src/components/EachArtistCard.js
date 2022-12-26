@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Navigate,
-  useNavigate,
-  useParams,
-  Link,
-  useLocation,
-} from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import IndividualPost from './IndividualPost';
 import Loading from './Loading';
@@ -18,22 +12,6 @@ import ArtistsPage from './ArtistsPage';
 
 function EachArtistCard({ artist, concerts }) {
   let navigate = useNavigate();
-  // let { id } = useParams();
-  // const location = useLocation();
-  // let artist = location.state.artist;
-  // console.log('artist via useLocation & Link :', artist);
-
-  // // fix this method a bit
-  // const concert = concerts.find(
-  //   (thisConcert) => parseInt(id) === parseInt(thisConcert.artist_id)
-  // );
-
-  // const artistsConcerts = concerts.filter(
-  //   (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
-  // );
-
-  // console.log('artist.artist.name: ', concert.artist.name);
-  // console.log('the artistsConcerts: ', artistsConcerts);
 
   const artistsConcerts = concerts.filter(
     (concert) => parseInt(concert.artist_id) === parseInt(artist.id)
@@ -51,7 +29,10 @@ function EachArtistCard({ artist, concerts }) {
           <h2 class='card-title'>{artist.name}</h2>
           <h3>{artist.genre}</h3>
           <div className='card-actions justify-end'>
-            <Link to='/thisArtist' state={{ artist: artist }} replace={true}>
+            <Link
+              to='/thisArtist'
+              state={{ artist: artist, artistsConcerts: artistsConcerts }}
+              replace={true}>
               <button className='btn btn-secondary btn-outline'>
                 Show More
               </button>
