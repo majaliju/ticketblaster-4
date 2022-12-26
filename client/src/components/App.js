@@ -13,6 +13,7 @@ import ArtistsPage from './ArtistsPage';
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
 import EachUser from './EachUser';
+import ShowPosts from './ShowPosts';
 
 function App() {
   const [user, setUser] = useState('');
@@ -183,6 +184,7 @@ function App() {
             />
           }
         />
+        <Route path='/showPosts' element={<ShowPosts user={user} />} />
         <Route
           path='/createNewPost'
           element={<CreatePost user={user} users={users} />}

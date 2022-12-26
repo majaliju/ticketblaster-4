@@ -11,10 +11,7 @@ function CreatePost({ user }) {
   const navigate = useNavigate();
   const location = useLocation();
   let isSelling = location.state.isSelling;
-  let artist = location.state.artist;
-  let concertID = location.state.concertID;
-
-  //* updates for IndividualPost are being acted on artists state (thisArtist.post)
+  let concert = location.state.concert;
 
   // //* resetting our states when a new page renders
   // useEffect(() => {
@@ -24,10 +21,6 @@ function CreatePost({ user }) {
   //   setBody('');
   //   setTicketAmount(0);
   // }, []);
-
-  artist.posts.map((post) => {
-    console.log('post for artist: ', post);
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,22 +34,19 @@ function CreatePost({ user }) {
         body: body,
         for_sale: isSelling,
         tickets: ticketAmount,
-        concert_id: concertID,
+        concert_id: concert.id,
         user_id: user.id,
       }),
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((info) => {
-          const updatedPosts = artist.posts.map((post) => {
-            if (post.id === info.id) {
-              return info;
-            } else {
-              return post;
-            }
-          })
-          console.log('updatedPosts', updatedPosts);
-          // how to set state nested into Artist??
-          // Artist.posts being updated
+          // const updatedPosts = artist.posts.map((post) => {
+          //   if (post.id === info.id) {
+          //     return info;
+          //   } else {
+          //     return post;
+          //   }
+          // });
         });
         setError([]);
         setSuccess('Your post has been created!');

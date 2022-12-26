@@ -26,7 +26,7 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
             <label tabIndex={0} className='btn btn-ghost sm:hidden'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='h-5 w-5'
+                className='w-5 h-5'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'>
@@ -40,37 +40,37 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
             </label>
             <ul
               tabIndex={0}
-              className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-56'>
+              className='w-56 p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box'>
               <li>
-                <NavLink to='/artists' className='uppercase font-bold'>
+                <NavLink to='/artists' className='font-bold uppercase'>
                   artists
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/venues' className='uppercase font-bold'>
+                <NavLink to='/venues' className='font-bold uppercase'>
                   concerts
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' className='uppercase font-bold'>
+                <NavLink to='/' className='font-bold uppercase'>
                   your posts
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/genres' className='uppercase font-bold'>
+                <NavLink to='/genres' className='font-bold uppercase'>
                   upcoming
                 </NavLink>
               </li>
               {/* concerts tab is redundant */}
               {/* <li>
-                <NavLink to='/concerts' className='uppercase font-bold'>
+                <NavLink to='/concerts' className='font-bold uppercase'>
                   concerts
                 </NavLink>
               </li> */}
               <div>
                 {user === (null || '') && (
                   <li>
-                    <NavLink className='uppercase font-bold' to='/login'>
+                    <NavLink className='font-bold uppercase' to='/login'>
                       login
                     </NavLink>
                   </li>
@@ -78,9 +78,9 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
                 {user !== null && (
                   <div>
                     <li>
-                      <NavLink className='uppercase font-bold' to='/'>
+                      <NavLink className='font-bold uppercase' to='/'>
                         <button
-                          className='uppercase font-bold'
+                          className='font-bold uppercase'
                           onClick={handleLogout}>
                           logout {user.username}
                         </button>
@@ -94,7 +94,7 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
           <div className='navbar-start'>
             <div className='flex-auto p-4'>
               <Link to='/'>
-                <h3 className='btn btn-secondary normal-case bg-transparent btn-outline  text-5xl'>
+                <h3 className='text-5xl normal-case bg-transparent border-none btn btn-secondary btn-outline'>
                   ticketblaster
                 </h3>
               </Link>
@@ -102,51 +102,55 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
           </div>
         </div>
 
-        <div className='navbar-center hidden sm:flex'>
+        <div className='hidden navbar-center sm:flex'>
           <div className='flex-auto'>
-            <ul className='menu menu-horizontal p-0'>
+            <ul className='p-0 menu menu-horizontal'>
               <li>
                 <NavLink
                   to='/artists'
-                  className='btn btn-primary uppercase font-bold'>
-                  <h3 className='uppercase font-bold'>artists</h3>
+                  className='font-bold uppercase border-none btn btn-secondary btn-outline'>
+                  <h3 className='font-bold uppercase'>artists</h3>
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to='/concerts'
-                  className='btn btn-primary uppercase font-bold'>
-                  <h3 className='uppercase font-bold'>concerts</h3>
+                  className='font-bold uppercase border-none btn btn-secondary btn-outline'>
+                  <h3 className='font-bold uppercase'>concerts</h3>
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' className='btn btn-primary uppercase font-bold'>
-                  <h3 className='uppercase font-bold'>your posts</h3>
+                <NavLink
+                  to='/'
+                  className='font-bold uppercase border-none btn btn-secondary btn-outline'>
+                  <h3 className='font-bold uppercase'>your posts</h3>
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' className='btn btn-primary uppercase font-bold'>
-                  <h3 className='uppercase font-bold'>upcoming</h3>
+                <NavLink
+                  to='/'
+                  className='font-bold uppercase border-none btn btn-secondary btn-outline'>
+                  <h3 className='font-bold uppercase'>upcoming</h3>
                 </NavLink>
               </li>
               {/* concerts tab is redundant */}
               {/* <li>
                 <NavLink
                   to='/concerts'
-                  className='btn btn-primary uppercase font-bold'>
-                  <h3 className='uppercase font-bold'>concerts</h3>
+                  className='font-bold uppercase btn btn-primary'>
+                  <h3 className='font-bold uppercase'>concerts</h3>
                 </NavLink>
               </li> */}
             </ul>
           </div>
         </div>
-        <div className='navbar-end hidden sm:flex'>
+        <div className='hidden navbar-end sm:flex'>
           <div className='flex-initial'>
-            <ul className='menu menu-horizontal float-right p-0'>
+            <ul className='float-right p-0 menu menu-horizontal'>
               {user === (null || '') && (
                 <li>
-                  <NavLink className='uppercase font-bold' to='/login'>
-                    <h3 className='uppercase font-bold'>login</h3>
+                  <NavLink className='font-bold uppercase' to='/login'>
+                    <h3 className='font-bold uppercase'>login</h3>
                   </NavLink>
                 </li>
               )}
@@ -154,7 +158,7 @@ function Header({ getUser, user, setUser, onLogin, onLogout, loggedIn }) {
                 <div>
                   <li>
                     <button
-                      className='uppercase font-bold'
+                      className='font-bold uppercase'
                       onClick={handleLogout}>
                       logout {user.username}
                     </button>
@@ -173,7 +177,7 @@ export default Header;
 
 // //* right aligned header -- take the elements that right-align it and implement them
 // <header className="bg-white">
-//   <div className="px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+//   <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
 //     <div className="flex items-center justify-between h-16">
 //       <div className="flex-1 md:flex md:items-center md:gap-12">
 //         <a className="block text-teal-600" href="/">
@@ -196,7 +200,7 @@ export default Header;
 //         <nav className="hidden md:block" aria-labelledby="header-navigation">
 //           <h2 className="sr-only" id="header-navigation">Header navigation</h2>
 
-//           <ul className="flex items-center text-sm gap-6">
+//           <ul className="flex items-center gap-6 text-sm">
 //             <li>
 //               <a
 //                 className="text-gray-500 transition hover:text-gray-500/75"
@@ -274,7 +278,7 @@ export default Header;
 
 //           <div className="block md:hidden">
 //             <button
-//               className="p-2 text-gray-600 bg-gray-100 rounded transition hover:text-gray-600/75"
+//               className="p-2 text-gray-600 transition bg-gray-100 rounded hover:text-gray-600/75"
 //             >
 //               <svg
 //                 xmlns="http://www.w3.org/2000/svg"
