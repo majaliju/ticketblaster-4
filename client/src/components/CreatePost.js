@@ -53,8 +53,10 @@ function CreatePost({ user }) {
             } else {
               return post;
             }
-          });
+          })
           console.log('updatedPosts', updatedPosts);
+          // how to set state nested into Artist??
+          // Artist.posts being updated
         });
         setError([]);
         setSuccess('Your post has been created!');
