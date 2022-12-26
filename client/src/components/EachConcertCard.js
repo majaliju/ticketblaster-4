@@ -62,11 +62,6 @@ function EachConcertCard({ concert }) {
                       SHOW MORE POSTS
                     </Link>
                   </div>
-                  <div className='card-body'>
-                    {concert.posts.map((post) => {
-                      <IndividualPost post={post} concert={concert} />;
-                    })}
-                  </div>
                 </div>
               </div>
             </div>

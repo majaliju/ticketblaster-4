@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import EachUser from './EachUser';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loading from './Loading';
+import IndividualPost from './IndividualPost';
 
 function ShowPosts({}) {
   const location = useLocation();
@@ -9,9 +10,10 @@ function ShowPosts({}) {
 
   console.log('concert within ShowPosts: ', concert);
 
-  const posts = concert.posts.map((post) => {
-    console.log('each post :', post);
-  });
+  const concertsPosts = concert.posts;
+  const concertsUsers = concert.users;
+
+  concertsPosts.map((each) => console.log('each', each));
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -22,11 +24,10 @@ function ShowPosts({}) {
               {concert.artist.name} at {concert.location}
             </h1>
           </div>
-
-          <div className='flex justify-center'>
-            <div className='justify-center shadow-2xl card w-96 bg-base-500 bg-neutral text-neutral-content'>
-              <h1> text here</h1>
-            </div>
+          <div className='mb-10'>
+            {concertsPosts.map((post) => (
+              <IndividualPost post={post} concertsUsers={concertsUsers} />
+            ))}
           </div>
         </div>
       ) : (
