@@ -12,23 +12,57 @@ function ArtistsPage({ artists, concerts }) {
 
   console.log('artistsConcerts within ArtistsPage: ', artistsConcerts);
   return (
-    <div class='bg-base-900 py-6 sm:py-8 lg:py-12'>
-      <div>
+    <div>
+      <div class='bg-base-900 py-6 sm:py-8 lg:py-'>
         {artist !== undefined ? (
-          <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
+          <div key={artist.id} class='mx-auto max-w-screen-xl px-4 md:px-8'>
             <div class='mb-10 md:mb-16'>
-              <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
+              <h1 class='mb-4 text-center text-6xl font-thin uppercase text-primary md:mb-6 lg:text-7xl'>
                 {artist.name}
-                <img className='rounded w-72' src={artist.image} />
               </h1>
             </div>
+
+            <div class='flex justify-center'>
+              <div class='card w-96 bg-base-500 bg-neutral text-neutral-content justify-center shadow-2xl'>
+                <div class='avatar'>
+                  <div class='w-30 rounded'>
+                    <img
+                      src={artist.image}
+                      alt='a small avatar of the music thisArtist'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <div class='grid mx-40'>
+            <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
+              ALL POSTS FOR {thisArtist.name}
+            </h1>
+            {thisArtist.posts.map((eachPost) => (
+              <IndividualPost
+                eachPost={eachPost}
+                posts={posts}
+                setPosts={setPosts}
+                users={users}
+                user={user}
+                handleDelete={handleDelete}
+              />
+            ))}
+          </div> */}
             <div>
-              {artistsConcerts.map((concert) => {
-                {
-                  console.log('concert within the mapping: ', concert);
-                }
-                <EachConcertCard concert={concert} />;
-              })}
+              <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
+                <div class='mb-10 md:mb-16'>
+                  <h1 class='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
+                    CONCERTS
+                  </h1>
+                  <p class='mx-auto uppercase text-center max-w-screen-md text-secondary text-gray-500 md:text-lg'></p>
+                </div>
+                <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
+                  {artistsConcerts.map((concert) => (
+                    <EachConcertCard concert={concert} />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         ) : (
