@@ -11,12 +11,15 @@ function IndividualPost({
 }) {
   let navigate = useNavigate();
 
+  console.log('post: ', post);
   // const thisUser = concertsUsers.find(
   //   (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
   // );
 
   const [thisUser, setThisUser] = useState('blankName');
 
+  // if user coming from EachConcertCard, then it'll receive concertsUsers
+  // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
   useEffect(() => {
     if (concertsUsers === undefined) {
       setThisUser(givenUser);
