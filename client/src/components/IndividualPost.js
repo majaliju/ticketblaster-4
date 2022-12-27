@@ -17,6 +17,7 @@ function IndividualPost({
   // );
 
   const [thisUser, setThisUser] = useState('blankName');
+  const [concertInfo, setConcertInfo] = useState({});
 
   // if user coming from EachConcertCard, then it'll receive concertsUsers
   // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
@@ -28,18 +29,23 @@ function IndividualPost({
         (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
       );
       setThisUser(matchingUser);
+      setConcertInfo(concert);
     }
   }, []);
 
   console.log('givenUser: ', givenUser);
   // include concert info (name, location, artist)
+  console.log('concertInfo: ', concertInfo);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
+      <h4 className='text-3xl font-thin'>
+        {concertInfo.artist.name} at {concertInfo.location}
+      </h4>
       {post.for_sale === true ? (
-        <h3 className='text-4xl font-bold'>SELLING: {post.tickets} TICKETS</h3>
+        <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
       ) : (
-        <h3 className='text-4xl font-bold'>BUYING: {post.tickets} TICKETS</h3>
+        <h3 className='text-4xl font'>BUYING: {post.tickets} TICKETS</h3>
       )}
 
       <Link
@@ -47,11 +53,11 @@ function IndividualPost({
         state={{
           thisUser: thisUser,
         }}
-        className='text-2xl font-thin btn btn-ghost'>
+        className='text-2xl font-thin btn btn-ghost text-secondary'>
         {thisUser.username}
       </Link>
 
-      <h3 className='text-xl font-bold'>{thisUser.email}</h3>
+      <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
 
       <span className='absolute bottom-8 right-8'>

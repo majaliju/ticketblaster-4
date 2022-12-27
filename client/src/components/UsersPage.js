@@ -8,18 +8,12 @@ function UsersPage({ users }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
-  console.log('thisUser within UsersPage: ', thisUser);
-
   const user = users.find(
     (eachUser) => parseInt(eachUser.id) === parseInt(thisUser.id)
   );
 
-  console.log('user :', user);
-
   const usersPosts = user.posts;
-  console.log('usersPosts: ', usersPosts);
   const usersConcerts = user.concerts;
-  console.log('usersConcerts: ', usersConcerts);
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-12'>
