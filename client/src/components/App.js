@@ -8,11 +8,11 @@ import NotFound from './NotFound';
 import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import UsersPage from './UsersPage';
+import HomePage from './HomePage';
 import ArtistsPage from './ArtistsPage';
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
-import EachUser from './EachUser';
+import UsersPage from './UsersPage';
 import ShowPosts from './ShowPosts';
 
 function App() {
@@ -97,6 +97,7 @@ function App() {
       method: 'DELETE',
     });
     console.log('deletedPost :', post);
+    // update state here
   }
 
   return (
@@ -113,7 +114,7 @@ function App() {
         <Route
           path='/'
           element={
-            <UsersPage
+            <HomePage
               currentUser={currentUser}
               users={users}
               // handleDelete={handleDelete}
@@ -166,7 +167,7 @@ function App() {
         <Route
           path='/thisUser'
           element={
-            <EachUser
+            <UsersPage
               currentUser={currentUser}
               users={users}
               searchTerm={searchTerm}

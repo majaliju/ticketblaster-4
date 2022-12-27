@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import EachUser from './EachUser';
+import EachUser from './UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
 function IndividualPost({ post, concertsUsers, handleDelete }) {
