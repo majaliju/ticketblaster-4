@@ -52,8 +52,7 @@ function CreatePost({ currentUser, users }) {
             }
           });
           console.log('updatedPosts: ', updatedPosts);
-          // setCurrentUser(...currentUser, currentUser.posts: updatedPosts)
-          // FIGURE OUT HOW TO UPDATE THE STATE OF THE ABOVE
+          setCurrentUser(...currentUser, currentUser.posts: updatedPosts)
         });
         setError([]);
         setSuccess('Your post has been created!');
