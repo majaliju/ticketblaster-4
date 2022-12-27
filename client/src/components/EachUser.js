@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import EachUser from './EachUser';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function EachUser() {

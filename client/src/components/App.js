@@ -60,7 +60,10 @@ function App() {
   function getUser() {
     fetch('/me').then((response) => {
       if (response.ok) {
-        response.json().then((user) => setCurrentUser(user));
+        response.json().then((user) => {
+          setCurrentUser(user);
+          setLoggedIn(true);
+        });
       } else {
         console.log('fetch /me failed due to: ', response);
         setLoggedIn(false);

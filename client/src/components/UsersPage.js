@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import IndividualPost from './IndividualPost';
 
 function UsersPage({
-  user,
+  currentUser,
   users,
   sessionInfo,
   loggedIn,
@@ -25,7 +25,7 @@ function UsersPage({
   return (
     <div>
       <div>
-        {user !== '' && (
+        {loggedIn === true && (
           <div
             class='hero min-h-screen'
             style={{
@@ -35,15 +35,15 @@ function UsersPage({
             <div class='hero-content text-center text-neutral-content'>
               <div class='max-w-md'>
                 <h1 class='mb-5 text-5xl font-bold'>
-                  Welcome back, {user.username}!
+                  Welcome back, {currentUser.username}!
                 </h1>
                 <p class='mb-5'>Your sessionID is {sessionInfo.session_id}</p>
-                {user.posts.map((eachPost) => (
+                {currentUser.posts.map((eachPost) => (
                   <IndividualPost
                     handleDelete={handleDelete}
-                    eachPost={eachPost}
+                    post={eachPost}
                     users={users}
-                    user={user}
+                    currentUser={currentUser}
                   />
                 ))}
               </div>
@@ -52,7 +52,7 @@ function UsersPage({
         )}
       </div>
       <div>
-        {user === '' && (
+        {loggedIn === false && (
           <div
             class='hero min-h-screen'
             style={{
