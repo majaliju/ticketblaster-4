@@ -1,5 +1,11 @@
-function EachUser({}) {
-  //* basically runs through users and displays all IndividualPosts from this given user
+import { useState, useEffect } from 'react';
+import EachUser from './EachUser';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+function EachUser() {
+  const location = useLocation();
+  const user = location.state.user;
+
   return (
     <div>
       <h1> for each user, display their posts here</h1>

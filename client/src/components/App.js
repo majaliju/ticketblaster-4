@@ -16,7 +16,7 @@ import EachUser from './EachUser';
 import ShowPosts from './ShowPosts';
 
 function App() {
-  const [user, setUser] = useState('');
+  const [currentUser, setCurrentUser] = useState('');
   const [sessionInfo, setSessionInfo] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [cookies, setCookies] = useState([]);
@@ -52,31 +52,32 @@ function App() {
   }, []);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
-
-  //! show error message for bad login
-  //^ create an error for user error messages
   useEffect(() => {
     getUser();
+    getSession();
   }, []);
 
   function getUser() {
     fetch('/me').then((response) => {
       if (response.ok) {
-        response.json().then((user) => setUser(user));
-      } else console.log('fetch /me failed due to: ', response);
+        response.json().then((user) => setCurrentUser(user));
+      } else {
+        console.log('fetch /me failed due to: ', response);
+        setLoggedIn(false);
+      }
     });
   }
 
   //^ the onLogin function for SignUp & Login submissions
   function onLogin(username) {
-    setUser(username);
+    setCurrentUser(username);
     setLoggedIn(true);
     getSession();
   }
 
   //^ to log the user out
   function onLogout() {
-    setUser('');
+    setCurrentUser('');
     setLoggedIn(false);
     setSessionInfo([]);
   }
@@ -87,29 +88,20 @@ function App() {
       .then((thisInfo) => setSessionInfo(thisInfo));
   }
 
-  useEffect(() => {
-    getSession();
-  }, []);
-
   //! HANDLE DELETE FUNCTION NEEDS UPDATING
-  // function handleDelete(eachPost) {
-  //   fetch(`/delete_post/${eachPost.id}`, {
-  //     method: 'DELETE',
-  //   });
-  //   console.log('deletedPost :', eachPost);
-  //   //* map thru Artists.map((artist) => artist.posts.map((post) =>))
-  //   const remainingPosts = posts.filter(
-  //     (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
-  //   );
-  //   setPosts(remainingPosts);
-  // }
+  function handleDelete(post) {
+    fetch(`/delete_post/${post.id}`, {
+      method: 'DELETE',
+    });
+    console.log('deletedPost :', post);
+  }
 
   return (
     <div>
       <Header
         getUser={getUser}
-        user={user}
-        setUser={setUser}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
         onLogin={onLogin}
         onLogout={onLogout}
         loggedIn={loggedIn}
@@ -119,7 +111,7 @@ function App() {
           path='/'
           element={
             <UsersPage
-              user={user}
+              currentUser={currentUser}
               users={users}
               // handleDelete={handleDelete}
 
@@ -135,7 +127,7 @@ function App() {
             <ArtistsDisplay
               artists={artists}
               concerts={concerts}
-              user={user}
+              currentUser={currentUser}
               users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -148,7 +140,7 @@ function App() {
             <ArtistsPage
               artists={artists}
               concerts={concerts}
-              user={user}
+              currentUser={currentUser}
               users={users}
             />
           }
@@ -160,38 +152,36 @@ function App() {
               artists={artists}
               concerts={concerts}
               setConcerts={setConcerts}
-              user={user}
+              currentUser={currentUser}
               users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
           }
         />
-        {/* <Route
-          path='/concerts/:id'
-          element={
-            <EachConcertCard concerts={concerts} user={user} users={users} />
-          }
-        /> */}
+
         <Route
-          path='/users/:id'
+          path='/thisUser'
           element={
             <EachUser
-              user={user}
+              currentUser={currentUser}
               users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
           }
         />
-        <Route path='/showPosts' element={<ShowPosts user={user} />} />
+        <Route
+          path='/showPosts'
+          element={<ShowPosts currentUser={currentUser} />}
+        />
         <Route
           path='/createNewPost'
-          element={<CreatePost user={user} users={users} />}
+          element={<CreatePost currentUser={currentUser} users={users} />}
         />
         <Route
           path='/editPost'
-          element={<EditPost user={user} users={users} />}
+          element={<EditPost currentUser={currentUser} users={users} />}
         />
         <Route path='/login' element={<Login onLogin={onLogin} />} />
         <Route path='/signup' element={<SignUp onLogin={onLogin} />} />
