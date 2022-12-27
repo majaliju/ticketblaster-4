@@ -4,7 +4,7 @@ import EachArtistCard from './EachArtistCard';
 import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 
-function UsersPage({ users, searchTerm, setSearchTerm }) {
+function UsersPage({ users }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
@@ -23,17 +23,6 @@ function UsersPage({ users, searchTerm, setSearchTerm }) {
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-12'>
-      <div className='form-control'>
-        <label className='flex input-group input-group-lg'>
-          <span>SEARCH</span>
-          <input
-            type='text'
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder='Search here for anything from any post...'
-            class='input input-bordered w-full input-lg text-center'
-          />
-        </label>
-      </div>
       <div>
         {user !== undefined ? (
           <div className='max-w-screen-xl px-4 mx-auto md:px-8'>
@@ -43,22 +32,9 @@ function UsersPage({ users, searchTerm, setSearchTerm }) {
               </h1>
             </div>
             <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-              {usersPosts
-                // .filter((eachPost) => {
-                //   if (eachPost === '') {
-                //     return eachPost;
-                //   } else if (
-                //     eachPost.body
-                //       .toLowerCase()
-                //       .includes(searchTerm.toLowerCase()) ||
-                //     eachPost.tickets.includes(searchTerm)
-                //   ) {
-                //     return eachPost;
-                //   }
-                // })
-                .map((post) => (
-                  <IndividualPost post={post} givenUser={user} />
-                ))}
+              {usersPosts.map((post) => (
+                <IndividualPost post={post} givenUser={user} />
+              ))}
             </div>
           </div>
         ) : (
