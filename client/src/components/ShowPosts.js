@@ -25,6 +25,7 @@ function ShowPosts({ concerts, handleDelete }) {
               <IndividualPost
                 post={post}
                 concert={concert}
+                concerts={concerts}
                 concertsUsers={concertsUsers}
               />
             ))}

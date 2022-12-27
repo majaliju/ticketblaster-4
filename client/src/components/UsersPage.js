@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import EachArtistCard from './EachArtistCard';
 import IndividualPost from './IndividualPost';
-import EachConcertCard from './EachConcertCard';
 import Loading from './Loading';
 
 function UsersPage({ users, concerts }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
-  const usersPageTag = true;
 
   const user = users.find(
     (eachUser) => parseInt(eachUser.id) === parseInt(thisUser.id)
   );
 
-  const usersConcerts = user.concerts;
-  console.log('usersConcerts :', usersConcerts);
+  const usersPosts = user.posts;
+
+  console.log('usersPosts :', usersPosts);
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-12'>
@@ -27,10 +27,10 @@ function UsersPage({ users, concerts }) {
               </h1>
             </div>
             <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-              {usersConcerts.map((concert) => (
-                <EachConcertCard
-                  concert={concert}
-                  usersPageTag={usersPageTag}
+              {usersPosts.map((post) => (
+                <IndividualPost
+                  post={post}
+                  givenUser={user}
                   concerts={concerts}
                 />
               ))}

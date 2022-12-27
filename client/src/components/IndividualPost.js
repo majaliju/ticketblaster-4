@@ -13,34 +13,42 @@ function IndividualPost({
   let navigate = useNavigate();
 
   const [thisUser, setThisUser] = useState('blankName');
-  const [concertInfo, setConcertInfo] = useState(concert);
+  const [concertInfo, setConcertInfo] = useState({
+    location: 'Empty Default',
+    artist: { name: 'Fake Artist' },
+  });
 
   // if user coming from EachConcertCard, then it'll receive concertsUsers
   // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
   useEffect(() => {
     if (concertsUsers === undefined) {
       setThisUser(givenUser);
-      // const thisConcert = concerts.find(
-      //   (concert) => parseInt(post.concert_id) === parseInt(concert.id)
-      // );
-      // console.log('thisConcert: ', thisConcert);
-      setConcertInfo();
+      const matchingConcert = concerts.find(
+        (thisConcert) => thisConcert.id === post.concert_id
+      );
+      setConcertInfo(matchingConcert);
     } else if (givenUser === undefined) {
       const matchingUser = concertsUsers.find(
         (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
       );
       setThisUser(matchingUser);
+      setConcertInfo(concert);
     }
   }, []);
 
-  // include concert info (name, location, artist)
-  // console.log('concertInfo: ', concertInfo);
+  console.log('post', post);
+
+  // const matchingConcert = concerts.find(
+  //   (thisConcert) => thisConcert.id === post.concert_id
+  // );
+
+  // console.log('matchingConcert', matchingConcert);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
-      {/* <h4 className='text-3xl font-thin'>
+      <h4 className='text-3xl font-thin'>
         {concertInfo.artist.name} at {concertInfo.location}
-      </h4> */}
+      </h4>
       {post.for_sale === true ? (
         <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
       ) : (
