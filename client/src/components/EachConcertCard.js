@@ -5,7 +5,21 @@ import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import CreatePost from './CreatePost';
 
-function EachConcertCard({ concert }) {
+function EachConcertCard({ concert, usersPageTag, concerts }) {
+  // const [thisConcert, setThisConcert] = useState({});
+
+  // useEffect(() => {
+  //   if (usersPageTag === true) {
+  //     const matchingConcert = concerts.find(
+  //       (eachConcert) => parseInt(concert.id) === parseInt(eachConcert.id)
+  //     );
+  //     setThisConcert(matchingConcert);
+  //   } else {
+  //     setThisConcert(concert);
+  //   }
+  // }, []);
+
+  // console.log("thisConcert: ", thisConcert)
   return (
     <div>
       <div className='py-6 bg-base-900 sm:py-8 lg:py-'>

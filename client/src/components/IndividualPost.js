@@ -5,43 +5,42 @@ import { Link, useNavigate } from 'react-router-dom';
 function IndividualPost({
   post,
   concert,
+  concerts,
   concertsUsers,
   givenUser,
   handleDelete,
 }) {
   let navigate = useNavigate();
 
-  console.log('post: ', post);
-  // const thisUser = concertsUsers.find(
-  //   (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
-  // );
-
   const [thisUser, setThisUser] = useState('blankName');
-  const [concertInfo, setConcertInfo] = useState({});
+  const [concertInfo, setConcertInfo] = useState(concert);
 
   // if user coming from EachConcertCard, then it'll receive concertsUsers
   // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
   useEffect(() => {
     if (concertsUsers === undefined) {
       setThisUser(givenUser);
+      // const thisConcert = concerts.find(
+      //   (concert) => parseInt(post.concert_id) === parseInt(concert.id)
+      // );
+      // console.log('thisConcert: ', thisConcert);
+      setConcertInfo();
     } else if (givenUser === undefined) {
       const matchingUser = concertsUsers.find(
         (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
       );
       setThisUser(matchingUser);
-      setConcertInfo(concert);
     }
   }, []);
 
-  console.log('givenUser: ', givenUser);
   // include concert info (name, location, artist)
-  console.log('concertInfo: ', concertInfo);
+  // console.log('concertInfo: ', concertInfo);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
-      <h4 className='text-3xl font-thin'>
+      {/* <h4 className='text-3xl font-thin'>
         {concertInfo.artist.name} at {concertInfo.location}
-      </h4>
+      </h4> */}
       {post.for_sale === true ? (
         <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
       ) : (

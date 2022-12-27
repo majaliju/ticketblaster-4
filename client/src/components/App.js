@@ -170,8 +170,7 @@ function App() {
             <UsersPage
               currentUser={currentUser}
               users={users}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
+              concerts={concerts}
             />
           }
         />

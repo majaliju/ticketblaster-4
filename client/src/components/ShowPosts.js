@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loading from './Loading';
 import IndividualPost from './IndividualPost';
 
-function ShowPosts({ handleDelete }) {
+function ShowPosts({ concerts, handleDelete }) {
   const location = useLocation();
   const concert = location.state.concert;
 
