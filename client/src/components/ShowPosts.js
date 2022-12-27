@@ -8,12 +8,8 @@ function ShowPosts({ handleDelete }) {
   const location = useLocation();
   const concert = location.state.concert;
 
-  console.log('concert within ShowPosts: ', concert);
-
   const concertsPosts = concert.posts;
   const concertsUsers = concert.users;
-
-  concertsPosts.map((each) => console.log('each', each));
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -26,7 +22,11 @@ function ShowPosts({ handleDelete }) {
           </div>
           <div className='mb-10'>
             {concertsPosts.map((post) => (
-              <IndividualPost post={post} concertsUsers={concertsUsers} />
+              <IndividualPost
+                post={post}
+                concert={concert}
+                concertsUsers={concertsUsers}
+              />
             ))}
           </div>
         </div>

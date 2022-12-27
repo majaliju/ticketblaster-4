@@ -2,14 +2,34 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
-function IndividualPost({ post, concertsUsers, handleDelete }) {
+function IndividualPost({
+  post,
+  concert,
+  concertsUsers,
+  givenUser,
+  handleDelete,
+}) {
   let navigate = useNavigate();
 
-  const thisUser = concertsUsers.find(
-    (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
-  );
+  // const thisUser = concertsUsers.find(
+  //   (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
+  // );
 
-  console.log('thisUser: ', thisUser);
+  const [thisUser, setThisUser] = useState('blankName');
+
+  useEffect(() => {
+    if (concertsUsers === undefined) {
+      setThisUser(givenUser);
+    } else if (givenUser === undefined) {
+      const matchingUser = concertsUsers.find(
+        (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
+      );
+      setThisUser(matchingUser);
+    }
+  }, []);
+
+  console.log('givenUser: ', givenUser);
+  // include concert info (name, location, artist)
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
@@ -19,7 +39,15 @@ function IndividualPost({ post, concertsUsers, handleDelete }) {
         <h3 className='text-4xl font-bold'>BUYING: {post.tickets} TICKETS</h3>
       )}
 
-      <h3 className='text-2xl font-thin'>{thisUser.username}</h3>
+      <Link
+        to='/thisUser'
+        state={{
+          thisUser: thisUser,
+        }}
+        className='text-2xl font-thin btn btn-ghost'>
+        {thisUser.username}
+      </Link>
+
       <h3 className='text-xl font-bold'>{thisUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
 
