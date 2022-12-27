@@ -22,6 +22,9 @@ function UsersPage({
     setPosts(remainingPosts);
   }
 
+  const usersPosts = users.posts;
+  console.log('usersPosts: ', usersPosts);
+
   return (
     <div>
       <div>
@@ -38,14 +41,15 @@ function UsersPage({
                   Welcome back, {currentUser.username}!
                 </h1>
                 <p class='mb-5'>Your sessionID is {sessionInfo.session_id}</p>
-                {currentUser.posts.map((eachPost) => (
-                  <IndividualPost
-                    handleDelete={handleDelete}
-                    post={eachPost}
-                    users={users}
-                    currentUser={currentUser}
-                  />
-                ))}
+                {/* {usersPosts.map(
+                  (post) => console.log('post: ', post)
+                  // <IndividualPost
+                  //   handleDelete={handleDelete}
+                  //   post={post}
+                  //   users={users}
+                  //   currentUser={currentUser}
+                  // />
+                )} */}
               </div>
             </div>
           </div>

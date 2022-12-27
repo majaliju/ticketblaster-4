@@ -176,7 +176,9 @@ function App() {
         />
         <Route
           path='/showPosts'
-          element={<ShowPosts currentUser={currentUser} />}
+          element={
+            <ShowPosts currentUser={currentUser} handleDelete={handleDelete} />
+          }
         />
         <Route
           path='/createNewPost'
