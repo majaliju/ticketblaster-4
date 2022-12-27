@@ -18,15 +18,14 @@ function EachArtistCard({ artist, concerts }) {
   // fix the grid for this
   return (
     <div>
-      <div class='card w-96 bg-base-100 shadow-xl image-full'>
-        {/* //*resize these images in the right way */}
+      <div class='card w-94 bg-base-100 shadow-xl image-full'>
         <figure>
-          <img src={artist.image} al={artist.name} />
+          <img src={artist.image} alt={artist.name} />
         </figure>
         <div class='card-body'>
           <h2 class='card-title'>{artist.name}</h2>
           <h3>{artist.genre}</h3>
-          <div className='card-actions justify-end'>
+          <div className='justify-end card-actions'>
             <Link
               to='/thisArtist'
               state={{ artist: artist, artistsConcerts: artistsConcerts }}
