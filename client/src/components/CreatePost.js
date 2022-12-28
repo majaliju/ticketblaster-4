@@ -13,8 +13,8 @@ function CreatePost({ currentUser, users }) {
   let isSelling = location.state.isSelling;
   let concert = location.state.concert;
 
-  console.log('concert: ', concert);
-  console.log('currentUser: ', currentUser);
+  // console.log('concert: ', concert);
+  // console.log('currentUser: ', currentUser);
 
   // //* resetting our states when a new page renders
   // useEffect(() => {
@@ -43,7 +43,7 @@ function CreatePost({ currentUser, users }) {
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((createdPost) => {
-          console.log('createdPost: ', createdPost);
+          // console.log('createdPost: ', createdPost);
           // const updatedPosts = currentUser.posts.map((eachPost) => {
           //   if (eachPost.id === createdPost.id) {
           //     return createdPost;
@@ -62,11 +62,13 @@ function CreatePost({ currentUser, users }) {
         response.json().then((e) => {
           console.log('e. errors: ', e.errors);
           setError(e.errors);
+          console.log('error state: ', error);
         });
       }
     });
   };
 
+  console.log('error state: ', error);
   //! ERRORS ARE NOT RENDERING PROPERLY TO THE PAGE
   //~ ERRORS ARE WORKING AND RESPONDING PROPERLY THOUGH; THE POST IS BEING CREATED SUCCESSFULLY
 
@@ -94,7 +96,7 @@ function CreatePost({ currentUser, users }) {
             </div>
           ) : null}
           {/* //! errors aren't rendering; not sure why */}
-          {error !== ''
+          {error !== []
             ? error.map((eachError) => {
                 <div className='shadow-lg alert alert-warning'>
                   <div>
@@ -110,13 +112,12 @@ function CreatePost({ currentUser, users }) {
                         d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
                       />
                     </svg>
-                    <span>{eachError}</span>
+                    <span>test!!!</span>
                     {console.log('eachError: ', eachError)}
                   </div>
                 </div>;
               })
             : null}
-
           <h1 className='text-2xl font-bold text-center text-white sm:text-3xl'>
             CREATE A POST!
           </h1>
