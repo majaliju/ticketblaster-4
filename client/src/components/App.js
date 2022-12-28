@@ -100,6 +100,8 @@ function App() {
     // update state here
   }
 
+  console.log('currentUser in App: ', currentUser);
+
   return (
     <div>
       <Header

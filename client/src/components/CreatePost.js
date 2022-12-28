@@ -17,13 +17,13 @@ function CreatePost({ currentUser, users }) {
   console.log('currentUser: ', currentUser);
 
   // //* resetting our states when a new page renders
-  useEffect(() => {
-    setSuccess('');
-    setError([]);
-    setSubmitted(false);
-    setBody('');
-    setTicketAmount(0);
-  }, []);
+  // useEffect(() => {
+  //   setSuccess('');
+  //   setError([]);
+  //   setSubmitted(false);
+  //   setBody('');
+  //   setTicketAmount(0);
+  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,14 +44,14 @@ function CreatePost({ currentUser, users }) {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((createdPost) => {
           console.log('createdPost: ', createdPost);
-          const updatedPosts = currentUser.posts.map((eachPost) => {
-            if (eachPost.id === createdPost.id) {
-              return createdPost;
-            } else {
-              return eachPost;
-            }
-          });
-          console.log('updatedPosts: ', updatedPosts);
+          // const updatedPosts = currentUser.posts.map((eachPost) => {
+          //   if (eachPost.id === createdPost.id) {
+          //     return createdPost;
+          //   } else {
+          //     return eachPost;
+          //   }
+          // });
+          // console.log('updatedPosts: ', updatedPosts);
           // setCurrentUser(...currentUser, currentUser.posts: updatedPosts)
           // FIGURE OUT HOW TO UPDATE THE STATE OF THE ABOVE
         });
@@ -61,7 +61,7 @@ function CreatePost({ currentUser, users }) {
       } else {
         response.json().then((e) => {
           console.log('e. errors: ', e.errors);
-          setError(e.errors);
+          // setError(e.errors);
         });
       }
     });

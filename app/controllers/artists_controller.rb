@@ -12,4 +12,8 @@ class ArtistsController < ApplicationController
     render json: artist, status: 200
   end
 
+  def create
+    puts "test"
+  end
+
 end
