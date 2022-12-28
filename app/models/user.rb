@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # validates :my_email_attribute, email: true, presence: true
 
   has_many :posts
-  has_many :concerts, through: :posts
+  has_many :concerts, -> { distinct }, through: :posts
 
 
 end

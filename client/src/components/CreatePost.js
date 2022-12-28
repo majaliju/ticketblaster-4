@@ -71,12 +71,11 @@ function CreatePost({ currentUser, users }) {
   };
 
   console.log('error state: ', error);
-  //! ERRORS ARE NOT RENDERING PROPERLY TO THE PAGE
-  //~ ERRORS ARE WORKING AND RESPONDING PROPERLY THOUGH; THE POST IS BEING CREATED SUCCESSFULLY
 
   //* things to note for the error on errors rendering
   //* success is a string, error is an array
   //! issue appears to be with rendering .map on undefined
+  //* need to flatten the array and make a string, then render that string basically
 
   return (
     <div>
