@@ -60,7 +60,7 @@ class PostsController < ApplicationController
   private
 
   def new_post_params
-    params.require(:concert_id, :user_id, :for_sale, :tickets, :body)
+    params.permit(:concert_id, :user_id, :for_sale, :tickets, :body)
   end
 
   def render_unprocessable_entity_response(invalid)
