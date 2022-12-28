@@ -3,5 +3,4 @@ class ArtistSerializer < ActiveModel::Serializer
 
 
   has_many :concerts, serializer: ConcertSerializer
-  has_many :posts, through: :concerts, serializer: PostSerializer
 end

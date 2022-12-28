@@ -8,11 +8,9 @@ Rails.application.routes.draw do
   get '/artists/:id', to: "artists#show"
   get '/concerts', to: "concerts#index"
 
-
-
   # #& get info about the artist's upcoming shows
   # get '/upcoming_shows', to: "artists#upcoming_shows"
-  ## set it to where if the dates are after today's date then pull these concerts
+  # # set it to where if the dates are after today's date then pull these concerts
 
 
   ##~ FOR THE POSTS GET/CREATION/EDITS/DELETION
