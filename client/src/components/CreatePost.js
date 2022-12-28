@@ -5,6 +5,7 @@ function CreatePost({ currentUser, users }) {
   const [body, setBody] = useState('');
   const [ticketAmount, setTicketAmount] = useState(0);
   const [error, setError] = useState(['test1', 'test2']);
+  const [errorString, setErrorString] = useState('');
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -54,19 +55,17 @@ function CreatePost({ currentUser, users }) {
           // console.log('updatedPosts: ', updatedPosts);
           // setCurrentUser(...currentUser, currentUser.posts: updatedPosts)
           // FIGURE OUT HOW TO UPDATE THE STATE OF THE ABOVE
+          setError([]);
+          setSuccess('Your post has been created!');
+          setSubmitted(true);
         });
-        setError([]);
-        setSuccess('Your post has been created!');
-        setSubmitted(true);
       } else {
         response.json().then((e) => {
           console.log('e. errors within bad response: ', e.errors);
+          // set the errorString to e.errors.join(*join with a comma*)
           setError(e.errors);
           console.log('error state within bad response: ', error);
         });
-        console.log('e. errors within else: ', e.errors); // this is undefined
-        setError(e.errors); // errors becomes undefined
-        console.log('error state within else: ', error);
       }
     });
   };
@@ -125,10 +124,27 @@ function CreatePost({ currentUser, users }) {
                 </div>;
               })
             : null}
+          <div className='shadow-lg alert alert-warning'>
+            <div>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='flex-shrink-0 w-6 h-6 stroke-current'
+                fill='none'
+                viewBox='0 0 24 24'>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
+                />
+              </svg>
+              <span>test!!!</span>
+            </div>
+          </div>
+
           <h1 className='text-2xl font-bold text-center text-white sm:text-3xl'>
             CREATE A POST!
           </h1>
-
           <form className='p-8 mt-2 mb-0 space-y-4 rounded-lg shadow-2xl'>
             <div>
               <input
