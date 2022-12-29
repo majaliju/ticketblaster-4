@@ -2,17 +2,18 @@ Rails.application.routes.draw do
   #& Defines the root path route ("/")
   #& root "articles#index"
 
-  ##~ FOR THE ARTIST-CONCERTS-VENUES DISPLAYS
-  #& get all the artists-genres-venues-concerts-posts; to save to each state
+  ##~ FOR ARTIST and CONCERTS GET/CREATIONS
+  #& to get the artists and concerts, respectively
   get '/artists', to: "artists#index"
-  get '/artists/:id', to: "artists#show"
   get '/concerts', to: "concerts#index"
-
+   #& to create a new artist and new concert, respectively
+  post '/new_artist', to: "artists#create"
+  post '/new_concert', to: "concerts#create"
 
 
   # #& get info about the artist's upcoming shows
   # get '/upcoming_shows', to: "artists#upcoming_shows"
-  ## set it to where if the dates are after today's date then pull these concerts
+  # # set it to where if the dates are after today's date then pull these concerts
 
 
   ##~ FOR THE POSTS GET/CREATION/EDITS/DELETION

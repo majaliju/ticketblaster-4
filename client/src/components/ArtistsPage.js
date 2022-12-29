@@ -6,31 +6,60 @@ import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
 function ArtistsPage({ artists, concerts }) {
-  let { id, params } = useParams();
   const location = useLocation();
   const artist = location.state.artist;
+  const artistsConcerts = location.state.artistsConcerts;
 
-  console.log('id: ', id);
-  console.log('artists: ', artists);
+  console.log('artistsConcerts: ', artistsConcerts);
 
-  const thisArtist = artists.find(
-    (artist) => parseInt(id) === parseInt(artist.id)
-  );
-
-  //? why doesn't work and render only that artists concerts?
-  const artistsConcerts = concerts.filter(
-    (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
-  );
-
-  // console.log('concerts within ArtistsPage: ', concerts);
   return (
     <div>
-      <div className='mx-auto max-w-screen-xl px-4 md:px-8'>
-        <div className='mb-10 md:mb-16'>
-          <h1 className='mb-4 text-center text-6xl font-thin text-primary md:mb-6 lg:text-7xl'>
-            {thisArtist.name}
-          </h1>
-        </div>
+      <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
+        {artist !== undefined ? (
+          <div key={artist.id} className='max-w-screen-xl px-4 mx-auto md:px-8'>
+            <div className='mb-10 md:mb-16'>
+              <h1 className='mb-4 text-6xl font-thin text-center uppercase text-primary md:mb-6 lg:text-7xl'>
+                {artist.name}
+              </h1>
+            </div>
+
+            <div className='flex justify-center'>
+              <div className='justify-center shadow-2xl card w-96 bg-base-500 bg-neutral text-neutral-content'>
+                <div className='avatar'>
+                  <div className='rounded w-30'>
+                    <img
+                      src={artist.image}
+                      alt='a small avatar of the music thisArtist'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <div className='grid mx-40'>
+              <h1 className='mb-4 text-6xl font-thin text-center text-primary md:mb-6 lg:text-7xl'>
+                ALL POSTS
+              </h1>
+              {artistsConcerts.map((each) => console.log('each ', each))}
+            </div> */}
+            <div>
+              <div className='max-w-screen-xl px-4 mx-auto md:px-8'>
+                <div className='mb-10 md:mb-16'>
+                  <h1 className='mb-4 text-6xl font-thin text-center text-primary md:mb-6 lg:text-7xl'>
+                    CONCERTS
+                  </h1>
+                  <p className='max-w-screen-md mx-auto text-center text-gray-500 uppercase text-secondary md:text-lg'></p>
+                </div>
+                <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
+                  {artistsConcerts.map((concert) => (
+                    <EachConcertCard concert={concert} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );

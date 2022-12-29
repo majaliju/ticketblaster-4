@@ -59,29 +59,40 @@ puts "---------------------- Seeding each Artist, their concerts, and their post
 ##! gotta use the imgur links for image
 
 #~ Adele
-adele = Artist.create({ name: "Adele", image: "/artist-images/adele.jpg", genre: "Pop"})
-adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Hollywood Bowl", image: "/concerts-images/hollywood-bowl.jpg", artist_id: adele.id})
-adele_p1 = Post.create({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: adele_c1.id})
-adele_p2 = Post.create({body: "PLEASE EMAIL IF YOU HAVE 4 TICKETS ALTOGETHER! MY DAUGHTERS LOVE HER -- THX ", for_sale: false, tickets: 4, user_id: u17.id, concert_id: adele_c1.id})
+adele = Artist.create!({ name: "Adele", image: "https://i.imgur.com/zmGbfKS.jpg", genre: "Pop"})
+adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "https://i.imgur.com/SmFrzTC.jpg", artist_id: adele.id})
+adele_c2 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Mao Livehouse", image: "https://i.imgur.com/CghhYym.jpg", artist_id: adele.id})
+adele_c3 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", image: "https://i.imgur.com/0gd1dD0.jpg", artist_id: adele.id})
+Post.create!({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: adele_c1.id})
+Post.create!({body: "3 tickets, $400 total OBO!", for_sale: true, tickets: 3, user_id: u1.id, concert_id: adele_c1.id})
+Post.create!({body: "5 tickets, $1000 total", for_sale: true, tickets: 5, user_id: u1.id, concert_id: adele_c2.id})
+Post.create!({body: "10 tickets all for sale individually!", for_sale: true, tickets: 10, user_id: u1.id, concert_id: adele_c2.id})
+Post.create!({body: "7 tickets for sale! Buy fast!", for_sale: true, tickets: 7, user_id: u1.id, concert_id: adele_c3.id})
+Post.create!({body: "8 tickets left!!", for_sale: true, tickets: 8, user_id: u1.id, concert_id: adele_c3.id})
+Post.create!({body: "PLEASE EMAIL IF YOU HAVE 4 TICKETS ALTOGETHER! MY DAUGHTERS LOVE HER -- THX ", for_sale: false, tickets: 4, user_id: u17.id, concert_id: adele_c1.id})
+Post.create!({body: "CONTACT FOR SALE, ALL 5 TICKETS OR SOLD SEPERATELY", for_sale: true, tickets: 5, user_id: u2.id, concert_id: adele_c2.id})
+Post.create!({body: "email me plzzz need tix asap", for_sale: false, tickets: 1, user_id: u18.id, concert_id: adele_c2.id})
+Post.create!({body: "only 1 ticket for sale, email me or call 646-277-2888", for_sale: true, tickets: 1, user_id: u3.id, concert_id: adele_c3.id})
+Post.create!({body: "Looking for 10 tickets altogether! WILL PAY BIG!", for_sale: false, tickets: 10, user_id: u19.id, concert_id: adele_c3.id})
 
 
 #~ John Legend
-john_legend = Artist.create({ name: "John Legend", image: "/artist-images/john_legend.jpg", genre: "Pop"})
-john_legend_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", image: "/concerts-images/msg.jpg", artist_id: john_legend.id})
-john_legend_p1 = Post.create({body: "Need 3 tickets badly! Willing to pay $400 total for 3 tix", for_sale: false, tickets: 3, user_id: u2.id, concert_id: john_legend_c1.id})
-john_legend_p2 = Post.create({body: "Can't find just one ticket anywhere! Idc where the seat is, HMU", for_sale: false, tickets: 1, user_id: u30.id, concert_id: john_legend_c1.id})
+john_legend = Artist.create!({ name: "John Legend", image: "/artist-images/john_legend.jpg", genre: "Pop"})
+john_legend_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", image: "https://i.imgur.com/0gd1dD0.jpg", artist_id: john_legend.id})
+john_legend_p1 = Post.create!({body: "Need 3 tickets badly! Willing to pay $400 total for 3 tix", for_sale: false, tickets: 3, user_id: u2.id, concert_id: john_legend_c1.id})
+john_legend_p2 = Post.create!({body: "Can't find just one ticket anywhere! Idc where the seat is, HMU", for_sale: false, tickets: 1, user_id: u30.id, concert_id: john_legend_c1.id})
 
 
 #~ Lil Uzi Vert
-lil_uzi = Artist.create({ name: "Lil Uzi Vert", image: "/artist-images/lil-uzi-vert.jpg", genre: "Rap"})
-lil_uzi_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "/concerts-images/brooklyn-steel.jpg", artist_id: lil_uzi.id})
-lil_uzi_p1 = Post.create({body: "All 3 tickets together = $250, one ticket = $100", for_sale: true, tickets: 3, user_id: u4.id, concert_id: lil_uzi_c1.id})
+lil_uzi = Artist.create!({ name: "Lil Uzi Vert", image: "/artist-images/lil-uzi-vert.jpg", genre: "Rap"})
+lil_uzi_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "https://i.imgur.com/SmFrzTC.jpg", artist_id: lil_uzi.id})
+lil_uzi_p1 = Post.create!({body: "All 3 tickets together = $250, one ticket = $100", for_sale: true, tickets: 3, user_id: u4.id, concert_id: lil_uzi_c1.id})
 
 
 #~ Alicia Keys
-alicia_keys = Artist.create({ name: "Alicia Keys", image: "/artist-images/alicia_keys.jpg", genre: "R&B"})
-alicia_keys_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Bowery Ballroom", image: "/concerts-images/bowery-ballroom.jpg", artist_id: alicia_keys.id})
-alicia_keys_p1 = Post.create({body: "My daughter loves him (dont ask), will pay up to $500 per ticket", for_sale: false, tickets: 2, user_id: u4.id, concert_id: alicia_keys_c1.id})
+alicia_keys = Artist.create!({ name: "Alicia Keys", image: "/artist-images/alicia_keys.jpg", genre: "R&B"})
+alicia_keys_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Bowery Ballroom", image: "https://i.imgur.com/qQN0hVK.jpg", artist_id: alicia_keys.id})
+alicia_keys_p1 = Post.create!({body: "My daughter loves him (dont ask), will pay up to $500 per ticket", for_sale: false, tickets: 2, user_id: u4.id, concert_id: alicia_keys_c1.id})
 
 
 

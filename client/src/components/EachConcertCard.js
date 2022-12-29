@@ -5,28 +5,36 @@ import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 import CreatePost from './CreatePost';
 
-function EachConcertCard({ concert, thisArtist }) {
-  // TODO
-  //^ center the card in the middle of the page
-  //* potentially add click links on artist's name and venue name
+function EachConcertCard({ concert, usersPageTag, concerts }) {
+  // const [thisConcert, setThisConcert] = useState({});
 
-  console.log('thisArtist within EachConcertCard: ', thisArtist);
+  // useEffect(() => {
+  //   if (usersPageTag === true) {
+  //     const matchingConcert = concerts.find(
+  //       (eachConcert) => parseInt(concert.id) === parseInt(eachConcert.id)
+  //     );
+  //     setThisConcert(matchingConcert);
+  //   } else {
+  //     setThisConcert(concert);
+  //   }
+  // }, []);
 
+  // console.log("thisConcert: ", thisConcert)
   return (
     <div>
-      <div class='bg-base-900 py-6 sm:py-8 lg:py-'>
+      <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
         {concert !== undefined ? (
-          <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
-            <div class='flex justify-center'>
-              <div class='card w-96 bg-base-500 bg-neutral text-neutral-content justify-center shadow-2xl'>
-                <div class='avatar'>
-                  <div class='w-30 rounded'>
+          <div className='max-w-screen-xl px-4 mx-auto md:px-8'>
+            <div className='flex justify-center'>
+              <div className='justify-center shadow-2xl card w-96 bg-base-500 bg-neutral text-neutral-content'>
+                <div className='avatar'>
+                  <div className='rounded w-30'>
                     <img
-                      src={thisArtist.image}
+                      src={concert.artist.image}
                       alt='a small avatar of the musical artist'
                     />
                   </div>
-                  <div class='w-30 rounded'>
+                  <div className='rounded w-30'>
                     <img
                       src={concert.image}
                       alt='a small avatar of the venue'
@@ -34,34 +42,38 @@ function EachConcertCard({ concert, thisArtist }) {
                   </div>
                 </div>
 
-                <div class='card-body items-center text-center'>
-                  <h2 class='card-title'>{concert.location}</h2>
-                  <h2 class='card-title'>{thisArtist.name}</h2>
+                <div className='items-center text-center card-body'>
+                  <h2 className='card-title'>{concert.location}</h2>
+                  <h2 className='card-title'>{concert.artist.name}</h2>
 
-                  <h2 class='card-body'>{concert.date}</h2>
+                  <h2 className='card-body'>{concert.date}</h2>
 
-                  <div class='card-actions justify-end'>
+                  <div className='justify-end card-actions'>
                     <Link
                       to='/createNewPost'
                       state={{
                         isSelling: true,
-                        artist: thisArtist,
-                        concertID: concert.id,
-                        artistID: thisArtist.id,
+                        concert: concert,
                       }}
-                      class='btn btn-secondary w-full'>
-                      I'M SELLING!
+                      className='w-full btn btn-secondary btn-outline'>
+                      I'M SELLING
                     </Link>
                     <Link
                       to='/createNewPost'
                       state={{
                         isSelling: false,
-                        artist: thisArtist,
-                        concertID: concert.id,
-                        artistID: thisArtist.id,
+                        concert: concert,
                       }}
-                      class='btn btn-secondary w-full'>
-                      I'M BUYING!
+                      className='w-full btn btn-primary btn-outline'>
+                      I'M BUYING
+                    </Link>
+                    <Link
+                      to='/showPosts'
+                      state={{
+                        concert: concert,
+                      }}
+                      className='w-full btn btn-accent btn-outline'>
+                      SHOW MORE POSTS
                     </Link>
                   </div>
                 </div>

@@ -18,6 +18,24 @@ class PostsController < ApplicationController
     render json: post, status: 201
   end
 
+  # ## made this one to not-render duplicates but still rendered duplicates
+  # def create
+  #   ## links the proper user to the post
+  #   correct_user = User.find_by!(id: params[:user_id])
+
+  #   ## links the proper concert to the post
+  #   correct_concert = Concert.find_by!(id: params[:concert_id])
+
+  #   newPost = Post.create!(
+  #     id: params[:id],
+  #     body: params[:body],
+  #     tickets: params[:tickets],
+  #     for_sale: params[:for_sale],
+  #     concert_id: correct_concert.id,
+  #     user_id: correct_user.id
+  #   )
+  #   render json: newPost, status: 201
+  # end
 
   def update
     post = Post.find_by!(id: params[:id])
@@ -42,7 +60,7 @@ class PostsController < ApplicationController
   private
 
   def new_post_params
-    params.permit(:body, :for_sale, :tickets, :concert_id, :user_id)
+    params.permit(:concert_id, :user_id, :for_sale, :tickets, :body)
   end
 
   def render_unprocessable_entity_response(invalid)

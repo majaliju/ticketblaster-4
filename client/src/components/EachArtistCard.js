@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Navigate,
-  useNavigate,
-  useParams,
-  Link,
-  useLocation,
-} from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import IndividualPost from './IndividualPost';
 import Loading from './Loading';
@@ -14,26 +8,8 @@ import ArtistsPage from './ArtistsPage';
 
 //* GOTTA ADJUST STYLING HERE TO FORM EVERYTHING IN THE CENTER CLEANLY
 
-// change thisArtist to artist via direct pass also
-
 function EachArtistCard({ artist, concerts }) {
   let navigate = useNavigate();
-  // let { id } = useParams();
-  // const location = useLocation();
-  // let artist = location.state.artist;
-  // console.log('artist via useLocation & Link :', artist);
-
-  // // fix this method a bit
-  // const concert = concerts.find(
-  //   (thisConcert) => parseInt(id) === parseInt(thisConcert.artist_id)
-  // );
-
-  // const artistsConcerts = concerts.filter(
-  //   (thisConcert) => parseInt(thisConcert.artist_id) === parseInt(id)
-  // );
-
-  // console.log('artist.artist.name: ', concert.artist.name);
-  // console.log('the artistsConcerts: ', artistsConcerts);
 
   const artistsConcerts = concerts.filter(
     (concert) => parseInt(concert.artist_id) === parseInt(artist.id)
@@ -42,27 +18,22 @@ function EachArtistCard({ artist, concerts }) {
   // fix the grid for this
   return (
     <div>
-      <div class='card w-96 bg-base-100 shadow-xl image-full'>
-        {/* //*resize these images in the right way */}
+      <div class='card w-94 bg-base-100 shadow-xl image-full'>
         <figure>
-          <img src={artist.image} al={artist.name} />
+          <img src={artist.image} alt={artist.name} />
         </figure>
         <div class='card-body'>
           <h2 class='card-title'>{artist.name}</h2>
           <h3>{artist.genre}</h3>
-          <div className='card-actions justify-end'>
-            <Link to='/' state={{ artist: artist }}>
+          <div className='justify-end card-actions'>
+            <Link
+              to='/thisArtist'
+              state={{ artist: artist, artistsConcerts: artistsConcerts }}
+              replace={true}>
               <button className='btn btn-secondary btn-outline'>
                 Show More
               </button>
             </Link>
-          </div>
-          <div class='carousel carousel-center max-w-md p-4 space-x-4 bg-neutral'>
-            {artistsConcerts.map((eachConcert) => {
-              <div class='carousel-item'>
-                <img src={artistsConcerts.image} class='rounded-box' />
-              </div>;
-            })}
           </div>
         </div>
       </div>

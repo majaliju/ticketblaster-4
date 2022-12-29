@@ -8,14 +8,18 @@ import NotFound from './NotFound';
 import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import UsersPage from './UsersPage';
+import MainPage from '../og-components/MainPage';
+import HomePage from './HomePage';
 import ArtistsPage from './ArtistsPage';
+import CreateArtist from './CreateArtist';
+import CreateConcert from './CreateConcert';
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
-import EachUser from './EachUser';
+import UsersPage from './UsersPage';
+import ShowPosts from './ShowPosts';
 
 function App() {
-  const [user, setUser] = useState('');
+  const [currentUser, setCurrentUser] = useState('');
   const [sessionInfo, setSessionInfo] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [cookies, setCookies] = useState([]);
@@ -51,31 +55,35 @@ function App() {
   }, []);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
-
-  //! show error message for bad login
-  //^ create an error for user error messages
   useEffect(() => {
     getUser();
+    getSession();
   }, []);
 
   function getUser() {
     fetch('/me').then((response) => {
       if (response.ok) {
-        response.json().then((user) => setUser(user));
-      } else console.log('fetch /me failed due to: ', response);
+        response.json().then((user) => {
+          setCurrentUser(user);
+          setLoggedIn(true);
+        });
+      } else {
+        console.log('fetch /me failed due to: ', response);
+        setLoggedIn(false);
+      }
     });
   }
 
   //^ the onLogin function for SignUp & Login submissions
   function onLogin(username) {
-    setUser(username);
+    setCurrentUser(username);
     setLoggedIn(true);
     getSession();
   }
 
   //^ to log the user out
   function onLogout() {
-    setUser('');
+    setCurrentUser('');
     setLoggedIn(false);
     setSessionInfo([]);
   }
@@ -86,29 +94,21 @@ function App() {
       .then((thisInfo) => setSessionInfo(thisInfo));
   }
 
-  useEffect(() => {
-    getSession();
-  }, []);
-
   //! HANDLE DELETE FUNCTION NEEDS UPDATING
-  // function handleDelete(eachPost) {
-  //   fetch(`/delete_post/${eachPost.id}`, {
-  //     method: 'DELETE',
-  //   });
-  //   console.log('deletedPost :', eachPost);
-  //   //* map thru Artists.map((artist) => artist.posts.map((post) =>))
-  //   const remainingPosts = posts.filter(
-  //     (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
-  //   );
-  //   setPosts(remainingPosts);
-  // }
+  function handleDelete(post) {
+    fetch(`/delete_post/${post.id}`, {
+      method: 'DELETE',
+    });
+    console.log('deletedPost :', post);
+    // update state here
+  }
 
   return (
     <div>
       <Header
         getUser={getUser}
-        user={user}
-        setUser={setUser}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
         onLogin={onLogin}
         onLogout={onLogout}
         loggedIn={loggedIn}
@@ -117,11 +117,10 @@ function App() {
         <Route
           path='/'
           element={
-            <UsersPage
-              user={user}
+            <HomePage
+              currentUser={currentUser}
               users={users}
-              // handleDelete={handleDelete}
-
+              handleDelete={handleDelete}
               cookies={cookies}
               sessionInfo={sessionInfo}
               loggedIn={loggedIn}
@@ -134,7 +133,7 @@ function App() {
             <ArtistsDisplay
               artists={artists}
               concerts={concerts}
-              user={user}
+              currentUser={currentUser}
               users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -142,18 +141,16 @@ function App() {
           }
         />
         <Route
-          path='/artists/:id'
+          path='/thisArtist'
           element={
             <ArtistsPage
               artists={artists}
               concerts={concerts}
+              currentUser={currentUser}
               users={users}
-              user={user}
-              // handleDelete={handleDelete}
             />
           }
         />
-
         <Route
           path='/concerts'
           element={
@@ -161,38 +158,55 @@ function App() {
               artists={artists}
               concerts={concerts}
               setConcerts={setConcerts}
-              user={user}
+              currentUser={currentUser}
               users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
           }
         />
-        {/* <Route
-          path='/concerts/:id'
-          element={
-            <EachConcertCard concerts={concerts} user={user} users={users} />
-          }
-        /> */}
 
         <Route
-          path='/users/:id'
+          path='/thisUser'
           element={
-            <EachUser
-              user={user}
+            <UsersPage
+              currentUser={currentUser}
               users={users}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
+              concerts={concerts}
             />
+          }
+        />
+        {/* //! for showPosts, createNewPost, editPost -- create the loggedIn === true condition to show these  */}
+        <Route
+          path='/showPosts'
+          element={
+            <ShowPosts currentUser={currentUser} handleDelete={handleDelete} />
           }
         />
         <Route
           path='/createNewPost'
-          element={<CreatePost user={user} users={users} />}
+          element={
+            <CreatePost
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              users={users}
+              setUsers={setUsers}
+            />
+          }
         />
         <Route
           path='/editPost'
-          element={<EditPost user={user} users={users} />}
+          element={<EditPost currentUser={currentUser} users={users} />}
+        />
+        <Route
+          path='/createArtist'
+          element={<CreateArtist artists={artists} setArtists={setArtists} />}
+        />
+        <Route
+          path='/createConcert'
+          element={
+            <CreateConcert concerts={concerts} setConcerts={setConcerts} />
+          }
         />
         <Route path='/login' element={<Login onLogin={onLogin} />} />
         <Route path='/signup' element={<SignUp onLogin={onLogin} />} />
