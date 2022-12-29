@@ -1,5 +1,6 @@
 class ConcertsController < ApplicationController
-
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   # ## does this go within ConcertsController or ArtistsController?
   # def upcoming_shows
@@ -19,6 +20,21 @@ class ConcertsController < ApplicationController
   end
 
   def create
-    ## find the proper artist, and link the proper artist
+    concert = Concert.create!(new_concert_params)
+    render json: concert, status: 201
+  end
+
+  private
+
+  def new_concert_params
+    params.permit(:artist_id, :date, :image, :location)
+  end
+
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def render_not_found_response(invalid)
+    render json: { error: invalid.message }, status: :not_found
   end
 end
