@@ -55,3 +55,7 @@ group :test do
 end
 
 gem 'active_model_serializers', '~> 0.10.12'
+
+## for datetime formatting
+## via https://coreyward.svbtle.com/consistent-date-formatting-in-ruby-on-rails-5
+gem 'chronic'
