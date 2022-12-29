@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
-function IndividualPost({
+function EachConcertPost({
   post,
   concert,
   concerts,
@@ -85,4 +85,4 @@ function IndividualPost({
   );
 }
 
-export default IndividualPost;
+export default EachConcertPost;
