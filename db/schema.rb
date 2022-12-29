@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2022_12_22_210441) do
   end
 
   create_table "concerts", force: :cascade do |t|
-    t.datetime "date"
+    t.date "date"
     t.string "location"
     t.string "image"
     t.integer "artist_id"
