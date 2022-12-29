@@ -54,20 +54,19 @@ function Header({
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/venues' className='font-bold uppercase'>
+                <NavLink to='/concerts' className='font-bold uppercase'>
                   concerts
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/' className='font-bold uppercase'>
+                <NavLink
+                  to='/thisUser'
+                  state={{ thisUser: currentUser }}
+                  className='font-bold uppercase'>
                   your posts
                 </NavLink>
               </li>
-              <li>
-                <NavLink to='/genres' className='font-bold uppercase'>
-                  upcoming
-                </NavLink>
-              </li>
+
               {/* concerts tab is redundant */}
               {/* <li>
                 <NavLink to='/concerts' className='font-bold uppercase'>
@@ -128,18 +127,13 @@ function Header({
               </li>
               <li>
                 <NavLink
-                  to='/'
+                  to='/thisUser'
+                  state={{ thisUser: currentUser }}
                   className='font-bold uppercase border-none btn btn-secondary btn-outline'>
-                  <h3 className='font-bold uppercase'>your posts</h3>
+                  your posts
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to='/'
-                  className='font-bold uppercase border-none btn btn-secondary btn-outline'>
-                  <h3 className='font-bold uppercase'>upcoming</h3>
-                </NavLink>
-              </li>
+
               {/* concerts tab is redundant */}
               {/* <li>
                 <NavLink
