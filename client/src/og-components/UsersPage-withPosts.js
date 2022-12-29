@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import EachArtistCard from './EachArtistCard';
-import IndividualPost from './IndividualPost';
-import Loading from './Loading';
+import EachArtistCard from '../components/EachArtistCard';
+import IndividualPost from '../components/IndividualPost';
+import Loading from '../components/Loading';
 
 function UsersPage({ users, concerts }) {
   const location = useLocation();

@@ -26,19 +26,7 @@ function HomePage({ currentUser, users, sessionInfo, loggedIn, handleDelete }) {
             style={{
               backgroundImage: `url("https://placeimg.com/1000/800/arch")`,
             }}>
-            <div class='hero-overlay bg-opacity-50'>
-              {' '}
-              <div>
-                {homePosts.map((post) => {
-                  <EachPostForUser
-                    // handleDelete={handleDelete}
-                    post={post}
-                    users={users}
-                    currentUser={currentUser}
-                  />;
-                })}
-              </div>
-            </div>
+            <div class='hero-overlay bg-opacity-50'></div>
             <div class='hero-content text-center text-neutral-content'>
               <div class='max-w-md'>
                 <h1 class='mb-5 text-5xl font-bold'>
