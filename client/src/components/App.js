@@ -11,11 +11,12 @@ import { useState, useEffect } from 'react';
 import MainPage from '../og-components/MainPage';
 import HomePage from './HomePage';
 import ArtistsPage from './ArtistsPage';
+import CreateArtist from './CreateArtist';
+import CreateConcert from './CreateConcert';
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
 import UsersPage from './UsersPage';
 import ShowPosts from './ShowPosts';
-import CreateConcert from './CreateConcert';
 
 function App() {
   const [currentUser, setCurrentUser] = useState('');
@@ -198,11 +199,11 @@ function App() {
           element={<EditPost currentUser={currentUser} users={users} />}
         />
         <Route
-          path='createArtist'
+          path='/createArtist'
           element={<CreateArtist artists={artists} setArtists={setArtists} />}
         />
         <Route
-          path='createConcert'
+          path='/createConcert'
           element={
             <CreateConcert concerts={concerts} setConcerts={setConcerts} />
           }

@@ -17,13 +17,11 @@ function IndividualPost({
     location: 'Empty Default',
     artist: { name: 'Fake Artist' },
   });
-  const [isOriginalPoster, setIsOriginalPoster] = useState(false)
+  const [isOriginalPoster, setIsOriginalPoster] = useState(false);
 
   // if user coming from EachConcertCard, then it'll receive concertsUsers
   // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
   useEffect(() => {
-
-
     // if a username was given but no concerts
     if (concertsUsers === undefined) {
       setThisUser(givenUser);
@@ -31,8 +29,7 @@ function IndividualPost({
         (thisConcert) => thisConcert.id === post.concert_id
       );
       setConcertInfo(matchingConcert);
-     
-    } 
+    }
     // if concerts were given but no username
     else if (givenUser === undefined) {
       const matchingUser = concertsUsers.find(
@@ -45,7 +42,6 @@ function IndividualPost({
 
   console.log('post in IP: ', post);
   console.log('concertInfo in IP: ', concertInfo);
-
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
@@ -69,7 +65,6 @@ function IndividualPost({
 
       <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
-      {if }
 
       <span className='absolute bottom-8 right-8'>
         <svg

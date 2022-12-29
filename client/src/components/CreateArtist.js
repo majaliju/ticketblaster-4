@@ -1,21 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreateArtist({ currentUser, setCurrentUser, users, setUsers }) {
+function CreateArtist({ artists, setArtists }) {
   const [artistName, setArtistName] = useState('');
   const [imageLink, setImageLink] = useState('');
   const [genreName, setGenreName] = useState('');
-  const [error, setError] = useState(['test1', 'test2']);
+  const [error, setError] = useState([]);
   const [errorString, setErrorString] = useState('');
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
-  let concert = location.state.concert;
-
-  // console.log('concert: ', concert);
-  // console.log('currentUser: ', currentUser);
 
   // //* resetting our states when a new page renders
   //! gotta figure this useEffect out
@@ -42,7 +38,11 @@ function CreateArtist({ currentUser, setCurrentUser, users, setUsers }) {
       }),
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
-        response.json().then((createdArtist) => {});
+        response.json().then((createdArtist) => {
+          console.log('createdArtist: ', createdArtist);
+          setArtists([...artists, createdArtist]);
+          console.log('newly updated array of artists: ', artists);
+        });
       } else {
         response.json().then((e) => {
           // render errors here
@@ -121,7 +121,7 @@ function CreateArtist({ currentUser, setCurrentUser, users, setUsers }) {
           <form className='p-8 mt-2 mb-0 space-y-4 rounded-lg shadow-2xl'>
             <div>
               <input
-                type='number'
+                type='text'
                 id='artistName'
                 value={artistName}
                 onChange={(e) => setArtistName(e.target.value)}
@@ -147,7 +147,7 @@ function CreateArtist({ currentUser, setCurrentUser, users, setUsers }) {
                 value={genreName}
                 onChange={(e) => setGenreName(e.target.value)}
                 placeholder='type in the genre name here'
-                className='w-full max-w-xl input input-bordered input-secondary'
+                className='w-full max-w-xl input input-bordered input-accent'
               />
             </div>
             {submitted === false ? (
