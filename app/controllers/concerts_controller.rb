@@ -20,7 +20,9 @@ class ConcertsController < ApplicationController
   end
 
   def create
+    byebug
     concert = Concert.create!(new_concert_params)
+  byebug
     render json: concert, status: 201
   end
 
