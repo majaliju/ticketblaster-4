@@ -15,6 +15,7 @@ import CreatePost from './CreatePost';
 import EditPost from './EditPost';
 import UsersPage from './UsersPage';
 import ShowPosts from './ShowPosts';
+import CreateConcert from './CreateConcert';
 
 function App() {
   const [currentUser, setCurrentUser] = useState('');
@@ -195,6 +196,16 @@ function App() {
         <Route
           path='/editPost'
           element={<EditPost currentUser={currentUser} users={users} />}
+        />
+        <Route
+          path='createArtist'
+          element={<CreateArtist artists={artists} setArtists={setArtists} />}
+        />
+        <Route
+          path='createConcert'
+          element={
+            <CreateConcert concerts={concerts} setConcerts={setConcerts} />
+          }
         />
         <Route path='/login' element={<Login onLogin={onLogin} />} />
         <Route path='/signup' element={<SignUp onLogin={onLogin} />} />

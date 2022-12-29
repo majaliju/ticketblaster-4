@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
+function CreateArtist({ currentUser, setCurrentUser, users, setUsers }) {
   const [artistName, setArtistName] = useState('');
   const [imageLink, setImageLink] = useState('');
   const [genreName, setGenreName] = useState('');
@@ -178,4 +178,4 @@ function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
   );
 }
 
-export default CreatePost;
+export default CreateArtist;
