@@ -8,6 +8,7 @@ import NotFound from './NotFound';
 import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import MainPage from '../og-components/MainPage';
 import HomePage from './HomePage';
 import ArtistsPage from './ArtistsPage';
 import CreatePost from './CreatePost';
@@ -117,7 +118,7 @@ function App() {
             <HomePage
               currentUser={currentUser}
               users={users}
-              // handleDelete={handleDelete}
+              handleDelete={handleDelete}
               cookies={cookies}
               sessionInfo={sessionInfo}
               loggedIn={loggedIn}
@@ -173,6 +174,7 @@ function App() {
             />
           }
         />
+        {/* //! for showPosts, createNewPost, editPost -- create the loggedIn === true condition to show these  */}
         <Route
           path='/showPosts'
           element={
