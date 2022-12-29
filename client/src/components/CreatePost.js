@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreatePost({ currentUser, users }) {
+function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
   const [body, setBody] = useState('');
   const [ticketAmount, setTicketAmount] = useState(0);
   const [error, setError] = useState(['test1', 'test2']);
@@ -18,6 +18,7 @@ function CreatePost({ currentUser, users }) {
   // console.log('currentUser: ', currentUser);
 
   // //* resetting our states when a new page renders
+  //! gotta figure this useEffect out
   // useEffect(() => {
   //   setSuccess('');
   //   setError([]);
@@ -44,17 +45,21 @@ function CreatePost({ currentUser, users }) {
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((createdPost) => {
-          // console.log('createdPost: ', createdPost);
-          // const updatedPosts = currentUser.posts.map((eachPost) => {
-          //   if (eachPost.id === createdPost.id) {
-          //     return createdPost;
-          //   } else {
-          //     return eachPost;
-          //   }
-          // });
-          // console.log('updatedPosts: ', updatedPosts);
-          // setCurrentUser(...currentUser, currentUser.posts: updatedPosts)
-          // FIGURE OUT HOW TO UPDATE THE STATE OF THE ABOVE
+          // updated currentUser with the right posts
+          setCurrentUser({
+            ...currentUser,
+            posts: [...currentUser.posts, createdPost],
+          });
+          console.log(currentUser);
+          // updated users itself with the updated currentUser (who now has the updatedPost)
+          const updatedUsers = users.map((user) => {
+            if (user.id === currentUser.id) {
+              return currentUser;
+            } else {
+              return user;
+            }
+          });
+          setUsers(updatedUsers);
           setError([]);
           setSuccess('Your post has been created!');
           setSubmitted(true);

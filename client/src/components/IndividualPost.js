@@ -21,12 +21,14 @@ function IndividualPost({
   // if user coming from EachConcertCard, then it'll receive concertsUsers
   // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
   useEffect(() => {
+    // if a username was given but no concerts
     if (concertsUsers === undefined) {
       setThisUser(givenUser);
       const matchingConcert = concerts.find(
         (thisConcert) => thisConcert.id === post.concert_id
       );
       setConcertInfo(matchingConcert);
+      // if concerts were given but no username
     } else if (givenUser === undefined) {
       const matchingUser = concertsUsers.find(
         (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
@@ -36,7 +38,8 @@ function IndividualPost({
     }
   }, []);
 
-  console.log('post', post);
+  console.log('post in IP: ', post);
+  console.log('concertInfo in IP: ', concertInfo);
 
   // const matchingConcert = concerts.find(
   //   (thisConcert) => thisConcert.id === post.concert_id

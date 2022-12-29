@@ -100,8 +100,6 @@ function App() {
     // update state here
   }
 
-  console.log('currentUser in App: ', currentUser);
-
   return (
     <div>
       <Header
@@ -120,7 +118,6 @@ function App() {
               currentUser={currentUser}
               users={users}
               // handleDelete={handleDelete}
-
               cookies={cookies}
               sessionInfo={sessionInfo}
               loggedIn={loggedIn}
@@ -184,7 +181,14 @@ function App() {
         />
         <Route
           path='/createNewPost'
-          element={<CreatePost currentUser={currentUser} users={users} />}
+          element={
+            <CreatePost
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              users={users}
+              setUsers={setUsers}
+            />
+          }
         />
         <Route
           path='/editPost'

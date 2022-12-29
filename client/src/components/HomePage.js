@@ -1,29 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import IndividualPost from './IndividualPost';
+import EachPostForUser from './EachPostForUser';
 
-function HomePage({
-  currentUser,
-  users,
-  sessionInfo,
-  loggedIn,
-  posts,
-  setPosts,
-  handleDelete,
-}) {
-  function handleDelete(eachPost) {
-    fetch(`/delete_post/${eachPost.id}`, {
-      method: 'DELETE',
-    });
-    console.log('deletedPost :', eachPost);
-    const remainingPosts = posts.filter(
-      (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
-    );
-    setPosts(remainingPosts);
-  }
+function HomePage({ currentUser, users, sessionInfo, loggedIn, handleDelete }) {
+  // function handleDelete(eachPost) {
+  //   fetch(`/delete_post/${eachPost.id}`, {
+  //     method: 'DELETE',
+  //   });
+  //   console.log('deletedPost :', eachPost);
+  //   const remainingPosts = posts.filter(
+  //     (thisPost) => parseInt(thisPost.id) !== parseInt(eachPost.id)
+  //   );
+  //   setPosts(remainingPosts);
+  // }
 
-  const usersPosts = users.posts;
-  console.log('usersPosts: ', usersPosts);
+  const homePosts = currentUser.posts;
 
   return (
     <div>
@@ -34,22 +26,25 @@ function HomePage({
             style={{
               backgroundImage: `url("https://placeimg.com/1000/800/arch")`,
             }}>
-            <div class='hero-overlay bg-opacity-60'></div>
+            <div class='hero-overlay bg-opacity-50'>
+              {' '}
+              <div>
+                {homePosts.map((post) => {
+                  <EachPostForUser
+                    // handleDelete={handleDelete}
+                    post={post}
+                    users={users}
+                    currentUser={currentUser}
+                  />;
+                })}
+              </div>
+            </div>
             <div class='hero-content text-center text-neutral-content'>
               <div class='max-w-md'>
                 <h1 class='mb-5 text-5xl font-bold'>
                   Welcome back, {currentUser.username}!
                 </h1>
                 <p class='mb-5'>Your sessionID is {sessionInfo.session_id}</p>
-                {/* {usersPosts.map(
-                  (post) => console.log('post: ', post)
-                  // <IndividualPost
-                  //   handleDelete={handleDelete}
-                  //   post={post}
-                  //   users={users}
-                  //   currentUser={currentUser}
-                  // />
-                )} */}
               </div>
             </div>
           </div>
