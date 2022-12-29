@@ -31,6 +31,14 @@ function ArtistsDisplay({
           />
         </label>
       </div>
+      <Link
+        to='/createArtist'
+        state={{
+          concert: concert,
+        }}
+        className='w-full btn btn-accent btn-outline'>
+        SHOW MORE POSTS
+      </Link>
       <div>
         {artists !== undefined ? (
           <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
