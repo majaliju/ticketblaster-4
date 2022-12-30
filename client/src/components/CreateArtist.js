@@ -13,6 +13,8 @@ function CreateArtist({ artists, setArtists }) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [dateSelect, setDateSelect] = useState('2023-02-01');
+
   // //* resetting our states when a new page renders
   //! gotta figure this useEffect out
   // useEffect(() => {
@@ -118,6 +120,7 @@ function CreateArtist({ artists, setArtists }) {
           <h1 className='text-2xl font-bold text-center text-white sm:text-3xl'>
             CREATE AN ARTIST!
           </h1>
+
           <form className='p-8 mt-2 mb-0 space-y-4 rounded-lg shadow-2xl'>
             <div>
               <input
@@ -129,6 +132,18 @@ function CreateArtist({ artists, setArtists }) {
                 className='w-full max-w-xl input input-bordered input-primary'
               />
             </div>
+            <div>
+              <input
+                type='date'
+                id='dateSelect'
+                value={dateSelect}
+                min='2023-02-01'
+                max='2025-12-31'
+                onChange={(e) => setDateSelect(e.target.value)}
+                className='w-full max-w-xl input input-bordered input-primary'
+              />
+            </div>
+            {console.log(dateSelect)}
 
             <div>
               <input
