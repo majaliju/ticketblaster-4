@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function EditPost({ currentUser, user, posts, setPosts }) {
+function EditPost({ currentUser, user, post }) {
   const navigate = useNavigate();
+
+  console.log('currentUser in editpost: ', currentUser);
 
   const location = useLocation();
   let currentBody = location.state.currentBody;
@@ -15,6 +17,8 @@ function EditPost({ currentUser, user, posts, setPosts }) {
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
+  console.log('postID in editpost: ', postID);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`/update_post/${postID}`, {
@@ -24,9 +28,9 @@ function EditPost({ currentUser, user, posts, setPosts }) {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        comment_body: body,
+        body: body,
         tickets: ticketAmount,
-        user_id: user.id,
+        user_id: currentUser.id,
       }),
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -39,7 +43,7 @@ function EditPost({ currentUser, user, posts, setPosts }) {
               return thisPost;
             }
           });
-          setPosts(updatedPosts);
+
           setError([]);
           setSuccess('Your post has been successfully updated!');
           setSubmitted(true);

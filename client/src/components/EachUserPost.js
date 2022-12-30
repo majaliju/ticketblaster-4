@@ -13,7 +13,8 @@ function EachUserPost({ currentUser, post, concert, concerts }) {
     (concert) => parseInt(concert.id) === parseInt(post.concert_id)
   );
 
-  console.log('matchingConcert: ', matchingConcert);
+  // console.log('matchingConcert: ', matchingConcert);
+  // console.log('currentUser within EUP: ', currentUser);
 
   const [isOriginalPoster, setIsOriginalPoster] = useState(false);
 
@@ -23,6 +24,7 @@ function EachUserPost({ currentUser, post, concert, concerts }) {
     }
   }, []);
 
+  console.log('post within EUP: ', post);
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
       <h4 className='text-3xl font-thin'>
@@ -52,7 +54,9 @@ function EachUserPost({ currentUser, post, concert, concerts }) {
         <Link
           to='/editPost'
           state={{
-            post: post,
+            postID: post.id,
+            currentBody: post.body,
+            currentTickets: post.tickets,
           }}
           className='w-full btn btn-secondary btn-outline'>
           EDIT YOUR POST
