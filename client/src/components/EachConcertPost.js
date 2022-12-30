@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
-import EachUser from './UsersPage';
+import EachUser from './ThisUser';
 import { Link, useNavigate } from 'react-router-dom';
 
-function EachConcertPost({ post, concert, currentUser, concerts, users }) {
+function EachConcertPost({
+  post,
+  concert,
+  currentUser,
+  concerts,
+  users,
+  handleDelete,
+}) {
   const [isOriginalPoster, setIsOriginalPoster] = useState(false);
 
   useEffect(() => {
@@ -17,7 +24,7 @@ function EachConcertPost({ post, concert, currentUser, concerts, users }) {
     (user) => parseInt(post.user_id) === parseInt(user.id)
   );
 
-  console.log('matchingUser: ', matchingUser);
+  // console.log('matchingUser: ', matchingUser);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
@@ -42,16 +49,27 @@ function EachConcertPost({ post, concert, currentUser, concerts, users }) {
       <h3 className='text-xl font-thin text-secondary'>{matchingUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
       {isOriginalPoster === true ? (
-        <Link
-          to='/editPost'
-          state={{
-            postID: post.id,
-            currentBody: post.body,
-            currentTickets: post.tickets,
-          }}
-          className='w-full btn btn-secondary btn-outline'>
-          EDIT YOUR POST
-        </Link>
+        <div>
+          <Link
+            to='/editPost'
+            state={{
+              postID: post.id,
+              currentBody: post.body,
+              currentTickets: post.tickets,
+            }}
+            className='w-full btn btn-secondary btn-full'>
+            EDIT YOUR POST
+          </Link>
+          <Link
+            to='/thisUser'
+            state={{ thisUser: currentUser }}
+            className='w-full btn btn-accent btn-full'
+            onClick={() => {
+              handleDelete(post);
+            }}>
+            DELETE YOUR POST
+          </Link>
+        </div>
       ) : null}
 
       <span className='absolute bottom-8 right-8'>

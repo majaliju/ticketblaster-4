@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import EachUser from '../components/UsersPage';
+import EachUser from '../components/ThisUser';
 import { Link, useNavigate } from 'react-router-dom';
 
 function IndividualPost({

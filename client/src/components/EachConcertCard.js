@@ -3,7 +3,6 @@ import { Navigate, useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
-import CreatePost from './CreatePost';
 
 function EachConcertCard({ concert, usersPageTag, concerts }) {
   return (

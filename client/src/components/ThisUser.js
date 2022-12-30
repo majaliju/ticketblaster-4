@@ -5,13 +5,13 @@ import EachUserPost from './EachUserPost';
 import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 
-function UsersPage({ currentUser, users, concerts }) {
+function ThisUser({ currentUser, users, concerts, handleDelete }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
   const thisUsersPosts = thisUser.posts;
 
-  console.log('thisUser within UsersPage: ', thisUser);
+  console.log('thisUser within ThisUser: ', thisUser);
 
   console.log('thisUsersPosts :', thisUsersPosts);
 
@@ -30,6 +30,7 @@ function UsersPage({ currentUser, users, concerts }) {
                 {thisUsersPosts.map((post) => (
                   <EachUserPost
                     currentUser={currentUser}
+                    handleDelete={handleDelete}
                     post={post}
                     thisUser={thisUser}
                     concerts={concerts}
@@ -46,4 +47,4 @@ function UsersPage({ currentUser, users, concerts }) {
   );
 }
 
-export default UsersPage;
+export default ThisUser;

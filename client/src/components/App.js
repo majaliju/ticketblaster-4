@@ -8,16 +8,13 @@ import NotFound from './NotFound';
 import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import MainPage from '../og-components/MainPage';
-import EachConcertPost from './EachConcertPost';
-import EachUserPost from './EachUserPost';
 import HomePage from './HomePage';
-import ArtistsPage from './ArtistsPage';
+import ThisArtist from './ThisArtist';
 import CreateArtist from './CreateArtist';
 import CreateConcert from './CreateConcert';
-import CreatePost from './CreatePost';
+import CreateNewPost from './CreateNewPost';
 import EditPost from './EditPost';
-import UsersPage from './UsersPage';
+import ThisUser from './ThisUser';
 import ShowPosts from './ShowPosts';
 
 function App() {
@@ -48,14 +45,14 @@ function App() {
     fetch('/concerts')
       .then((r) => r.json())
       .then((info) => setConcerts(info));
-  }, [users]);
+  }, [currentUser]);
   // for a concert update, maybe include a submittedNewConcert one
 
   useEffect(() => {
     fetch('/users')
       .then((r) => r.json())
       .then((info) => setUsers(info));
-  }, []);
+  }, [currentUser]);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
   useEffect(() => {
@@ -102,8 +99,22 @@ function App() {
     fetch(`/delete_post/${post.id}`, {
       method: 'DELETE',
     });
-    console.log('deletedPost :', post);
-    // update state here
+    const updatedPosts = currentUser.posts.map((thisPost) => {
+      if (thisPost.id === post.id) {
+        return post;
+      } else {
+        return thisPost;
+      }
+    });
+    setCurrentUser({ ...currentUser, posts: updatedPosts });
+    const updatedUsers = users.map((user) => {
+      if (user.id === currentUser.id) {
+        return currentUser;
+      } else {
+        return user;
+      }
+    });
+    setUsers(updatedUsers);
   }
 
   return (
@@ -146,7 +157,7 @@ function App() {
         <Route
           path='/thisArtist'
           element={
-            <ArtistsPage
+            <ThisArtist
               artists={artists}
               concerts={concerts}
               currentUser={currentUser}
@@ -172,9 +183,10 @@ function App() {
         <Route
           path='/thisUser'
           element={
-            <UsersPage
+            <ThisUser
               currentUser={currentUser}
               users={users}
+              handleDelete={handleDelete}
               concerts={concerts}
             />
           }
@@ -193,7 +205,7 @@ function App() {
         <Route
           path='/createNewPost'
           element={
-            <CreatePost
+            <CreateNewPost
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               users={users}

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import EachUser from './UsersPage';
+import EachUser from './ThisUser';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-function EachUserPost({ currentUser, post, concerts }) {
+function EachUserPost({ currentUser, post, concerts, handleDelete }) {
   let navigate = useNavigate();
   const location = useLocation();
   const thisUser = location.state.thisUser;
@@ -47,16 +47,27 @@ function EachUserPost({ currentUser, post, concerts }) {
       <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
       {isOriginalPoster === true ? (
-        <Link
-          to='/editPost'
-          state={{
-            postID: post.id,
-            currentBody: post.body,
-            currentTickets: post.tickets,
-          }}
-          className='w-full btn btn-secondary btn-outline'>
-          EDIT YOUR POST
-        </Link>
+        <div>
+          <Link
+            to='/editPost'
+            state={{
+              postID: post.id,
+              currentBody: post.body,
+              currentTickets: post.tickets,
+            }}
+            className='w-full btn btn-secondary btn-outline'>
+            EDIT YOUR POST
+          </Link>
+          <Link
+            to='/thisUser'
+            state={{ thisUser: currentUser }}
+            className='w-full btn btn-accent btn-outline'
+            onClick={() => {
+              handleDelete(post);
+            }}>
+            DELETE YOUR POST
+          </Link>
+        </div>
       ) : null}
 
       <span className='absolute bottom-8 right-8'>

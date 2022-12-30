@@ -5,7 +5,7 @@ import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
-function ArtistsPage({ artists, concerts }) {
+function ThisArtist({ artists, concerts }) {
   const location = useLocation();
   const artist = location.state.artist;
   const artistsConcerts = location.state.artistsConcerts;
@@ -65,4 +65,4 @@ function ArtistsPage({ artists, concerts }) {
   );
 }
 
-export default ArtistsPage;
+export default ThisArtist;

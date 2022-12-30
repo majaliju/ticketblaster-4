@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import EachUser from './UsersPage';
+import EachUser from './ThisUser';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loading from './Loading';
 import IndividualPost from '../og-components/IndividualPost';
@@ -10,8 +10,6 @@ function ShowPosts({ concerts, users, currentUser, handleDelete }) {
   const concert = location.state.concert;
 
   const concertsPosts = concert.posts;
-
-  console.log('');
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -27,6 +25,7 @@ function ShowPosts({ concerts, users, currentUser, handleDelete }) {
               <EachConcertPost
                 post={post}
                 currentUser={currentUser}
+                handleDelete={handleDelete}
                 concert={concert}
                 concerts={concerts}
                 users={users}
