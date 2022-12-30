@@ -16,6 +16,7 @@ import CreateNewPost from './CreateNewPost';
 import EditPost from './EditPost';
 import ThisUser from './ThisUser';
 import ShowPosts from './ShowPosts';
+import DeleteConfirmation from './DeleteConfirmation';
 
 function App() {
   const [currentUser, setCurrentUser] = useState('');
@@ -52,7 +53,7 @@ function App() {
     fetch('/users')
       .then((r) => r.json())
       .then((info) => setUsers(info));
-  }, [currentUser]);
+  }, []);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
   useEffect(() => {
@@ -95,24 +96,24 @@ function App() {
   }
 
   //! HANDLE DELETE FUNCTION NEEDS UPDATING
-  function handleDelete(post) {
-    fetch(`/delete_post/${post.id}`, {
-      method: 'DELETE',
-    });
-
-    const updatedPosts = currentUser.posts.filter(
-      (thisPost) => thisPost.id !== post.id
-    );
-    setCurrentUser({ ...currentUser, posts: updatedPosts });
-    const updatedUsers = users.filter((user) => {
-      if (user.id === currentUser.id) {
-        return currentUser;
-      } else {
-        return user;
-      }
-    });
-    setUsers(updatedUsers);
-  }
+  //! try a local version in each spot
+  // function handleDelete(post) {
+  //   fetch(`/delete_post/${post.id}`, {
+  //     method: 'DELETE',
+  //   });
+  //   const updatedPosts = currentUser.posts.filter(
+  //     (thisPost) => thisPost.id !== post.id
+  //   );
+  //   setCurrentUser({ ...currentUser, posts: updatedPosts });
+  //   const updatedUsers = users.filter((user) => {
+  //     if (user.id === currentUser.id) {
+  //       return currentUser;
+  //     } else {
+  //       return user;
+  //     }
+  //   });
+  //   setUsers(updatedUsers);
+  // }
 
   return (
     <div>
@@ -131,7 +132,7 @@ function App() {
             <HomePage
               currentUser={currentUser}
               users={users}
-              handleDelete={handleDelete}
+              // handleDelete={handleDelete}
               cookies={cookies}
               sessionInfo={sessionInfo}
               loggedIn={loggedIn}
@@ -183,7 +184,7 @@ function App() {
             <ThisUser
               currentUser={currentUser}
               users={users}
-              handleDelete={handleDelete}
+              // handleDelete={handleDelete}
               concerts={concerts}
             />
           }
@@ -195,7 +196,7 @@ function App() {
             <ShowPosts
               currentUser={currentUser}
               users={users}
-              handleDelete={handleDelete}
+              // handleDelete={handleDelete}
             />
           }
         />
@@ -229,6 +230,18 @@ function App() {
           path='/createConcert'
           element={
             <CreateConcert concerts={concerts} setConcerts={setConcerts} />
+          }
+        />
+        <Route
+          path='/deletePost'
+          element={
+            <DeleteConfirmation
+              // handleDelete={handleDelete}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              users={users}
+              setUsers={setUsers}
+            />
           }
         />
         <Route path='/login' element={<Login onLogin={onLogin} />} />

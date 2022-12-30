@@ -61,6 +61,12 @@ function EachConcertPost({
             EDIT YOUR POST
           </Link>
           <Link
+            to='/deletePost'
+            state={{ post: post }}
+            className='w-full btn btn-accent btn-full'>
+            DELETE YOUR POST
+          </Link>
+          {/* <Link
             to='/thisUser'
             state={{ thisUser: currentUser }}
             className='w-full btn btn-accent btn-full'
@@ -68,7 +74,7 @@ function EachConcertPost({
               handleDelete(post);
             }}>
             DELETE YOUR POST
-          </Link>
+          </Link> */}
         </div>
       ) : null}
 
@@ -80,9 +86,9 @@ function EachConcertPost({
           viewBox='0 0 24 24'
           stroke='currentColor'>
           <path
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            stroke-width='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
             d='M13 10V3L4 14h7v7l9-11h-7z'
           />
         </svg>

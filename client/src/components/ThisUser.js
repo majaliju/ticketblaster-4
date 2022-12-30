@@ -33,7 +33,6 @@ function ThisUser({ currentUser, users, concerts, handleDelete }) {
                 {thisUsersPosts.map((post) => (
                   <EachUserPost
                     currentUser={currentUser}
-                    handleDelete={handleDelete}
                     post={post}
                     thisUser={thisUser}
                     concerts={concerts}

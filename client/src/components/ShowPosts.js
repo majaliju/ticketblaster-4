@@ -25,7 +25,6 @@ function ShowPosts({ concerts, users, currentUser, handleDelete }) {
               <EachConcertPost
                 post={post}
                 currentUser={currentUser}
-                handleDelete={handleDelete}
                 concert={concert}
                 concerts={concerts}
                 users={users}
