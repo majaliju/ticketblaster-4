@@ -5,12 +5,11 @@ import Loading from './Loading';
 import IndividualPost from './IndividualPost';
 import EachConcertPost from './EachConcertPost';
 
-function ShowPosts({ concerts, handleDelete }) {
+function ShowPosts({ concerts, users, handleDelete }) {
   const location = useLocation();
   const concert = location.state.concert;
 
   const concertsPosts = concert.posts;
-  const concertsUsers = concert.users;
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -27,7 +26,7 @@ function ShowPosts({ concerts, handleDelete }) {
                 post={post}
                 concert={concert}
                 concerts={concerts}
-                concertsUsers={concertsUsers}
+                users={users}
               />
             ))}
           </div>

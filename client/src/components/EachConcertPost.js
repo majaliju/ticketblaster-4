@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
-function EachConcertPost({ post, concert, concerts, concertsUsers }) {
+function EachConcertPost({ post, concert, concerts, users }) {
   let navigate = useNavigate();
 
-  const matchingUser = concertsUsers.find(
+  const matchingUser = users.find(
     (user) => parseInt(post.user_id) === parseInt(user.id)
   );
+
+  console.log('matchingUser: ', matchingUser);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
