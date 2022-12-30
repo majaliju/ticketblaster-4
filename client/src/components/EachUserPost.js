@@ -22,6 +22,18 @@ function EachUserPost({ post, concert, concerts, concertsUsers }) {
       <h4 className='text-3xl font-thin'>
         {matchingConcert.artist.name} at {matchingConcert.location}
       </h4>
+      {/* <div className='avatar'>
+        <div className='rounded'>
+          <img
+            src={matchingConcert.artist.image}
+            alt='a small avatar of the musical artist'
+          />
+        </div>
+        <div className='rounded'>
+          <img src={matchingConcert.image} alt='a small avatar of the venue' />
+        </div>
+      </div> */}
+
       {post.for_sale === true ? (
         <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
       ) : (
