@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function EditPost({ currentUser, user, post }) {
+function EditPost({
+  currentUser,
+  setCurrentUser,
+  users,
+  setUsers,
+  user,
+  post,
+}) {
   const navigate = useNavigate();
 
   console.log('currentUser in editpost: ', currentUser);
@@ -38,12 +45,19 @@ function EditPost({ currentUser, user, post }) {
           const updatedPosts = currentUser.posts.filter((thisPost) => {
             if (thisPost.id === editedPost.id) {
               return editedPost;
-              console.log('editedPost: ', editedPost);
             } else {
               return thisPost;
             }
           });
-
+          setCurrentUser({ ...currentUser, posts: [updatedPosts] });
+          const updatedUsers = users.map((user) => {
+            if (user.id === currentUser.id) {
+              return currentUser;
+            } else {
+              return user;
+            }
+          });
+          setUsers(updatedUsers);
           setError([]);
           setSuccess('Your post has been successfully updated!');
           setSubmitted(true);
@@ -146,11 +160,14 @@ function EditPost({ currentUser, user, post }) {
               </button>
             )}
 
-            <button
-              class='block w-full px-5 py-3 text-sm font-medium text-white  bg-secondary rounded-lg'
-              onClick={() => navigate('/')}>
+            <Link
+              to='/thisUser'
+              state={{
+                thisUser: currentUser,
+              }}
+              className='block w-full px-5 py-3 text-sm font-medium text-white rounded-lg btn bg-secondary'>
               VIEW YOUR POSTS
-            </button>
+            </Link>
           </form>
         </div>
       </div>

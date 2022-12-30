@@ -31,7 +31,7 @@ function UsersPage({ currentUser, users, concerts }) {
                   <EachUserPost
                     currentUser={currentUser}
                     post={post}
-                    givenUser={thisUser}
+                    thisUser={thisUser}
                     concerts={concerts}
                   />
                 ))}

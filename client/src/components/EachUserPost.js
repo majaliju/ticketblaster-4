@@ -2,34 +2,33 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-function EachUserPost({ currentUser, post, concert, concerts }) {
+function EachUserPost({ currentUser, post, concerts }) {
   let navigate = useNavigate();
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
   console.log('thisUser within EUP: ', thisUser);
 
-  const matchingConcert = concerts.find(
-    (concert) => parseInt(concert.id) === parseInt(post.concert_id)
-  );
-
   // console.log('matchingConcert: ', matchingConcert);
   // console.log('currentUser within EUP: ', currentUser);
 
   const [isOriginalPoster, setIsOriginalPoster] = useState(false);
+  const matchingConcert = concerts.find(
+    (thisConcert) => parseInt(thisConcert.id) === parseInt(post.concert_id)
+  );
 
   useEffect(() => {
     if (parseInt(thisUser.id) === parseInt(currentUser.id)) {
       setIsOriginalPoster(true);
     }
-  }, []);
+  });
 
   console.log('post within EUP: ', post);
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
-      <h4 className='text-3xl font-thin'>
+      {/* <h4 className='text-3xl font-thin'>
         {matchingConcert.artist.name} at {matchingConcert.location}
-      </h4>
+      </h4> */}
       {/* <div className='avatar'>
         <div className='rounded'>
           <img

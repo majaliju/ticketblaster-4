@@ -48,7 +48,7 @@ function App() {
     fetch('/concerts')
       .then((r) => r.json())
       .then((info) => setConcerts(info));
-  }, [currentUser]);
+  }, [users]);
   // for a concert update, maybe include a submittedNewConcert one
 
   useEffect(() => {
@@ -203,7 +203,14 @@ function App() {
         />
         <Route
           path='/editPost'
-          element={<EditPost currentUser={currentUser} users={users} />}
+          element={
+            <EditPost
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              users={users}
+              setUsers={setUsers}
+            />
+          }
         />
         <Route
           path='/createArtist'
