@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import EachUser from './ThisUser';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-function EachUserPost({ currentUser, post, concerts, handleDelete }) {
+function EachUserPost({ thisUser, currentUser, post, concerts, handleDelete }) {
   let navigate = useNavigate();
   const location = useLocation();
-  const thisUser = location.state.thisUser;
+  // const thisUser = location.state.thisUser;
 
   // console.log('matchingConcert: ', matchingConcert);
   // console.log('currentUser within EUP: ', currentUser);

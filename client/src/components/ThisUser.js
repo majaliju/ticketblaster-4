@@ -11,9 +11,12 @@ function ThisUser({ currentUser, users, concerts, handleDelete }) {
 
   const thisUsersPosts = thisUser.posts;
 
-  console.log('thisUser within ThisUser: ', thisUser);
+  //! here is where we'll iterate thru users to get the user, and their post, so that state updates properly
 
+  console.log('thisUser within ThisUser: ', thisUser);
   console.log('thisUsersPosts :', thisUsersPosts);
+
+  // maybe put a handleDelete here
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-12'>

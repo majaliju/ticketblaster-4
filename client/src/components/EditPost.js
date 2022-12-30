@@ -165,7 +165,6 @@ function EditPost({
               to='/thisUser'
               state={{
                 thisUser: currentUser,
-                concerts: concerts,
               }}
               className='block w-full px-5 py-3 text-sm font-medium text-white rounded-lg btn bg-secondary'>
               VIEW YOUR POSTS
