@@ -19,7 +19,15 @@ function ArtistsDisplay({
   //* fix the search bar better to reset values once the app is exited
 
   return (
-    <div class='bg-base-900 py-6 sm:py-8 lg:py-12'>
+    <div class='bg-base-900 justify-center py-6 sm:py-8 lg:py-12'>
+      <div className='flex w-full input-group input-group-lg'>
+        <Link to='/createArtist' state={{}} replace={true}>
+          <button className='btn btn-secondary btn-outline'>
+            Add An Artist
+          </button>
+        </Link>
+      </div>
+
       <div class='form-control'>
         <label class='flex input-group input-group-lg'>
           <span>SEARCH</span>
@@ -31,6 +39,7 @@ function ArtistsDisplay({
           />
         </label>
       </div>
+
       <div>
         {artists !== (undefined || [] || null) ? (
           <div class='mx-auto max-w-screen-xl px-4 md:px-8'>
