@@ -40,8 +40,8 @@ function IndividualPost({
     }
   }, []);
 
-  console.log('post in IP: ', post);
-  console.log('concertInfo in IP: ', concertInfo);
+  // console.log('post in IP: ', post);
+  // console.log('concertInfo in IP: ', concertInfo);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>

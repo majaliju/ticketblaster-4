@@ -9,6 +9,8 @@ import Header from './Header';
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import MainPage from '../og-components/MainPage';
+import EachConcertPost from './EachConcertPost';
+import EachUserPost from './EachUserPost';
 import HomePage from './HomePage';
 import ArtistsPage from './ArtistsPage';
 import CreateArtist from './CreateArtist';

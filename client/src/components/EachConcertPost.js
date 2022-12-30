@@ -2,52 +2,18 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
-function EachConcertPost({
-  post,
-  concert,
-  concerts,
-  concertsUsers,
-  givenUser,
-  handleDelete,
-}) {
+function EachConcertPost({ post, concert, concerts, concertsUsers }) {
   let navigate = useNavigate();
 
-  const [thisUser, setThisUser] = useState('blankName');
-  const [concertInfo, setConcertInfo] = useState({
-    location: 'Empty Default',
-    artist: { name: 'Fake Artist' },
-  });
-  const [isOriginalPoster, setIsOriginalPoster] = useState(false);
-
-  // if user coming from EachConcertCard, then it'll receive concertsUsers
-  // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
-  useEffect(() => {
-    // if a username was given but no concerts
-    if (concertsUsers === undefined) {
-      setThisUser(givenUser);
-      const matchingConcert = concerts.find(
-        (thisConcert) => thisConcert.id === post.concert_id
-      );
-      setConcertInfo(matchingConcert);
-    }
-    // if concerts were given but no username
-    else if (givenUser === undefined) {
-      const matchingUser = concertsUsers.find(
-        (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
-      );
-      setThisUser(matchingUser);
-      setConcertInfo(concert);
-    }
-  }, []);
-
-  console.log('post in IP: ', post);
-  console.log('concertInfo in IP: ', concertInfo);
+  const matchingUser = concertsUsers.find(
+    (user) => parseInt(post.user_id) === parseInt(user.id)
+  );
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
-      {/* <h4 className='text-3xl font-thin'>
-        {concertInfo.artist.name} at {concertInfo.location}
-      </h4> */}
+      <h4 className='text-3xl font-thin'>
+        {concert.artist.name} at {concert.location}
+      </h4>
       {post.for_sale === true ? (
         <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
       ) : (
@@ -57,13 +23,13 @@ function EachConcertPost({
       <Link
         to='/thisUser'
         state={{
-          thisUser: thisUser,
+          thisUser: matchingUser,
         }}
         className='text-2xl font-thin btn btn-ghost text-secondary'>
-        {thisUser.username}
+        {matchingUser.username}
       </Link>
 
-      <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
+      <h3 className='text-xl font-thin text-secondary'>{matchingUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
 
       <span className='absolute bottom-8 right-8'>

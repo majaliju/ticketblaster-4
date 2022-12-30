@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import IndividualPost from './IndividualPost';
-import EachPostForUser from './EachPostForUser';
+import EachPostForUser from './EachUserPost';
+import EachUserPost from './EachUserPost';
 
 function HomePage({ currentUser, users, sessionInfo, loggedIn, handleDelete }) {
   // function handleDelete(eachPost) {
@@ -30,7 +31,7 @@ function HomePage({ currentUser, users, sessionInfo, loggedIn, handleDelete }) {
               {' '}
               <div>
                 {homePosts.map((post) => {
-                  <EachPostForUser
+                  <EachUserPost
                     // handleDelete={handleDelete}
                     post={post}
                     users={users}

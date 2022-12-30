@@ -3,6 +3,7 @@ import EachUser from './UsersPage';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loading from './Loading';
 import IndividualPost from './IndividualPost';
+import EachConcertPost from './EachConcertPost';
 
 function ShowPosts({ concerts, handleDelete }) {
   const location = useLocation();
@@ -22,7 +23,7 @@ function ShowPosts({ concerts, handleDelete }) {
           </div>
           <div className='mb-10'>
             {concertsPosts.map((post) => (
-              <IndividualPost
+              <EachConcertPost
                 post={post}
                 concert={concert}
                 concerts={concerts}

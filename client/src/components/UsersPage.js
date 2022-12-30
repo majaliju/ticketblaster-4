@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import EachArtistCard from './EachArtistCard';
+import EachUserPost from './EachUserPost';
 import IndividualPost from './IndividualPost';
 import Loading from './Loading';
 
@@ -9,12 +10,6 @@ function UsersPage({ users, concerts }) {
   const thisUser = location.state.thisUser;
 
   const thisUsersPosts = thisUser.posts;
-
-  // const user = users.find(
-  //   (eachUser) => parseInt(eachUser.id) === parseInt(thisUser.id)
-  // );
-
-  // const usersPosts = user.posts;
 
   console.log('thisUser within UsersPage: ', thisUser);
 
@@ -32,7 +27,7 @@ function UsersPage({ users, concerts }) {
             </div>
             <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
               {thisUsersPosts.map((post) => (
-                <IndividualPost
+                <EachUserPost
                   post={post}
                   givenUser={thisUser}
                   concerts={concerts}
