@@ -63,14 +63,7 @@ function ConcertsDisplay({
                 <EachConcertCard concert={concert} />
               ))}
           </div>
-          <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-            {/* {artists.map((artist) => {
-              artist.concerts.map((concert) => {
-                console.log('concert :', concert);
-                console.log('artist within the artist.concerts.map: ', artist);
-              });
-            })} */}
-          </div>
+          <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '></div>
         </div>
       </div>
     </div>

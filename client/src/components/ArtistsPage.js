@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useParams, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import IndividualPost from './IndividualPost';
+import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
@@ -15,7 +15,7 @@ function ArtistsPage({ artists, concerts }) {
   return (
     <div>
       <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
-        {artist !== undefined ? (
+        {artist !== (undefined || '' || null) ? (
           <div key={artist.id} className='max-w-screen-xl px-4 mx-auto md:px-8'>
             <div className='mb-10 md:mb-16'>
               <h1 className='mb-4 text-6xl font-thin text-center uppercase text-primary md:mb-6 lg:text-7xl'>

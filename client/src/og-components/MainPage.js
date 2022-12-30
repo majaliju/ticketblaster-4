@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useParams, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import IndividualPost from '../components/IndividualPost';
+import IndividualPost from './IndividualPost';
 import Loading from '../components/Loading';
 
 function MainPage() {

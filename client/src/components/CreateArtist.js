@@ -75,7 +75,7 @@ function CreateArtist({ artists, setArtists }) {
             </div>
           ) : null}
           {/* //! errors aren't rendering; not sure why */}
-          {error !== []
+          {error !== (undefined || [] || null)
             ? error.map((eachError) => {
                 <div className='shadow-lg alert alert-warning'>
                   <div>

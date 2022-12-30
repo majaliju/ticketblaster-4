@@ -1,85 +1,86 @@
 import { useState, useEffect } from 'react';
-import EachUser from './EachUser';
+import EachUser from '../components/UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
-function IndividualPost({ eachPost, artist, user, users, handleDelete }) {
+function IndividualPost({
+  post,
+  concert,
+  concerts,
+  concertsUsers,
+  givenUser,
+  handleDelete,
+}) {
   let navigate = useNavigate();
 
-  // checks the user.id from the session against the user's ID here
-  const [userAllowed, setUserAllowed] = useState(false);
-  const [postDeleted, setPostDeleted] = useState(false);
+  const [thisUser, setThisUser] = useState('blankName');
+  const [concertInfo, setConcertInfo] = useState({
+    location: 'Empty Default',
+    artist: { name: 'Fake Artist' },
+  });
+  const [isOriginalPoster, setIsOriginalPoster] = useState(false);
 
+  // if user coming from EachConcertCard, then it'll receive concertsUsers
+  // if user coming from the btn Link on IndividualPost's username, then it'll receive givenUser
   useEffect(() => {
-    if (user.id === eachPost.user_id) {
-      setUserAllowed(true);
-    } else {
-      setUserAllowed(false);
+    // if a username was given but no concerts
+    if (concertsUsers === undefined) {
+      setThisUser(givenUser);
+      const matchingConcert = concerts.find(
+        (thisConcert) => thisConcert.id === post.concert_id
+      );
+      setConcertInfo(matchingConcert);
+    }
+    // if concerts were given but no username
+    else if (givenUser === undefined) {
+      const matchingUser = concertsUsers.find(
+        (eachUser) => parseInt(eachUser.id) === parseInt(post.user_id)
+      );
+      setThisUser(matchingUser);
+      setConcertInfo(concert);
     }
   }, []);
 
-  const thisUser = users.find(
-    (thisOne) => parseInt(thisOne.id) === parseInt(eachPost.user_id)
-  );
-
-  //! use posts here to sort thru all the posts instead of linking
-
-  //^ POTENTIAL ESSENTIAL: include the user and link to EachUser page, where each users Posts display
-  //^ CONFIGURE THE STYLING ON THE USERNAME
-  //& EXTRA BONUS: do the thing where you can click the link and open up the email app
-
-  //* on IndividualPost for the User's Page --> show the concert information for each post as well
-
-  //* chain infromation from the CONCERTS state (as posts, and users, are accessible)
+  // console.log('post in IP: ', post);
+  // console.log('concertInfo in IP: ', concertInfo);
 
   return (
-    <div class='p-1 shadow-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl'>
-      <div class='block p-6 bg-black sm:p-8 rounded-xl'>
-        <div class='sm:pr-8'>
-          <h2 class='text-xl font-bold text-left text-primary'>
-            {/* <h3 class='text-3xl justify-center'>
-              by: {eachPost.user.username}
-            </h3> */}
-          </h2>
-          <h2 class='text-xl font-light text-left text-secondary'>
-            <h3 class='text-1xl justify-center'>
-              {eachPost.for_sale === true ? (
-                <div>is selling</div>
-              ) : (
-                <div>is looking to buy</div>
-              )}
-            </h3>
-          </h2>
+    <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
+      {/* <h4 className='text-3xl font-thin'>
+        {concertInfo.artist.name} at {concertInfo.location}
+      </h4> */}
+      {post.for_sale === true ? (
+        <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
+      ) : (
+        <h3 className='text-4xl font'>BUYING: {post.tickets} TICKETS</h3>
+      )}
 
-          <h3 class='mt-2 text-lg text-right text-purple-500'>
-            {eachPost.body}
-          </h3>
-          <h4 class='mt-2 text-md text-right justify-center text-amber-300'>
-            email: {user.email}
-          </h4>
-        </div>
-        {userAllowed !== false && (
-          <div>
-            <Link
-              to='/editPost'
-              state={{
-                postID: eachPost.id,
-                currentBody: eachPost.body,
-                currentTickets: eachPost.tickets,
-              }}
-              class='btn btn-primary btn-outline w-full'>
-              EDIT YOUR POST
-            </Link>
-            <button
-              onClick={() => {
-                handleDelete(eachPost);
-              }}
-              type='submit'
-              class='btn btn-secondary btn-outline w-full'>
-              DELETE YOUR POST
-            </button>
-          </div>
-        )}
-      </div>
+      <Link
+        to='/thisUser'
+        state={{
+          thisUser: thisUser,
+        }}
+        className='text-2xl font-thin btn btn-ghost text-secondary'>
+        {thisUser.username}
+      </Link>
+
+      <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
+      <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
+
+      <span className='absolute bottom-8 right-8'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          className='w-10 h-10 text-secondary'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke='currentColor'>
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M13 10V3L4 14h7v7l9-11h-7z'
+          />
+        </svg>
+      </span>
     </div>
   );
 }

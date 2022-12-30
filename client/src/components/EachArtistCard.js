@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import IndividualPost from './IndividualPost';
+import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 import ArtistsPage from './ArtistsPage';

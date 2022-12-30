@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import EachArtistCard from './EachArtistCard';
 import EachUserPost from './EachUserPost';
-import IndividualPost from './IndividualPost';
+import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 
 function UsersPage({ users, concerts }) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import IndividualPost from './IndividualPost';
+import IndividualPost from '../og-components/IndividualPost';
 import EachPostForUser from './EachUserPost';
 import EachUserPost from './EachUserPost';
 

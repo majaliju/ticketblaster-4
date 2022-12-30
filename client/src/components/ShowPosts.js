@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Loading from './Loading';
-import IndividualPost from './IndividualPost';
+import IndividualPost from '../og-components/IndividualPost';
 import EachConcertPost from './EachConcertPost';
 
 function ShowPosts({ concerts, users, handleDelete }) {
@@ -13,7 +13,7 @@ function ShowPosts({ concerts, users, handleDelete }) {
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
-      {concert !== undefined ? (
+      {concert !== (undefined || []) ? (
         <div key={concert.id} className='max-w-screen-xl px-4 mx-auto md:px-8'>
           <div className='mb-10 md:mb-16'>
             <h1 className='mb-4 text-6xl font-thin text-center uppercase text-primary md:mb-6 lg:text-7xl'>
