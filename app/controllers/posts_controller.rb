@@ -42,6 +42,7 @@ class PostsController < ApplicationController
     if session[:user_id] === post[:user_id]
        ## also make a cross-check that params(:body) !== post.body OR params(:tickets) !== post.tickets
        ## THEN allow it
+       ## also render an error saying "why did you click edit if you weren't going to edit?"
       post.update!(
         body: params[:body],
         tickets: params[:tickets]
