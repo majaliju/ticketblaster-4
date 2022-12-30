@@ -6,6 +6,7 @@ function EditPost({
   setCurrentUser,
   users,
   setUsers,
+  concerts,
   user,
   post,
 }) {
@@ -42,14 +43,14 @@ function EditPost({
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((editedPost) => {
-          const updatedPosts = currentUser.posts.filter((thisPost) => {
+          const updatedPosts = currentUser.posts.map((thisPost) => {
             if (thisPost.id === editedPost.id) {
               return editedPost;
             } else {
               return thisPost;
             }
           });
-          setCurrentUser({ ...currentUser, posts: [updatedPosts] });
+          setCurrentUser({ ...currentUser, posts: updatedPosts });
           const updatedUsers = users.map((user) => {
             if (user.id === currentUser.id) {
               return currentUser;
@@ -164,6 +165,7 @@ function EditPost({
               to='/thisUser'
               state={{
                 thisUser: currentUser,
+                concerts: concerts,
               }}
               className='block w-full px-5 py-3 text-sm font-medium text-white rounded-lg btn bg-secondary'>
               VIEW YOUR POSTS
