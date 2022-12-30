@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function EditPost({ user, posts, setPosts }) {
+function EditPost({ currentUser, user, posts, setPosts }) {
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -30,10 +30,11 @@ function EditPost({ user, posts, setPosts }) {
       }),
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
-        response.json().then((theNewPost) => {
-          const updatedPosts = posts.filter((thisPost) => {
-            if (thisPost.id === theNewPost.id) {
-              return theNewPost;
+        response.json().then((editedPost) => {
+          const updatedPosts = currentUser.posts.filter((thisPost) => {
+            if (thisPost.id === editedPost.id) {
+              return editedPost;
+              console.log('editedPost: ', editedPost);
             } else {
               return thisPost;
             }

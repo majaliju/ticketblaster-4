@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-function EachUserPost({ post, concert, concerts, concertsUsers }) {
+function EachUserPost({ currentUser, post, concert, concerts }) {
   let navigate = useNavigate();
   const location = useLocation();
   const thisUser = location.state.thisUser;
@@ -16,6 +16,12 @@ function EachUserPost({ post, concert, concerts, concertsUsers }) {
   console.log('matchingConcert: ', matchingConcert);
 
   const [isOriginalPoster, setIsOriginalPoster] = useState(false);
+
+  useEffect(() => {
+    if (parseInt(thisUser.id) === parseInt(currentUser.id)) {
+      setIsOriginalPoster(true);
+    }
+  }, []);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
@@ -42,6 +48,16 @@ function EachUserPost({ post, concert, concerts, concertsUsers }) {
 
       <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
+      {isOriginalPoster === true ? (
+        <Link
+          to='/editPost'
+          state={{
+            post: post,
+          }}
+          className='w-full btn btn-secondary btn-outline'>
+          EDIT YOUR POST
+        </Link>
+      ) : null}
 
       <span className='absolute bottom-8 right-8'>
         <svg

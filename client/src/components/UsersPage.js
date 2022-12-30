@@ -5,7 +5,7 @@ import EachUserPost from './EachUserPost';
 import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 
-function UsersPage({ users, concerts }) {
+function UsersPage({ currentUser, users, concerts }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
@@ -29,6 +29,7 @@ function UsersPage({ users, concerts }) {
               <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
                 {thisUsersPosts.map((post) => (
                   <EachUserPost
+                    currentUser={currentUser}
                     post={post}
                     givenUser={thisUser}
                     concerts={concerts}
