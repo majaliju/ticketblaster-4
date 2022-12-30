@@ -24,6 +24,13 @@ function ConcertsDisplay({
 
   return (
     <div class='bg-base-900 py-6 sm:py-8 lg:py-12'>
+      <div className='flex w-full input-group input-group-lg'>
+        <Link to='/createConcert' state={{}} replace={true}>
+          <button className='btn btn-secondary btn-outline'>
+            Add An Concert
+          </button>
+        </Link>
+      </div>
       <div class='form-control'>
         <label class='flex input-group input-group-lg'>
           <span>SEARCH</span>

@@ -180,12 +180,6 @@ function CreateArtist({ artists, setArtists }) {
                 SUBMITTED!
               </button>
             )}
-
-            {/* <button
-              className='block w-full px-5 py-3 text-sm font-medium text-white rounded-lg bg-secondary'
-              onClick={() => navigate(`/`)}>
-              VIEW YOUR POSTS
-            </button> */}
           </form>
         </div>
       </div>
