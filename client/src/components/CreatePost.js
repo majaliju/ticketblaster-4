@@ -187,11 +187,14 @@ function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
               </button>
             )}
 
-            <button
-              className='block w-full px-5 py-3 text-sm font-medium text-white rounded-lg bg-secondary'
-              onClick={() => navigate(`/`)}>
+            <Link
+              to='/thisUser'
+              state={{
+                thisUser: currentUser,
+              }}
+              className='block w-full px-5 py-3 text-sm font-medium text-white rounded-lg btn bg-secondary'>
               VIEW YOUR POSTS
-            </button>
+            </Link>
           </form>
         </div>
       </div>

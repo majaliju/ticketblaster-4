@@ -48,7 +48,8 @@ function App() {
     fetch('/concerts')
       .then((r) => r.json())
       .then((info) => setConcerts(info));
-  }, []);
+  }, [currentUser]);
+  // for a concert update, maybe include a submittedNewConcert one
 
   useEffect(() => {
     fetch('/users')
