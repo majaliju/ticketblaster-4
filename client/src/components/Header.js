@@ -58,14 +58,17 @@ function Header({
                   concerts
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to='/thisUser'
-                  state={{ thisUser: currentUser }}
-                  className='font-bold uppercase'>
-                  your posts
-                </NavLink>
-              </li>
+
+              {currentUser !== (null || '') ? (
+                <li>
+                  <NavLink
+                    to='/thisUser'
+                    state={{ thisUser: currentUser }}
+                    className='font-bold uppercase'>
+                    your posts
+                  </NavLink>
+                </li>
+              ) : null}
 
               {/* concerts tab is redundant */}
               {/* <li>
@@ -81,7 +84,7 @@ function Header({
                     </NavLink>
                   </li>
                 )}
-                {currentUser !== null && (
+                {currentUser !== (null || '') && (
                   <div>
                     <li>
                       <NavLink className='font-bold uppercase' to='/'>
@@ -125,14 +128,16 @@ function Header({
                   <h3 className='font-bold uppercase'>concerts</h3>
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to='/thisUser'
-                  state={{ thisUser: currentUser }}
-                  className='font-bold uppercase border-none btn btn-secondary btn-outline'>
-                  your posts
-                </NavLink>
-              </li>
+              {currentUser !== (null || '') ? (
+                <li>
+                  <NavLink
+                    to='/thisUser'
+                    state={{ thisUser: currentUser }}
+                    className='font-bold uppercase border-none btn btn-secondary btn-outline'>
+                    your posts
+                  </NavLink>
+                </li>
+              ) : null}
 
               {/* concerts tab is redundant */}
               {/* <li>
