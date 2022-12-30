@@ -52,7 +52,7 @@ function App() {
     fetch('/users')
       .then((r) => r.json())
       .then((info) => setUsers(info));
-  }, []);
+  }, [currentUser]);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
   useEffect(() => {
@@ -99,15 +99,12 @@ function App() {
     fetch(`/delete_post/${post.id}`, {
       method: 'DELETE',
     });
-    const updatedPosts = currentUser.posts.map((thisPost) => {
-      if (thisPost.id === post.id) {
-        return post;
-      } else {
-        return thisPost;
-      }
-    });
+
+    const updatedPosts = currentUser.posts.filter(
+      (thisPost) => thisPost.id !== post.id
+    );
     setCurrentUser({ ...currentUser, posts: updatedPosts });
-    const updatedUsers = users.map((user) => {
+    const updatedUsers = users.filter((user) => {
       if (user.id === currentUser.id) {
         return currentUser;
       } else {
