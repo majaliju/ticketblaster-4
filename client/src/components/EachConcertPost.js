@@ -2,7 +2,15 @@ import { useState, useEffect } from 'react';
 import EachUser from './UsersPage';
 import { Link, useNavigate } from 'react-router-dom';
 
-function EachConcertPost({ post, concert, concerts, users }) {
+function EachConcertPost({ post, concert, currentUser, concerts, users }) {
+  const [isOriginalPoster, setIsOriginalPoster] = useState(false);
+
+  useEffect(() => {
+    if (parseInt(post.user_id) === parseInt(currentUser.id)) {
+      setIsOriginalPoster(true);
+    }
+  });
+
   let navigate = useNavigate();
 
   const matchingUser = users.find(
@@ -33,6 +41,18 @@ function EachConcertPost({ post, concert, concerts, users }) {
 
       <h3 className='text-xl font-thin text-secondary'>{matchingUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
+      {isOriginalPoster === true ? (
+        <Link
+          to='/editPost'
+          state={{
+            postID: post.id,
+            currentBody: post.body,
+            currentTickets: post.tickets,
+          }}
+          className='w-full btn btn-secondary btn-outline'>
+          EDIT YOUR POST
+        </Link>
+      ) : null}
 
       <span className='absolute bottom-8 right-8'>
         <svg

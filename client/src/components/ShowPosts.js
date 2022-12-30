@@ -5,11 +5,13 @@ import Loading from './Loading';
 import IndividualPost from '../og-components/IndividualPost';
 import EachConcertPost from './EachConcertPost';
 
-function ShowPosts({ concerts, users, handleDelete }) {
+function ShowPosts({ concerts, users, currentUser, handleDelete }) {
   const location = useLocation();
   const concert = location.state.concert;
 
   const concertsPosts = concert.posts;
+
+  console.log('');
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -24,6 +26,7 @@ function ShowPosts({ concerts, users, handleDelete }) {
             {concertsPosts.map((post) => (
               <EachConcertPost
                 post={post}
+                currentUser={currentUser}
                 concert={concert}
                 concerts={concerts}
                 users={users}

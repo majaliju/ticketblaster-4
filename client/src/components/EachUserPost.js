@@ -7,8 +7,6 @@ function EachUserPost({ currentUser, post, concerts }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
-  console.log('thisUser within EUP: ', thisUser);
-
   // console.log('matchingConcert: ', matchingConcert);
   // console.log('currentUser within EUP: ', currentUser);
 
@@ -23,7 +21,6 @@ function EachUserPost({ currentUser, post, concerts }) {
     }
   });
 
-  console.log('post within EUP: ', post);
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
       {/* <h4 className='text-3xl font-thin'>
