@@ -5,6 +5,8 @@ import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 
 function EachConcertCard({ concert, usersPageTag, concerts }) {
+  console.log('concert in ECC: ');
+
   return (
     <div>
       <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -52,6 +54,7 @@ function EachConcertCard({ concert, usersPageTag, concerts }) {
                       className='w-full btn btn-primary btn-outline'>
                       I'M BUYING
                     </Link>
+
                     <Link
                       to='/showPosts'
                       state={{

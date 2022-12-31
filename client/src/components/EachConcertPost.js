@@ -33,7 +33,7 @@ function EachConcertPost({
 
   let navigate = useNavigate();
 
-  console.warn('(users.find) -- matchingUser: ', matchingUser);
+  console.log('(users.find) -- matchingUser: ', matchingUser);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
@@ -46,7 +46,7 @@ function EachConcertPost({
         <h3 className='text-4xl font'>BUYING: {post.tickets} TICKETS</h3>
       )}
 
-      {matchingUser !== (undefined || null || '') ? (
+      {matchingUser !== undefined ? (
         <div>
           <Link
             to='/thisUser'
