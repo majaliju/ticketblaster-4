@@ -61,6 +61,8 @@ puts "---------------------- Seeding Adele..."
 #~ Adele
 adele = Artist.create!({ name: "Adele", image: "https://i.imgur.com/zmGbfKSm.jpg", genre: "Pop"})
 
+##! write manual concert dates
+
 puts "---------------------- Seeding Adele's concerts..."
 adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "https://i.imgur.com/SmFrzTC.jpg", artist_id: adele.id})
 adele_c2 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Mao Livehouse", image: "https://i.imgur.com/CghhYym.jpg", artist_id: adele.id})
