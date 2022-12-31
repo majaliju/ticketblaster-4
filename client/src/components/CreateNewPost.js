@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
+function CreateNewPost({ currentUser, setCurrentUser, users, setUsers }) {
   const [body, setBody] = useState('');
   const [ticketAmount, setTicketAmount] = useState(0);
-  const [error, setError] = useState(['test1', 'test2']);
-  const [errorString, setErrorString] = useState('');
+  const [errorArray, setErrorArray] = useState([]);
+  const [errorsExist, setErrorsExist] = useState(false);
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -60,7 +60,8 @@ function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
             }
           });
           setUsers(updatedUsers);
-          setError([]);
+          setErrorArray([]);
+          setErrorsExist(false);
           setSuccess('Your post has been created!');
           setSubmitted(true);
         });
@@ -68,14 +69,15 @@ function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
         response.json().then((e) => {
           console.log('e. errors within bad response: ', e.errors);
           // set the errorString to e.errors.join(*join with a comma*)
-          setError(e.errors);
-          console.log('error state within bad response: ', error);
+          setErrorsExist(true);
+          setErrorArray(e.errors);
+          console.log('errorArray state within bad response: ', errorArray);
         });
       }
     });
   };
 
-  console.log('error state: ', error);
+  console.log('errorArray state: ', errorArray);
 
   //* things to note for the error on errors rendering
   //* success is a string, error is an array
@@ -105,46 +107,28 @@ function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
               </div>
             </div>
           ) : null}
-          {/* //! errors aren't rendering; not sure why */}
-          {error !== []
-            ? error.map((eachError) => {
-                <div className='shadow-lg alert alert-warning'>
-                  <div>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='flex-shrink-0 w-6 h-6 stroke-current'
-                      fill='none'
-                      viewBox='0 0 24 24'>
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                        d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
-                      />
-                    </svg>
-                    <span>test!!!</span>
-                    {console.log('eachError: ', eachError)}
-                  </div>
-                </div>;
-              })
-            : null}
-          <div className='shadow-lg alert alert-warning'>
-            <div>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='flex-shrink-0 w-6 h-6 stroke-current'
-                fill='none'
-                viewBox='0 0 24 24'>
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
-                />
-              </svg>
-              <span>test!!!</span>
+
+          {errorsExist !== false ? (
+            <div className='shadow-lg alert alert-warning'>
+              <div>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='flex-shrink-0 w-6 h-6 stroke-current'
+                  fill='none'
+                  viewBox='0 0 24 24'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
+                  />
+                </svg>
+                {errorArray.map((eachError) => (
+                  <span>{eachError}</span>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           <h1 className='text-2xl font-bold text-center text-white sm:text-3xl'>
             CREATE A POST!
@@ -202,4 +186,4 @@ function CreatePost({ currentUser, setCurrentUser, users, setUsers }) {
   );
 }
 
-export default CreatePost;
+export default CreateNewPost;
