@@ -12,10 +12,6 @@ function ShowPosts({ concerts, users, currentUser, handleDelete }) {
 
   console.log('concert within showPosts: ', concert);
 
-  const concertsPosts = concert.posts;
-
-  console.warn('concerts within SP: ', concerts);
-
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
       {concert !== (undefined || []) ? (
@@ -26,11 +22,11 @@ function ShowPosts({ concerts, users, currentUser, handleDelete }) {
             </h1>
           </div>
           <div className='mb-10'>
-            {concertsPosts.map((post) => (
+            {concert.posts.map((post) => (
               <EachConcertPost
                 post={post}
-                currentUser={currentUser}
                 concert={concert}
+                currentUser={currentUser}
                 concerts={concerts}
                 users={users}
               />

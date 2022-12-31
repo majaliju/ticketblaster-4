@@ -75,6 +75,11 @@ Post.create!({body: "email me plzzz need tix asap", for_sale: false, tickets: 1,
 Post.create!({body: "only 1 ticket for sale, email me or call 646-277-2888", for_sale: true, tickets: 1, user_id: u3.id, concert_id: adele_c3.id})
 Post.create!({body: "Looking for 10 tickets altogether! WILL PAY BIG!", for_sale: false, tickets: 10, user_id: u19.id, concert_id: adele_c3.id})
 
+Post.create!({body: "FOR SALE -- 5 TIX", for_sale: true, tickets: 5, user_id: u19.id, concert_id: adele_c1.id})
+Post.create!({body: "LOOKING TO BUY 1 TICKET", for_sale: false, tickets: 1, user_id: u19.id, concert_id: adele_c1.id})
+Post.create!({body: "SELLING ONE TICKET, email me or call 646-277-2888", for_sale: true, tickets: 1, user_id: u19.id, concert_id: adele_c1.id})
+Post.create!({body: "I NEED TEN TICKETS, CONTACT ME AT 622-222-2830", for_sale: false, tickets: 10, user_id: u19.id, concert_id: adele_c1.id})
+
 
 #~ John Legend
 john_legend = Artist.create!({ name: "John Legend", image: "https://i.imgur.com/Nogyupgm.jpg", genre: "Pop"})

@@ -13,24 +13,27 @@ function EachConcertPost({
   //! this is a point-of-three-rivers
   //~ post info is needed but post doesn't have any concerts info, or any user info, apart from the foreign keys
 
+  //! showPosts breaks on render due to username info within ECP
+
   const [isOriginalPoster, setIsOriginalPoster] = useState(false);
 
   console.warn('post within ECP: ', post);
   console.warn('concert within ECP: ', concert);
 
+  let matchingUser = users.find(
+    (user) => parseInt(post.user_id) === parseInt(user.id)
+  );
+
   useEffect(() => {
     if (parseInt(post.user_id) === parseInt(currentUser.id)) {
       setIsOriginalPoster(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 
   let navigate = useNavigate();
 
-  const matchingUser = users.find(
-    (user) => parseInt(post.user_id) === parseInt(user.id)
-  );
-
-  // console.log('matchingUser: ', matchingUser);
+  console.warn('(users.find) -- matchingUser: ', matchingUser);
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
@@ -43,16 +46,22 @@ function EachConcertPost({
         <h3 className='text-4xl font'>BUYING: {post.tickets} TICKETS</h3>
       )}
 
-      <Link
-        to='/thisUser'
-        state={{
-          thisUser: matchingUser,
-        }}
-        className='text-2xl font-thin btn btn-ghost text-secondary'>
-        {matchingUser.username}
-      </Link>
+      {matchingUser !== (undefined || null || '') ? (
+        <div>
+          <Link
+            to='/thisUser'
+            state={{
+              thisUser: matchingUser,
+            }}
+            className='text-2xl font-thin btn btn-ghost text-secondary'>
+            {matchingUser.username}
+          </Link>
+          <h3 className='text-xl font-thin text-secondary'>
+            {matchingUser.email}
+          </h3>
+        </div>
+      ) : null}
 
-      <h3 className='text-xl font-thin text-secondary'>{matchingUser.email}</h3>
       <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
       {isOriginalPoster === true ? (
         <div>
