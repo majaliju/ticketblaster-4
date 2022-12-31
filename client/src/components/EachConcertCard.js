@@ -12,7 +12,7 @@ function EachConcertCard({ loggedIn, concert, usersPageTag, concerts }) {
           <div className='max-w-screen-xl px-4 mx-auto md:px-8'>
             <div className='flex justify-center'>
               <div className='justify-center shadow-2xl card w-96 bg-base-500 bg-neutral text-neutral-content'>
-                <div className='avatar'>
+                <div className=''>
                   <div className='rounded w-30'>
                     <img
                       src={concert.artist.image}
@@ -28,10 +28,11 @@ function EachConcertCard({ loggedIn, concert, usersPageTag, concerts }) {
                 </div>
 
                 <div className='items-center text-center card-body'>
-                  <h2 className='card-title'>{concert.location}</h2>
-                  <h2 className='card-title'>{concert.artist.name}</h2>
+                  <h2 className='card-title'>
+                    {concert.artist.name} at {concert.location} on{' '}
+                    {concert.date}
+                  </h2>
 
-                  <h2 className='card-body'>{concert.date}</h2>
                   {loggedIn === true ? (
                     <div className='justify-end card-actions'>
                       <Link

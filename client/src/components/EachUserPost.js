@@ -26,7 +26,8 @@ function EachUserPost({ thisUser, currentUser, post, concerts, handleDelete }) {
       {matchingConcert !== undefined ? (
         <div>
           <h4 className='text-3xl font-thin'>
-            {matchingConcert.artist.name} at {matchingConcert.location}
+            {matchingConcert.artist.name} at {matchingConcert.location} on{' '}
+            {matchingConcert.date}
           </h4>
           <div className=''>
             <div className=''>
