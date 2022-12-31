@@ -5,18 +5,11 @@ import EachUserPost from './EachUserPost';
 import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 
-function ThisUser({ currentUser, users, concerts, handleDelete }) {
+function ThisUser({ currentUser, concerts }) {
   const location = useLocation();
   const thisUser = location.state.thisUser;
 
-  const thisUsersPosts = thisUser.posts;
-
-  //! here is where we'll iterate thru users to get the user, and their post, so that state updates properly
-
-  console.log('thisUser within ThisUser: ', thisUser);
-  console.log('thisUsersPosts :', thisUsersPosts);
-
-  // maybe put a handleDelete here
+  const thisUserPosts = thisUser.posts;
 
   return (
     <div className='py-6 bg-base-900 sm:py-8 lg:py-12'>
@@ -30,7 +23,7 @@ function ThisUser({ currentUser, users, concerts, handleDelete }) {
             </div>
             {thisUser !== (null || undefined || '') ? (
               <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
-                {thisUsersPosts.map((post) => (
+                {thisUserPosts.map((post) => (
                   <EachUserPost
                     currentUser={currentUser}
                     post={post}

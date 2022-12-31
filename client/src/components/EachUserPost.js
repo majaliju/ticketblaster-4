@@ -23,29 +23,37 @@ function EachUserPost({ thisUser, currentUser, post, concerts, handleDelete }) {
 
   return (
     <div className='relative block p-8 pb-24 border-t-4 rounded-sm shadow-xl border-secondary'>
-      {/* <h4 className='text-3xl font-thin'>
-        {matchingConcert.artist.name} at {matchingConcert.location}
-      </h4> */}
-      {/* <div className='avatar'>
-        <div className='rounded'>
-          <img
-            src={matchingConcert.artist.image}
-            alt='a small avatar of the musical artist'
-          />
+      {matchingConcert !== undefined ? (
+        <div>
+          <h4 className='text-3xl font-thin'>
+            {matchingConcert.artist.name} at {matchingConcert.location}
+          </h4>
+          <div className=''>
+            <div className=''>
+              <img
+                src={matchingConcert.artist.image}
+                alt='a small avatar of the musical artist'
+              />
+            </div>
+            <div className='rounded'>
+              <img
+                src={matchingConcert.image}
+                alt='a small avatar of the venue'
+              />
+            </div>
+          </div>
         </div>
-        <div className='rounded'>
-          <img src={matchingConcert.image} alt='a small avatar of the venue' />
-        </div>
-      </div> */}
-
-      {post.for_sale === true ? (
-        <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
-      ) : (
-        <h3 className='text-4xl font'>BUYING: {post.tickets} TICKETS</h3>
-      )}
+      ) : null}
+      <div className='font-normal'>
+        {post.for_sale === true ? (
+          <h3 className='text-4xl font'>SELLING: {post.tickets} TICKETS</h3>
+        ) : (
+          <h3 className='text-4xl font'>BUYING: {post.tickets} TICKETS</h3>
+        )}
+      </div>
 
       <h3 className='text-xl font-thin text-secondary'>{thisUser.email}</h3>
-      <p className='mt-4 text-lg font-medium text-accent'>{post.body}</p>
+      <p className='my-6 text-lg font-medium text-accent'>{post.body}</p>
       {isOriginalPoster === true ? (
         <div>
           <Link

@@ -10,56 +10,9 @@ function DeleteConfirmation({
   handleDelete,
 }) {
   const location = useLocation();
-  const navigate = useNavigate();
   let post = location.state.post;
 
   const [submitted, setSubmitted] = useState(false);
-
-  // function handleDelete(post) {
-  //   fetch(`/delete_post/${post.id}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then((r) => r.json())
-  //     .then((info) => console.log('deleted info: ', info));
-  //   const updatedPosts = currentUser.posts.filter(
-  //     (thisPost) => thisPost.id !== post.id
-  //   );
-  //   setCurrentUser({ ...currentUser, posts: updatedPosts });
-  //   const updatedUsers = users.filter((user) => {
-  //     if (user.id === currentUser.id) {
-  //       return currentUser;
-  //     } else {
-  //       return user;
-  //     }
-  //   });
-  //   setUsers(updatedUsers);
-  // }
-
-  // function handleDelete(post) {
-  //   fetch(`/delete_post/${post.id}`, {
-  //     method: 'DELETE',
-  //   });
-  //   const updatedPosts = currentUser.posts.filter(
-  //     (thisPost) => thisPost.id !== post.id
-  //   );
-  //   setCurrentUser({ ...currentUser, posts: updatedPosts });
-  //   const updatedUsers = users.filter((user) => {
-  //     if (user.id === currentUser.id) {
-  //       return currentUser;
-  //     } else {
-  //       return user;
-  //     }
-  //   });
-  //   setUsers(updatedUsers);
-  // }
-
-  const deleteAndRedirect = () => {
-    console.log('post within DAR: ');
-    handleDelete(post);
-    navigate('/thisUser');
-  };
-
-  console.count(post);
 
   return (
     <div className='card w-96 bg-neutral text-neutral-content'>
@@ -91,14 +44,6 @@ function DeleteConfirmation({
             className='w-full btn btn-primary'>
             GO VIEW YOUR POSTS
           </Link>
-          {/* //! GOTTA TRY SOME VERSION OF BELOW, TRICKY THOUGH */}
-          {/* <button
-            to='/thisUser'
-            state={{ thisUser: currentUser }}
-            className='btn btn-primary'
-            onClick={deleteAndRedirect}>
-            DELETE YOUR POST
-          </button> */}
         </div>
       </div>
     </div>

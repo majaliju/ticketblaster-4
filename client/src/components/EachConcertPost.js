@@ -81,15 +81,6 @@ function EachConcertPost({
             className='w-full btn btn-accent btn-full'>
             DELETE YOUR POST
           </Link>
-          {/* <Link
-            to='/thisUser'
-            state={{ thisUser: currentUser }}
-            className='w-full btn btn-accent btn-full'
-            onClick={() => {
-              handleDelete(post);
-            }}>
-            DELETE YOUR POST
-          </Link> */}
         </div>
       ) : null}
 
