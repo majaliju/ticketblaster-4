@@ -40,9 +40,8 @@ class PostsController < ApplicationController
   def update
     post = Post.find_by!(id: params[:id])
     if session[:user_id] === post[:user_id]
-       ## also make a cross-check that params(:body) !== post.body OR params(:tickets) !== post.tickets
-       ## THEN allow it
-       ## also render an error saying "you gotta edit the post! otherwise it's the same post as"
+      ## potential cross-check for if only body, or only tickets if being updated
+      ## but also seems irrelevant
       post.update!(
         body: params[:body],
         tickets: params[:tickets]
