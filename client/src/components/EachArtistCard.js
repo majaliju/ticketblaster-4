@@ -18,7 +18,7 @@ function EachArtistCard({ artist, concerts }) {
   // fix the grid for this
   return (
     <div>
-      <div class='card w-94 bg-base-100 shadow-xl image-full'>
+      <div class='card max-w-full bg-base-100 shadow-xl image-full'>
         <figure>
           <img src={artist.image} alt={artist.name} />
         </figure>
@@ -42,33 +42,3 @@ function EachArtistCard({ artist, concerts }) {
 }
 
 export default EachArtistCard;
-
-//* cool card component to implement for eachArtistCard
-//* darkened background with content on hover
-
-// <a class="relative block bg-black group" href="">
-//   <img
-//     class="absolute inset-0 object-cover w-full h-full opacity-75 transition-opacity  group-hover:opacity-50"
-//     src="https://www.hyperui.dev/photos/man-6.jpeg"
-//     alt=""
-//   />
-//   <div class="relative p-8">
-//     <p class="text-sm font-medium tracking-widest text-pink-500 uppercase">
-//       Developer
-//     </p>
-
-//     <p class="text-2xl font-bold text-white">Barry Scott</p>
-
-//     <div class="mt-64">
-//       <div
-//         class="opacity-0 transition-all transform translate-y-8  group-hover:opacity-100 group-hover:translate-y-0"
-//       >
-//         <p class="text-sm text-white">
-//           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-//           perferendis hic asperiores quibusdam quidem voluptates doloremque
-//           reiciendis nostrum harum. Repudiandae?
-//         </p>
-//       </div>
-//     </div>
-//   </div>
-// </a>
