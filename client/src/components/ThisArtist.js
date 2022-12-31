@@ -5,7 +5,7 @@ import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 import EachConcertCard from './EachConcertCard';
 
-function ThisArtist({ artists, concerts }) {
+function ThisArtist({ artists, concerts, loggedIn }) {
   const location = useLocation();
   const artist = location.state.artist;
   const artistsConcerts = location.state.artistsConcerts;
@@ -51,7 +51,7 @@ function ThisArtist({ artists, concerts }) {
                 </div>
                 <div className='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '>
                   {artistsConcerts.map((concert) => (
-                    <EachConcertCard concert={concert} />
+                    <EachConcertCard concert={concert} loggedIn={loggedIn} />
                   ))}
                 </div>
               </div>

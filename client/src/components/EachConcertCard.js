@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 import IndividualPost from '../og-components/IndividualPost';
 import Loading from './Loading';
 
-function EachConcertCard({ concert, usersPageTag, concerts }) {
-  console.log('concert in ECC: ');
-
+function EachConcertCard({ loggedIn, concert, usersPageTag, concerts }) {
   return (
     <div>
       <div className='py-6 bg-base-900 sm:py-8 lg:py-'>
@@ -34,36 +32,46 @@ function EachConcertCard({ concert, usersPageTag, concerts }) {
                   <h2 className='card-title'>{concert.artist.name}</h2>
 
                   <h2 className='card-body'>{concert.date}</h2>
+                  {loggedIn === true ? (
+                    <div className='justify-end card-actions'>
+                      <Link
+                        to='/createNewPost'
+                        state={{
+                          isSelling: true,
+                          concert: concert,
+                        }}
+                        className='w-full btn btn-secondary btn-outline'>
+                        I'M SELLING
+                      </Link>
+                      <Link
+                        to='/createNewPost'
+                        state={{
+                          isSelling: false,
+                          concert: concert,
+                        }}
+                        className='w-full btn btn-primary btn-outline'>
+                        I'M BUYING
+                      </Link>
 
-                  <div className='justify-end card-actions'>
-                    <Link
-                      to='/createNewPost'
-                      state={{
-                        isSelling: true,
-                        concert: concert,
-                      }}
-                      className='w-full btn btn-secondary btn-outline'>
-                      I'M SELLING
-                    </Link>
-                    <Link
-                      to='/createNewPost'
-                      state={{
-                        isSelling: false,
-                        concert: concert,
-                      }}
-                      className='w-full btn btn-primary btn-outline'>
-                      I'M BUYING
-                    </Link>
-
-                    <Link
-                      to='/showPosts'
-                      state={{
-                        concert: concert,
-                      }}
-                      className='w-full btn btn-accent btn-outline'>
-                      SHOW MORE POSTS
-                    </Link>
-                  </div>
+                      <Link
+                        to='/showPosts'
+                        state={{
+                          concert: concert,
+                        }}
+                        className='w-full btn btn-accent btn-outline'>
+                        SHOW MORE POSTS
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link
+                        to='/login'
+                        state={{}}
+                        className='w-full btn btn-accent btn-outline'>
+                        LOGIN TO SEE MORE
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -134,7 +134,6 @@ function App() {
             <HomePage
               currentUser={currentUser}
               users={users}
-              // handleDelete={handleDelete}
               cookies={cookies}
               sessionInfo={sessionInfo}
               loggedIn={loggedIn}
@@ -162,6 +161,7 @@ function App() {
               concerts={concerts}
               currentUser={currentUser}
               users={users}
+              loggedIn={loggedIn}
             />
           }
         />
@@ -173,6 +173,7 @@ function App() {
               concerts={concerts}
               setConcerts={setConcerts}
               currentUser={currentUser}
+              loggedIn={loggedIn}
               users={users}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}

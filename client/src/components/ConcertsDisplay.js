@@ -7,6 +7,7 @@ import EachConcertCard from './EachConcertCard';
 
 function ConcertsDisplay({
   concerts,
+  loggedIn,
   user,
   artists,
   venues,
@@ -67,7 +68,7 @@ function ConcertsDisplay({
                 }
               })
               .map((concert) => (
-                <EachConcertCard concert={concert} />
+                <EachConcertCard concert={concert} loggedIn={loggedIn} />
               ))}
           </div>
           <div class='grid gap-8 mx-6 sm:grid-cols-2 sm:gap-12 lg:grid-cols-3 '></div>
