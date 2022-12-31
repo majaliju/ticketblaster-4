@@ -35,12 +35,7 @@ function ThisArtist({ artists, concerts, loggedIn }) {
                 </div>
               </div>
             </div>
-            {/* <div className='grid mx-40'>
-              <h1 className='mb-4 text-6xl font-thin text-center text-primary md:mb-6 lg:text-7xl'>
-                ALL POSTS
-              </h1>
-              {artistsConcerts.map((each) => console.log('each ', each))}
-            </div> */}
+
             <div>
               <div className='max-w-screen-xl px-4 mx-auto md:px-8'>
                 <div className='mb-10 md:mb-16'>

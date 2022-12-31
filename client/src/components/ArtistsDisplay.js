@@ -21,7 +21,7 @@ function ArtistsDisplay({
   return (
     <div class='bg-base-900 justify-center py-6 sm:py-8 lg:py-12'>
       <div className='flex w-full input-group input-group-lg'>
-        <Link to='/createArtist' state={{}} replace={true}>
+        <Link to='/createArtist' replace={true}>
           <button className='btn btn-secondary btn-outline'>
             Add An Artist
           </button>
