@@ -10,7 +10,13 @@ function EachConcertPost({
   users,
   handleDelete,
 }) {
+  //! this is a point-of-three-rivers
+  //~ post info is needed but post doesn't have any concerts info, or any user info, apart from the foreign keys
+
   const [isOriginalPoster, setIsOriginalPoster] = useState(false);
+
+  console.warn('post within ECP: ', post);
+  console.warn('concert within ECP: ', concert);
 
   useEffect(() => {
     if (parseInt(post.user_id) === parseInt(currentUser.id)) {

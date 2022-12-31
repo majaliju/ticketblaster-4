@@ -16,7 +16,9 @@ function DeleteConfirmation({
   function handleDelete(post) {
     fetch(`/delete_post/${post.id}`, {
       method: 'DELETE',
-    });
+    })
+      .then((r) => r.json())
+      .then((info) => console.log('deleted info: ', info));
     const updatedPosts = currentUser.posts.filter(
       (thisPost) => thisPost.id !== post.id
     );
@@ -30,6 +32,24 @@ function DeleteConfirmation({
     });
     setUsers(updatedUsers);
   }
+
+  // function handleDelete(post) {
+  //   fetch(`/delete_post/${post.id}`, {
+  //     method: 'DELETE',
+  //   });
+  //   const updatedPosts = currentUser.posts.filter(
+  //     (thisPost) => thisPost.id !== post.id
+  //   );
+  //   setCurrentUser({ ...currentUser, posts: updatedPosts });
+  //   const updatedUsers = users.filter((user) => {
+  //     if (user.id === currentUser.id) {
+  //       return currentUser;
+  //     } else {
+  //       return user;
+  //     }
+  //   });
+  //   setUsers(updatedUsers);
+  // }
 
   const deleteAndRedirect = () => {
     console.log('post within DAR: ');

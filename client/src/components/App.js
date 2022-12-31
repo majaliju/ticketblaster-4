@@ -196,6 +196,7 @@ function App() {
             <ShowPosts
               currentUser={currentUser}
               users={users}
+              concerts={concerts}
               // handleDelete={handleDelete}
             />
           }
