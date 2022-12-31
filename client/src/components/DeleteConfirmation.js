@@ -13,25 +13,27 @@ function DeleteConfirmation({
   const navigate = useNavigate();
   let post = location.state.post;
 
-  function handleDelete(post) {
-    fetch(`/delete_post/${post.id}`, {
-      method: 'DELETE',
-    })
-      .then((r) => r.json())
-      .then((info) => console.log('deleted info: ', info));
-    const updatedPosts = currentUser.posts.filter(
-      (thisPost) => thisPost.id !== post.id
-    );
-    setCurrentUser({ ...currentUser, posts: updatedPosts });
-    const updatedUsers = users.filter((user) => {
-      if (user.id === currentUser.id) {
-        return currentUser;
-      } else {
-        return user;
-      }
-    });
-    setUsers(updatedUsers);
-  }
+  const [submitted, setSubmitted] = useState(false);
+
+  // function handleDelete(post) {
+  //   fetch(`/delete_post/${post.id}`, {
+  //     method: 'DELETE',
+  //   })
+  //     .then((r) => r.json())
+  //     .then((info) => console.log('deleted info: ', info));
+  //   const updatedPosts = currentUser.posts.filter(
+  //     (thisPost) => thisPost.id !== post.id
+  //   );
+  //   setCurrentUser({ ...currentUser, posts: updatedPosts });
+  //   const updatedUsers = users.filter((user) => {
+  //     if (user.id === currentUser.id) {
+  //       return currentUser;
+  //     } else {
+  //       return user;
+  //     }
+  //   });
+  //   setUsers(updatedUsers);
+  // }
 
   // function handleDelete(post) {
   //   fetch(`/delete_post/${post.id}`, {
@@ -65,14 +67,29 @@ function DeleteConfirmation({
         <h2 className='card-title'>Are you sure??</h2>
         <p>Once you click delete, that post is gone forever!!</p>
         <div className='justify-end card-actions'>
+          {submitted === false ? (
+            <button
+              onClick={() => {
+                handleDelete(post);
+                setSubmitted(true);
+              }}
+              type='submit'
+              className='block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg'>
+              YES I'M SURE!
+            </button>
+          ) : (
+            <button
+              disabled
+              className='block w-full px-5 py-3 text-sm font-medium text-white bg-black rounded-lg'>
+              IT'S DELETED!
+            </button>
+          )}
+
           <Link
             to='/thisUser'
             state={{ thisUser: currentUser }}
-            className='btn btn-primary'
-            onClick={() => {
-              handleDelete(post);
-            }}>
-            DELETE YOUR POST
+            className='w-full btn btn-primary'>
+            GO VIEW YOUR POSTS
           </Link>
           {/* //! GOTTA TRY SOME VERSION OF BELOW, TRICKY THOUGH */}
           {/* <button

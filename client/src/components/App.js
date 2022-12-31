@@ -95,25 +95,27 @@ function App() {
       .then((thisInfo) => setSessionInfo(thisInfo));
   }
 
-  //! HANDLE DELETE FUNCTION NEEDS UPDATING
-  //! try a local version in each spot
-  // function handleDelete(post) {
-  //   fetch(`/delete_post/${post.id}`, {
-  //     method: 'DELETE',
-  //   });
-  //   const updatedPosts = currentUser.posts.filter(
-  //     (thisPost) => thisPost.id !== post.id
-  //   );
-  //   setCurrentUser({ ...currentUser, posts: updatedPosts });
-  //   const updatedUsers = users.filter((user) => {
-  //     if (user.id === currentUser.id) {
-  //       return currentUser;
-  //     } else {
-  //       return user;
-  //     }
-  //   });
-  //   setUsers(updatedUsers);
-  // }
+  // ! HANDLE DELETE FUNCTION NEEDS UPDATING
+  // ! try a local version in each spot
+  function handleDelete(post) {
+    // console.yarn('post in handleDelete in App: ', post);
+    fetch(`/delete_post/${post.id}`, {
+      method: 'DELETE',
+    }).then(() => {
+      const updatedPosts = currentUser.posts.filter(
+        (thisPost) => thisPost.id !== post.id
+      );
+      setCurrentUser({ ...currentUser, posts: updatedPosts });
+      const updatedUsers = users.filter((user) => {
+        if (user.id === currentUser.id) {
+          return currentUser;
+        } else {
+          return user;
+        }
+      });
+      setUsers(updatedUsers);
+    });
+  }
 
   return (
     <div>
@@ -237,7 +239,7 @@ function App() {
           path='/deletePost'
           element={
             <DeleteConfirmation
-              // handleDelete={handleDelete}
+              handleDelete={handleDelete}
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
               users={users}
