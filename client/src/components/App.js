@@ -53,7 +53,7 @@ function App() {
     fetch('/users')
       .then((r) => r.json())
       .then((info) => setUsers(info));
-  }, []);
+  }, [currentUser]);
 
   //? INITIAL FETCH BELOW FOR REGISTERING THE USER
   useEffect(() => {
