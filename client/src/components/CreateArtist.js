@@ -43,6 +43,10 @@ function CreateArtist({ artists, setArtists }) {
           setArtists([...artists, createdArtist]);
           console.log('newly updated array of artists: ', artists);
         });
+        setErrorArray([]);
+        setErrorsExist(false);
+        setSuccess('Your post has been created!');
+        setSubmitted(true);
       } else {
         response.json().then((e) => {
           console.log('e. errors within bad response: ', e.errors);

@@ -23,18 +23,22 @@ function CreateConcert({ artists }) {
         date: dateSelect,
         location: locationName,
         image: imageLink,
-        // artist_id: thisArtist.id,
+        artist_id: artistID,
       }),
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((createdConcert) => {
-          console.log('createdArtist: ', createdConcert);
+          console.log('createdConcert: ', createdConcert);
           // setArtists([...artists, createdArtist]);
           // console.log('newly updated array of artists: ', artists);
         });
       } else {
         response.json().then((e) => {
-          // render errors here
+          console.log('e. errors within bad response: ', e.errors);
+          // set the errorString to e.errors.join(*join with a comma*)
+          setErrorsExist(true);
+          setErrorArray(e.errors);
+          console.log('errorArray state within bad response: ', errorArray);
         });
       }
     });
