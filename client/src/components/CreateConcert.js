@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreateConcert({ artists }) {
+function CreateConcert({ artists, setConcerts, concerts }) {
   const [artistID, setArtistID] = useState(1);
   const [dateSelect, setDateSelect] = useState('2023-02-01');
   const [imageLink, setImageLink] = useState('');
@@ -29,8 +29,11 @@ function CreateConcert({ artists }) {
       if (response.status >= 200 && response.status <= 299) {
         response.json().then((createdConcert) => {
           console.log('createdConcert: ', createdConcert);
-          // setArtists([...artists, createdArtist]);
-          // console.log('newly updated array of artists: ', artists);
+          setConcerts([...concerts, createdConcert]);
+          setErrorArray([]);
+          setErrorsExist(false);
+          setSuccess('Your post has been created!');
+          setSubmitted(true);
         });
       } else {
         response.json().then((e) => {

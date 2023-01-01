@@ -10,19 +10,6 @@ function CreateArtist({ artists, setArtists }) {
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // //* resetting our states when a new page renders
-  //! gotta figure this useEffect out
-  // useEffect(() => {
-  //   setSuccess('');
-  //   setError([]);
-  //   setSubmitted(false);
-  //   setBody('');
-  //   setTicketAmount(0);
-  // }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch('/new_artist', {
@@ -41,7 +28,6 @@ function CreateArtist({ artists, setArtists }) {
         response.json().then((createdArtist) => {
           console.log('createdArtist: ', createdArtist);
           setArtists([...artists, createdArtist]);
-          console.log('newly updated array of artists: ', artists);
         });
         setErrorArray([]);
         setErrorsExist(false);
