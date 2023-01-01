@@ -105,7 +105,7 @@ Post.create!({body: "All 3 tickets together = $250, one ticket = $100", for_sale
 puts "---------------------- Seeding Alicia Keys..."
 
 #~ Alicia Keys
-alicia_keys = Artist.create!({ name: "Alicia Keys", image: "https://i.imgur.com/L7JvoeUm.jpg", genre: "R&B"})
+alicia_keys = Artist.create!({ name: "Alicia Keys", image: "https://i.imgur.com/nHxOMjy.jpg", genre: "R&B"})
 alicia_keys_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Bowery Ballroom", image: "https://i.imgur.com/qQN0hVK.jpg", artist_id: alicia_keys.id})
 Post.create!({body: "My daughter loves him (dont ask), will pay up to $500 per ticket", for_sale: false, tickets: 2, user_id: u4.id, concert_id: alicia_keys_c1.id})
 
