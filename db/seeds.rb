@@ -62,11 +62,11 @@ puts "---------------------- Seeding Adele..."
 adele = Artist.create!({ name: "Adele", image: "https://i.imgur.com/zmGbfKSm.jpg", genre: "Pop"})
 
 ##! write manual concert dates
-
+##! testing without create! and using create instead
 puts "---------------------- Seeding Adele's concerts..."
-adele_c1 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "https://i.imgur.com/SmFrzTC.jpg", artist_id: adele.id})
-adele_c2 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Mao Livehouse", image: "https://i.imgur.com/CghhYym.jpg", artist_id: adele.id})
-adele_c3 = Concert.create!({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", image: "https://i.imgur.com/0gd1dD0.jpg", artist_id: adele.id})
+adele_c1 = Concert.create({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Brooklyn Steel", image: "https://i.imgur.com/SmFrzTC.jpg", artist_id: adele.id})
+adele_c2 = Concert.create({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Mao Livehouse", image: "https://i.imgur.com/CghhYym.jpg", artist_id: adele.id})
+adele_c3 = Concert.create({date: Faker::Date.between(from: '2023-01-01', to: '2024-05-25'), location: "Madison Square Garden", image: "https://i.imgur.com/0gd1dD0.jpg", artist_id: adele.id})
 
 puts "---------------------- Seeding Adele's concerts posts..."
 Post.create!({body: "2 tickets, $100 total OBO -- CHEAPEST YOU'LL EVER FIND FOR ADELE!!", for_sale: true, tickets: 2, user_id: u1.id, concert_id: adele_c1.id})
