@@ -23,7 +23,6 @@ function ConcertsDisplay({
 
   //^ display an EachConcertCard for the map function, to keep the consistency
 
-  console.log(sortedConcerts);
   return (
     <div class='bg-base-900 py-6 sm:py-8 lg:py-12'>
       <div className='flex w-full input-group input-group-lg'>
