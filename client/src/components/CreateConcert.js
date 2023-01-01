@@ -134,7 +134,7 @@ function CreateConcert({ artists }) {
                 id='imageLink'
                 value={imageLink}
                 onChange={(e) => setImageLink(e.target.value)}
-                placeholder='enter an image link here, a picture of your Artist'
+                placeholder='enter an image link here, a picture of the venue'
                 className='w-full max-w-xl input input-bordered input-secondary'
               />
             </div>
@@ -144,7 +144,7 @@ function CreateConcert({ artists }) {
                 id='locationName'
                 value={locationName}
                 onChange={(e) => setLocationName(e.target.value)}
-                placeholder='type in the genre name here'
+                placeholder='type in the name of the venue -- example: MSG'
                 className='w-full max-w-xl input input-bordered input-accent'
               />
             </div>
