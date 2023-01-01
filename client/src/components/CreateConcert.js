@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 function CreateConcert({ artists }) {
-  const [artistSelect, setArtistSelect] = useState('');
+  const [artistID, setArtistID] = useState(1);
   const [dateSelect, setDateSelect] = useState('2023-02-01');
   const [imageLink, setImageLink] = useState('');
   const [locationName, setLocationName] = useState('');
@@ -10,24 +10,6 @@ function CreateConcert({ artists }) {
   const [errorsExist, setErrorsExist] = useState(false);
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
-
-  const [selected, setSelected] = useState('');
-
-  const artistsNamesArray = artists.map((artist) => artist.name);
-  console.log('artistsNamesArray: ', artistsNamesArray);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  // //* resetting our states when a new page renders
-  //! gotta figure this useEffect out
-  // useEffect(() => {
-  //   setSuccess('');
-  //   setError([]);
-  //   setSubmitted(false);
-  //   setBody('');
-  //   setTicketAmount(0);
-  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +20,10 @@ function CreateConcert({ artists }) {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
+        date: dateSelect,
+        location: locationName,
         image: imageLink,
+        // artist_id: thisArtist.id,
       }),
     }).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
@@ -55,9 +40,6 @@ function CreateConcert({ artists }) {
     });
   };
 
-  console.log('selected: ', selected);
-
-  console.log('artists within CC: ', artists);
   return (
     <div>
       <div className='max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
@@ -109,18 +91,27 @@ function CreateConcert({ artists }) {
           </h1>
 
           <form className='p-8 mt-2 mb-0 space-y-4 rounded-lg shadow-2xl'>
+            {/* <div>
+              <select
+                onChange={(e) => handleArtistSelect(e.target.value)}
+                className='w-full select select-info'>
+                {singers.map((name, key) => (
+                  <option key={key}>{name}</option>
+                ))}
+              </select>
+            </div> */}
             <div>
               <select
-                value={selected}
-                defaultValue={'Which artist is performing?'}
-                onChange={(e) => setSelected(e.target.value)}
-                className='w-full select select-primary'>
-                <option value={'Which artist is performing?'}></option>
-                {artistsNamesArray.map((eachArtist) => {
-                  <option value={eachArtist}>{eachArtist}</option>;
-                })}
+                onChange={(e) => setArtistID(e.target.value)}
+                className='w-full select select-info'>
+                {artists.map((artist) => (
+                  <option value={artist.id} key={artist.id}>
+                    {artist.name}
+                  </option>
+                ))}
               </select>
             </div>
+
             <div>
               <input
                 type='date'
