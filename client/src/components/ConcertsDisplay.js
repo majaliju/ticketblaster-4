@@ -38,7 +38,7 @@ function ConcertsDisplay({
           <input
             type='text'
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for any concerts here by typing either the artist's name or the venue's name..."
+            placeholder="Search for any concerts here by typing either the artist's name or the venue's name or the date (YYYY-MM-DD)..."
             class='input input-bordered w-full input-lg text-center'
           />
         </label>
@@ -62,7 +62,8 @@ function ConcertsDisplay({
                     .includes(searchTerm.toLowerCase()) ||
                   concert.location
                     .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
+                    .includes(searchTerm.toLowerCase()) ||
+                  concert.date.includes(searchTerm)
                 ) {
                   return concert;
                 }
