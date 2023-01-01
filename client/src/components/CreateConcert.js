@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-function CreateConcert() {
+function CreateConcert({ artists }) {
   const [artistSelect, setArtistSelect] = useState('');
   const [dateSelect, setDateSelect] = useState('2023-02-01');
   const [imageLink, setImageLink] = useState('');
@@ -10,6 +10,11 @@ function CreateConcert() {
   const [errorsExist, setErrorsExist] = useState(false);
   const [success, setSuccess] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  const [selected, setSelected] = useState('');
+
+  const artistsNamesArray = artists.map((artist) => artist.name);
+  console.log('artistsNamesArray: ', artistsNamesArray);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,7 +31,7 @@ function CreateConcert() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/new_artist', {
+    fetch('/new_concert', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,6 +55,9 @@ function CreateConcert() {
     });
   };
 
+  console.log('selected: ', selected);
+
+  console.log('artists within CC: ', artists);
   return (
     <div>
       <div className='max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8'>
@@ -102,14 +110,15 @@ function CreateConcert() {
 
           <form className='p-8 mt-2 mb-0 space-y-4 rounded-lg shadow-2xl'>
             <div>
-              <select className='w-full max-w-xs select select-primary'>
-                <option disabled selected>
-                  What is the best TV show?
-                </option>
-                <option>Game of Thrones</option>
-                <option>Lost</option>
-                <option>Breaking Bad</option>
-                <option>Walking Dead</option>
+              <select
+                value={selected}
+                defaultValue={'Which artist is performing?'}
+                onChange={(e) => setSelected(e.target.value)}
+                className='w-full select select-primary'>
+                <option value={'Which artist is performing?'}></option>
+                {artistsNamesArray.map((eachArtist) => {
+                  <option value={eachArtist}>{eachArtist}</option>;
+                })}
               </select>
             </div>
             <div>
@@ -123,7 +132,6 @@ function CreateConcert() {
                 className='w-full max-w-xl input input-bordered input-primary'
               />
             </div>
-            {console.log(dateSelect)}
 
             <div>
               <input

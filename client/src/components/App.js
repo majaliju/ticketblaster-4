@@ -233,7 +233,11 @@ function App() {
         <Route
           path='/createConcert'
           element={
-            <CreateConcert concerts={concerts} setConcerts={setConcerts} />
+            <CreateConcert
+              concerts={concerts}
+              artists={artists}
+              setConcerts={setConcerts}
+            />
           }
         />
         <Route
