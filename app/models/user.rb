@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :username, presence: true
 
-  # validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
   validates :password, length: { minimum: 8, maximum: 254}
   validates_presence_of :email
     validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP

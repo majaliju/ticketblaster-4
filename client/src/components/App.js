@@ -187,7 +187,6 @@ function App() {
             <ThisUser
               currentUser={currentUser}
               users={users}
-              // handleDelete={handleDelete}
               concerts={concerts}
             />
           }
@@ -200,7 +199,6 @@ function App() {
               currentUser={currentUser}
               users={users}
               concerts={concerts}
-              // handleDelete={handleDelete}
             />
           }
         />
@@ -252,8 +250,31 @@ function App() {
             />
           }
         />
-        <Route path='/login' element={<Login onLogin={onLogin} />} />
-        <Route path='/signup' element={<SignUp onLogin={onLogin} />} />
+        <Route
+          path='/login'
+          element={
+            <Login
+              loggedIn={loggedIn}
+              onLogin={onLogin}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              users={users}
+              setUsers={setUsers}
+            />
+          }
+        />
+        <Route
+          path='/signup'
+          element={
+            <SignUp
+              onLogin={onLogin}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              users={users}
+              setUsers={setUsers}
+            />
+          }
+        />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
