@@ -7,7 +7,7 @@ class Concert < ApplicationRecord
 
   
   validates :location, presence: true
-  validates :image, presence: true
+  validates :venue_image, presence: true
  
   
 

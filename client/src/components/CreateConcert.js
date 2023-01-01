@@ -22,7 +22,7 @@ function CreateConcert({ artists, setConcerts, concerts }) {
       body: JSON.stringify({
         date: dateSelect,
         location: locationName,
-        image: imageLink,
+        venue_image: imageLink,
         artist_id: artistID,
       }),
     }).then((response) => {

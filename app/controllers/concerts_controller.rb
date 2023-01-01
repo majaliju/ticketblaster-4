@@ -27,7 +27,7 @@ class ConcertsController < ApplicationController
   private
 
   def new_concert_params
-    params.permit(:artist_id, :date, :venue_image, :location)
+    params.permit(:artist_id, :date, :image, :location)
   end
 
   def render_unprocessable_entity_response(invalid)
